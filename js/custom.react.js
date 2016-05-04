@@ -135,6 +135,10 @@
 					this.setState({value: event.target.value.substr(0, 140)});
 					//localStorage.setItem(2);
 				},
+				testChange : function(){
+					
+					$("#pagebodylayout").slideUp("slow");
+				},
 				render: function(){
 					return(
 						/*<div>
@@ -149,7 +153,7 @@
 							
 						<div>
 							<h2>Local Storage Count: {localStorage.getItem("count") }</h2>
-							<a href={ this.state.url} target="_blank" className="btn btn-xs btn-success"> Smugkig 1</a>
+							<a href="#" onClick={this.testChange.bind(this)} target="_self" className="btn btn-xs btn-success"> Smugkig </a>
 						</div>
 					/*	</div>*/
 					);
@@ -214,6 +218,9 @@ class MenuComponent extends React.Component{
 	}
 }
 
+
+
+
 class FooterComponent extends
 	React.Component{
 		constructor(props){
@@ -242,6 +249,71 @@ class FooterComponent extends
 	}
 
 
+
+	
+
+class AnimateComponent extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			isShowing : false,
+			hideMyDiv : "panelVideoId"
+		}
+	}
+	
+	onClicked() {
+		 this.setState({isShowing: !this.state.isShowing});
+    }
+
+	render(){
+	//	var helloWorld = this.state.isShowing ? <Hello name="World!"  onComplete={this.onAnimationComplete}  /> : '';
+		var myDiv = 
+				<div onClick={this.onClicked.bind(this)} >
+				<nav className="blog-nav " >
+					<ul className="nav nav-pills ">
+						<li role="presentation" className="active"><a href="#"  onClick={this.onClicked.bind(this)}  >Luk Vindue</a></li>
+					</ul>
+				</nav>
+				</div>
+		return (
+					/*<div ref="myHelloWorld">
+					
+ 						<nav className="blog-nav " >
+		                  
+		                    <ul className="nav nav-pills ">
+		                        <li role="presentation" className="active"><a href="#"  onClick={this.onClicked.bind(this)}  >Luk Vindue</a></li>
+		                    </ul>
+               			 </nav>
+					
+
+					</div>
+					*/
+					<div  >
+					{myDiv}
+					
+					
+					 { this.state.isShowing ? <Hello name="Peter" />: null }
+					</div>
+			);
+	}
+}
+
+
+class Hello extends  React.Component{
+    render() {
+        return <div>Hello { this.props.name }</div>;
+    }
+};	
+
+	ReactDOM.render(
+		<div  >
+			<AnimateComponent  >
+				 
+			</AnimateComponent>
+		</div>, 
+		document.getElementById('panelVideoId')
+	);
+	
 	ReactDOM.render(
 		<div>
 			<MenuComponent  >
