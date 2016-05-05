@@ -1,3 +1,5 @@
+			var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+			var INTERVAL = 2000;
 
 			var QuestionOneComponent = React.createClass({
 				getInitialState: function() {
@@ -194,26 +196,199 @@
 			
 
 class MenuComponent extends React.Component{
-
+	constructor (props){
+		super(props);
+		this.state = {
+			current: 0,
+			colors: "red",
+			interval: 0,
+			tick:0,
+			items:[],
+			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret Din Side'],
+			mounted: false
+		}
+	}
+	componentDidMount() {
+	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
+	  this.setState({ mounted: true });
+	}
+	componentWillUnmount() {
+		
+		clearInterval(this.interval);
+	}
+	tick() {
+		this.setState({current: this.state.current + 1});
+	}
+	
+	handleAdd() {
+		var newItems = this.state.items.concat([prompt('Enter some text')]);
+		this.setState({items: newItems});
+		
+	}
+	
+	handleRemove(i) {
+		var newItems = this.state.children.slice();
+		newItems.splice(i, 1);
+		this.setState({children: newItems});
+	}
+  
 	render(){
+		var children = [];
+		var pos = 0;
+		var colors = ['red', 'gray', 'blue'];
+		var style = {
+		  left: pos * 128,
+		  padding:"0.5rem",
+		  margin: "5px",
+		  background: colors[1]
+		};
+		/*
+			children.push(
+			<nav className="blog-nav"  key={pos}  >
+				<a className="blog-nav-item active" style={style} href="#">Forside</a>
+				<a className="blog-nav-item" href="#">Hvorfor?</a>
+				<a className="blog-nav-item" href="#">Hvem er vi?</a>
+				<a className="blog-nav-item" href="#">Opret Din Side</a>
+			
+			</nav>);*/
+			
+		
+			var items = this.state.items.map(function(item, i) {
+				return (
+					<a className="blog-nav-item active"   href="#" key={item} onClick={this.handleRemove.bind(this, i)}>
+						{item}
+					</a>
+				);
+			}.bind(this));	
+		
+		/*
+		 for (var i = this.state.current; i < this.state.current + colors.length; i++) {
+			var style = {
+			  left: pos * 5,
+			  background: colors[i % colors.length]
+			};
+			pos++;
+			children.push(<a className="blog-nav-item active"   href="#"  onClick={this.handleRemove.bind(this, i)} key={i}  onClick={this.handleRemove.bind(this, i)} style={style}>{i}</a>);
+		}
+		*/
+		
+		var x;
+		
+		if(this.state.mounted ){	
+			x = this.state.children.map(function(child, i) {
+				return (
+					<a className="blog-nav-item active"    href="#" key={child} onClick={this.handleRemove.bind(this, i)}>
+						{child}
+					</a>
+				);
+			}.bind(this));
+		}
+	/* <button className="btn btn-info" onClick={this.handleAdd.bind(this)}>Tilføj Menu</button>*/
+		return (
+		
+				<div>
+					
+					
+					<CSSTransitionGroup
+					  className="animateExample blog-nav"
+					  transitionEnterTimeout={250}
+					  transitionLeaveTimeout={250}
+					  transitionName="example"
+					  component="nav"
+					  >
+					
+						
+						{x}
+							
+						
+						
+					</CSSTransitionGroup>
+					
+				</div>
+			);
+	}
+}
+
+
+class JumbotronComponent extends React.Component{
+	constructor (props){
+		super(props);
+		this.state = {
+			current: 0,
+			colors: "red",
+			interval: 0,
+			tick:0,
+			items:[],
+			mounted: false,
+			jumbotronTitle: ['Vælg et logo eller banner?']
+		}
+	}
+	componentDidMount() {
+	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
+	  this.setState({ mounted: true });
+	}
+	componentWillUnmount() {
+		
+		clearInterval(this.interval);
+	}
+	
+	handleAdd() {
+		var newItems = this.state.jumbotronTitle.concat([prompt('Enter some text')]);
+		this.setState({jumbotronTitle: newItems});
+		
+	}
+	
+	handleRemove(i) {
+		var newItems = this.state.jumbotronTitle.slice();
+		newItems.splice(i, 1);
+		this.setState({jumbotronTitle: newItems});
+	}
+  
+	render(){
+	
+		var pos = 0;
+		var colors = ['red', 'gray', 'blue'];
+		var style = {
+		  left: pos * 128,
+		  padding:"0.5rem",
+		  margin: "5px",
+		  background: colors[1]
+		};
+
+	
+		
+		var x;
+		
+		if(this.state.mounted ){	
+			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+				return (
+					<div className="container"    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
+							<h1>
+								{jumbotronTitle}
+							</h1>
+							<p>
+								S&aring;dan g&oslash;r du...blablabla
+							</p>
+					</div>
+				);
+			}.bind(this));
+		}
 
 		return (
-					<div>
-					
- 						<nav className="blog-nav ">
-		                    <a className="blog-nav-item active" href="#">Forside</a>
-		                    <a className="blog-nav-item" href="#">Hvorfor?</a>
-		                    <a className="blog-nav-item" href="#">Hvem er vi?</a>
-		                    <a className="blog-nav-item" href="#create">Opret Din Side</a>
-		              
-		           
-		                    <ul className="nav nav-pills pull-right">
-		                        <li role="presentation" className="active"><a href="#">Login</a></li>
-		                    </ul>
-               			 </nav>
-
-
-					</div>
+		
+				<div>
+					<CSSTransitionGroup
+					  className=" jumbotron jumbotroncolors"
+					  transitionEnterTimeout={250}
+					  transitionLeaveTimeout={250}
+					  transitionName="example"
+					  component="div"
+					  >
+						{x}
+					</CSSTransitionGroup>
+				</div>
 			);
 	}
 }
@@ -315,14 +490,23 @@ class Hello extends  React.Component{
 	);
 	
 	ReactDOM.render(
-		<div>
+		
 			<MenuComponent  >
 				 
 			</MenuComponent>
-		</div>, 
+		, 
 		document.getElementById('menuId')
 	);
 
+	
+	ReactDOM.render(
+		
+			<JumbotronComponent  >
+				 
+			</JumbotronComponent>
+		, 
+		document.getElementById('jumbotronId')
+	);
 
 	ReactDOM.render(
 		<div>
