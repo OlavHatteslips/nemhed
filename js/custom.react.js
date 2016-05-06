@@ -19,9 +19,9 @@
 					
 					//$(reactfindDomNode).append("<h2>Har du et slogan?</h2>");
 					
-			
+					
 					ReactDOM.render(
-						<LogoComponent option="Logo" />,
+						<LogoComponent  option="Logo" />,
 						document.getElementById('logoOptionId')
 					);
 				
@@ -34,6 +34,8 @@
 				
 				,
 				render: function(){
+					
+
 					return(
 
 						<div>
@@ -107,60 +109,67 @@
 			
 			  
 			
-			
-			
-			
-			var NextStepNoSloganComponent = React.createClass({
-				countColumns : function(){
+			class NextStepNoSloganComponent extends React.Component{
+				constructor (props){
+					super(props);
+					
+				}
+				countColumns(){
 					alert("Optalt : 1 kolonne");
-				},
-				render: function(){
+				}
+				removeThisDiv(i){
+					//console.log('You clicked: ' + this.state.items[i] );
+					this.setState({ mountedInfo: false });
+					this.setState({mounted: false});
+					
+					alert("HEJ");
+				}
+				render(){
 					return(
 						<div>
 							<div className="alert alert-warning">Bem&aelig;rk; Du har ikke valgt et slogan</div>
-							<button onClick={this.countColumns} className="btn btn-xs btn-success"> Forts&aelig;t </button>
+							<button onClick={this.removeThisDiv.bind(this, "videoLink", this.state) } className="btn btn-xs btn-info"> Forts&aelig;t </button>
 						</div>
 					);
 				}
-			});
+			}
 			
-			var NextStepSloganComponent = React.createClass({
-				countColumns : function(){
-					//alert("Optalt : 2 kolonner");
-				},
-				getInitialState: function() {
-					return {
+			class NextStepSloganComponent extends React.Component{
+				
+				constructor (props){
+					super(props);
+					this.state = {
+						mounted: false,
+						mountedInfo: true,
 						url : "Generated.html"
-					};
-				},
-				handleChange: function(event) {
+					}
+				}
+				countColumns(){
+					//alert("Optalt : 2 kolonner");
+				}
+				
+				removeThisDiv(i){
+					//console.log('You clicked: ' + this.state.items[i] );
+					this.setState({ mountedInfo: false });
+				}
+
+				handleChange(event) {
 					this.setState({value: event.target.value.substr(0, 140)});
 					//localStorage.setItem(2);
-				},
-				testChange : function(){
+				}
+				testChange(){
 					
 					$("#pagebodylayout").slideUp("slow");
-				},
-				render: function(){
+				}
+				render(){
 					return(
-						/*<div>
-							<div className="alert alert-success">Bem&aelig;rk; Du har  valgt et slogan</div>
-							<a href="#" onClick={this.handleChange} className="btn btn-xs btn-success"> Forts&aelig;t </a>
-							<a href={ this.state.url} target="_blank" className="btn btn-xs btn-success"> Smugkig </a>
-							*/
-						/*
-							<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={1500} transitionLeaveTimeout={1300}>
-							<div><a href={ this.state.url} target="_blank" className="btn btn-xs btn-success"> Smugkig </a></div>
-							</ReactCSSTransitionGroup>*/
-							
 						<div>
 							<h2>Local Storage Count: {localStorage.getItem("count") }</h2>
-							<a href="#" onClick={this.testChange.bind(this)} target="_self" className="btn btn-xs btn-success"> Smugkig </a>
+							<a href="#" onClick={this.removeThisDiv.bind(this, "videoLink", this.state) } target="_self" className="btn btn-xs btn-success"> Smugkig </a>
 						</div>
-					/*	</div>*/
 					);
 				}
-			});
+			}
 			
 			
 /*
@@ -395,6 +404,128 @@ class JumbotronComponent extends React.Component{
 
 
 
+class ContentComponent extends React.Component{
+	constructor (props){
+		super(props);
+		this.state = {
+			current: 0,
+			colors: "red",
+			interval: 0,
+			teddybear: "testDiv",
+			tick:0,
+			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
+			mounted: false,
+			mountedInfo: false,
+			videoLink: ['https://www.youtube.com/embed/v4oN4DuR7YU']
+			
+		}
+		//var results = this.props.results;
+	}
+	componentDidMount() {
+	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
+	  this.setState({ mounted: true });
+	}
+	componentWillUnmount() {
+		
+		clearInterval(this.interval);
+	}
+	
+	handleAdd() {
+		var newItems = this.state.videoLink.concat([prompt('Enter some text')]);
+		this.setState({videoLink: newItems});
+		
+	}
+	
+	handleRemove(i) {
+		var newItems = this.state.videoLink.slice();
+		newItems.splice(i, 1);
+		this.setState({videoLink: newItems});
+	}
+	
+	removeThisDiv(){
+		//console.log('You clicked: ' + this.state.items[i] );
+		this.setState({ mounted: false });
+	}
+	
+	testFunc(key){
+		console.log(key);
+	}
+  
+	render(){
+	
+		var x;
+		/*<div  key={i}  onClick={this.removeThisDiv.bind(this, i, this.state) }>{item}</div>*/
+		var b;
+		
+		var row;
+		var infoRow;
+		if(this.state.mounted ){	
+			row = 
+			
+			<div id="rowID" className="row" key={"row"} onClick={this.testFunc.bind(this,"row",  this.state)}>
+				<div  key={"colmd6"}  className="col-md-6">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								<iframe width="420" height="315" src= {this.state.videoLink}  frameborder="0"  className="text-center" key={"iframe"} allowfullscreen>
+								</iframe>
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="col-md-6" key={6}>
+					<div className="panel " key={"videoLink"} >
+							<b onClick={this.removeThisDiv.bind(this, this.state)}>dsd </b>
+							<QuestionOneComponent data={this.state.mounted} myDivId="rowID"/>
+						/*<div className="panel-body" key={7} id="panelbody">		
+						</div>
+						<div className="panel-body" key={8} id="logoOptionId">
+						</div>	
+						
+						<div className="panel-body" key={9} id="forwardDivID">
+						</div>	
+						
+						<div className="panel-body" key={10} id="TestID">
+						</div>*/
+						
+					</div>
+				</div>
+			</div>
+			
+		}
+		
+			
+				
+			
+			
+			
+		
+			
+		
+
+		return (
+		
+				
+					<CSSTransitionGroup
+					  className="row "
+					  transitionEnterTimeout={250}
+					  transitionLeaveTimeout={250}
+					  transitionName="example"
+					  component="div"
+					  >
+						{row}
+					</CSSTransitionGroup>
+				
+			);
+	}
+}
+
+
+
 
 class FooterComponent extends
 	React.Component{
@@ -506,6 +637,15 @@ class Hello extends  React.Component{
 			</JumbotronComponent>
 		, 
 		document.getElementById('jumbotronId')
+	);
+	
+	ReactDOM.render(
+		
+			<ContentComponent  >
+				 
+			</ContentComponent>
+		, 
+		document.getElementById('insertContentStuff')
 	);
 
 	ReactDOM.render(
