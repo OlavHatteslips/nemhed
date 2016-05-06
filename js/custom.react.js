@@ -1,64 +1,6 @@
 			var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 			var INTERVAL = 2000;
 
-			var QuestionOneComponent = React.createClass({
-				getInitialState: function() {
-					return {
-						value: "banner",
-						bval : "logo"
-					};
-				},
-				basedOnBanner :function(){
-					//alert("Du har et banner");
-				},
-				basedOnLogo : function(){
-					
-					//$("#panelbody").append("HEJ");
-					
-					// var reactfindDomNode = React.findDOMNode(this);
-					
-					//$(reactfindDomNode).append("<h2>Har du et slogan?</h2>");
-					
-					
-					ReactDOM.render(
-						<LogoComponent  option="Logo" />,
-						document.getElementById('logoOptionId')
-					);
-				
-					
-					
-				},
-				alertValue: function() {
-					alert(this.state.value);
-				}
-				
-				,
-				render: function(){
-					
-
-					return(
-
-						<div>
-							<h2>Har du et {this.props.children}</h2>
-							<form>
-								<p className="form-group">
-
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionOneLogo"  value={this.state.bval} onClick={this.basedOnLogo} /> Logo
-									</label>
-								</p>
-								<p className="form-group">
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionOneBanner"   value={this.state.value}  onClick={this.alertValue} /> Banner
-									</label>
-								</p>
-
-							</form>
-						</div>
-					);
-				}
-			});
-			
 			
 			
 			var LogoComponent = React.createClass({
@@ -122,7 +64,7 @@
 					this.setState({ mountedInfo: false });
 					this.setState({mounted: false});
 					
-					alert("HEJ");
+					
 				}
 				render(){
 					return(
@@ -139,9 +81,7 @@
 				constructor (props){
 					super(props);
 					this.state = {
-						mounted: false,
-						mountedInfo: true,
-						url : "Generated.html"
+						mounted : true
 					}
 				}
 				countColumns(){
@@ -158,14 +98,36 @@
 					//localStorage.setItem(2);
 				}
 				testChange(){
-					
-					$("#pagebodylayout").slideUp("slow");
-				}
-				render(){
-					return(
+					return (
 						<div>
 							<h2>Local Storage Count: {localStorage.getItem("count") }</h2>
 							<a href="#" onClick={this.removeThisDiv.bind(this, "videoLink", this.state) } target="_self" className="btn btn-xs btn-success"> Smugkig </a>
+						
+							<button onClick={this.handleChange.bind(this)} value="Easter Eag" className="btn btn-xs btn-success"> dssd </button>
+						</div>
+					);
+				}
+				
+				handleChange(event) {
+					this.setState({mounted: this.state.mounted = false});
+				}
+					
+					
+
+			
+
+
+	
+				
+				
+				render(){
+					return(
+						
+						<div>
+						{
+							this.testChange()}
+							
+						
 						</div>
 					);
 				}
@@ -193,15 +155,7 @@
 		*/
 	
 	
-			 
-			ReactDOM.render(
-				<div>
-					<QuestionOneComponent id='questionOne' >
-						 logo eller et banner?
-					</QuestionOneComponent>
-				</div>, 
-				document.getElementById('panelbody')
-			);
+
 			
 
 class MenuComponent extends React.Component{
@@ -416,13 +370,17 @@ class ContentComponent extends React.Component{
 			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
 			mounted: false,
 			mountedInfo: false,
-			videoLink: ['https://www.youtube.com/embed/v4oN4DuR7YU']
+			videoLink: ['https://www.youtube.com/embed/v4oN4DuR7YU'],
+			value: "banner",
+			bval : "logo",
+			showNextQuestion : false,
+			sloganQuestion : false
 			
 		}
 		//var results = this.props.results;
 	}
 	componentDidMount() {
-	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
 	 
 	  this.setState({ mounted: true });
 	}
@@ -448,22 +406,89 @@ class ContentComponent extends React.Component{
 		this.setState({ mounted: false });
 	}
 	
-	testFunc(key){
-		console.log(key);
+	basedOnSloganNo(){
+		this.setState({ mounted: false });
+			
 	}
-  
-	render(){
+	basedOnSloganYes(){
+	//	this.setState({ mounted: true });
+		//this.setState({ sloganQuestion: false });
+		this.setState({sloganQuestion : true});
+	}
 	
+	answerBasedOnSlogan(){
+		return(
+	
+				<div>
+					<p >Tak for dine svar</p>
+					
+					<button className="btn btn-xs btn-info" onClick={this.hideContentQuestionMenu.bind(this)}>Watch Preview</button>
+
+				</div>
+			);
+	}
+	
+	basedOnLogo(){
+		
+	
+		return(
+	
+				<div>
+					<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
+					
+					<form>
+						<p className="form-group">
+
+							<label className="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganYesId"  value="yes" onClick={this.basedOnSloganYes.bind(this)} /> Ja
+							</label>
+						</p>
+						<p className="form-group">
+							<label className="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganNoId"  value="no" onClick={this.basedOnSloganNo.bind(this)} /> Nej
+							</label>
+						</p>
+					</form>
+					{ this.state.sloganQuestion ? this.answerBasedOnSlogan(): null }
+					
+				
+				</div>
+			);
+	}
+	
+	hideContentQuestionMenu(){
+		this.setState({ mounted: false });
+	}
+	
+	checkSetLogo() {
+		
+		this.setState({ showNextQuestion: true });
+		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
+	}
+	
+	checkSetBanner() {
+		this.setState({ showNextQuestion: false });
+		console.log("not implemented yet");
+		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
+	}
+		
+	render(){
+		
 		var x;
 		/*<div  key={i}  onClick={this.removeThisDiv.bind(this, i, this.state) }>{item}</div>*/
 		var b;
 		
 		var row;
 		var infoRow;
+		var {value} = this.state;
+		
+
 		if(this.state.mounted ){	
+		
+		
 			row = 
 			
-			<div id="rowID" className="row" key={"row"} onClick={this.testFunc.bind(this,"row",  this.state)}>
+			<div id="rowID" className="row" key={"row"} >
 				<div  key={"colmd6"}  className="col-md-6">
 				
 					<div className="panel " key={"panel"}>
@@ -480,29 +505,32 @@ class ContentComponent extends React.Component{
 				<div className="col-md-6" key={6}>
 					<div className="panel " key={"videoLink"} >
 							<b onClick={this.removeThisDiv.bind(this, this.state)}>dsd </b>
-							<QuestionOneComponent data={this.state.mounted} myDivId="rowID"/>
-						/*<div className="panel-body" key={7} id="panelbody">		
-						</div>
-						<div className="panel-body" key={8} id="logoOptionId">
-						</div>	
+							
+							
 						
-						<div className="panel-body" key={9} id="forwardDivID">
-						</div>	
-						
-						<div className="panel-body" key={10} id="TestID">
-						</div>*/
-						
+							<h2>Har du et {this.props.children}</h2>
+								<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionOneLogo"  value={this.state.bval} onClick={this.checkSetLogo.bind(this)} /> Logo
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionOneBanner"   value={this.state.value}  onClick={this.checkSetBanner.bind(this)} /> Banner
+									</label>
+								</p>
+								</form>
+								
+									//hvis den variabel er sat til...yes så vis logodimsen ellers lad være
+								{ this.state.showNextQuestion ? this.basedOnLogo(): null }
+								
 					</div>
 				</div>
 			</div>
 			
 		}
-		
-			
-				
-			
-			
-			
 		
 			
 		
@@ -518,6 +546,8 @@ class ContentComponent extends React.Component{
 					  component="div"
 					  >
 						{row}
+						
+						
 					</CSSTransitionGroup>
 				
 			);
@@ -623,7 +653,7 @@ class Hello extends  React.Component{
 	ReactDOM.render(
 		
 			<MenuComponent  >
-				 
+				
 			</MenuComponent>
 		, 
 		document.getElementById('menuId')
@@ -642,7 +672,7 @@ class Hello extends  React.Component{
 	ReactDOM.render(
 		
 			<ContentComponent  >
-				 
+				  Logo eller banner
 			</ContentComponent>
 		, 
 		document.getElementById('insertContentStuff')
