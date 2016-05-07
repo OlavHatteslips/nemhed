@@ -374,7 +374,9 @@ class ContentComponent extends React.Component{
 			value: "banner",
 			bval : "logo",
 			showNextQuestion : false,
-			sloganQuestion : false
+			sloganQuestion : false,
+			sloganText : '',
+			showPreview: false
 			
 		}
 		//var results = this.props.results;
@@ -416,15 +418,102 @@ class ContentComponent extends React.Component{
 		this.setState({sloganQuestion : true});
 	}
 	
+	bindPreview(){
+	//	this.setState({ mounted: true });
+		//this.setState({ sloganQuestion: false });
+		this.setState({showPreview : true});
+	}
+	
+	handleAddSloganText() {
+		var newItems = this.state.sloganText.concat([prompt('Enter some text')]);
+		this.setState({sloganText: newItems});
+		
+	}
+	
+	previewFix(){
+	//	this.setState({ mounted: true });
+		//this.setState({ sloganQuestion: false });
+		this.setState({ mounted: false });
+		return(
+			<div id="rowID" className=" row" key={"row"} >
+			
+				<div  key={"colmd12"}  className="col-md-12 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+								
+								<h1>{this.state.sloganText}</h1>
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12s"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								Kasse eet
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12v"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+							Kasse to
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12fdf"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								Kasse tre
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12assa"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								Kasse fire
+								
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>	
+		);
+	}
+	
 	answerBasedOnSlogan(){
 		return(
 	
 				<div className="">
 					<p >Tak for dine svar</p>
 					
-					<button className="btn btn-xs btn-info" onClick={this.hideContentQuestionMenu.bind(this)}>Smugkig Resultatet</button>
-
+					<button className="btn btn-xs btn-info" onClick={this.bindPreview.bind(this)}>Smugkig Resultatet</button>
+					
 				</div>
+				
+					
 			);
 	}
 	
@@ -549,7 +638,7 @@ class ContentComponent extends React.Component{
 			
 						{row}
 						
-						
+						{ this.state.showPreview ? this.previewFix(): null }
 					</CSSTransitionGroup>
 				
 			);
