@@ -1,13 +1,24 @@
 .example-enter {
-  opacity: 0.01;
+ position: absolute;
+    left: -100px;
+    width: 100px;
+    height: 100px;
+    background: blue;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 0.5s forwards;
+    animation-delay: 2s;
 
-  
-   transition-duration: .3s;
-  transition-property: transform, opacity;
-  transition-timing-function: ease-out;
-  transform: translate3d(0,100%,0);
-  z-index: 10000;
 }
+
+@-webkit-keyframes example-enter {
+    100% { left: 0; }
+}
+
+@keyframes example-enter {
+    100% { left: 0; }
+}
+
 .example-leave {
   transition-duration: .3s;
   transition-property: transform, opacity;
@@ -23,13 +34,11 @@
 }
 
 .example-leave.example-leave-active {
-  transform: translate3d(0,-15%,0);
+  transform: translate3d(0,-45%,0);
   opacity: 0.3;
 }
 
-.example-enter {
-  margin-left: 128px;
-}
+
 
 .example-enter.example-enter-active,
 .example-leave {

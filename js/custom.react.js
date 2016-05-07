@@ -327,7 +327,7 @@ class JumbotronComponent extends React.Component{
 		if(this.state.mounted ){	
 			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
-					<div className="container"    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
+					<div className="container "    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
 							<h1>
 								{jumbotronTitle}
 							</h1>
@@ -419,10 +419,10 @@ class ContentComponent extends React.Component{
 	answerBasedOnSlogan(){
 		return(
 	
-				<div>
+				<div className="">
 					<p >Tak for dine svar</p>
 					
-					<button className="btn btn-xs btn-info" onClick={this.hideContentQuestionMenu.bind(this)}>Watch Preview</button>
+					<button className="btn btn-xs btn-info" onClick={this.hideContentQuestionMenu.bind(this)}>Smugkig Resultatet</button>
 
 				</div>
 			);
@@ -433,7 +433,7 @@ class ContentComponent extends React.Component{
 	
 		return(
 	
-				<div>
+				<div className="">
 					<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
 					
 					<form>
@@ -485,11 +485,12 @@ class ContentComponent extends React.Component{
 
 		if(this.state.mounted ){	
 		
-		
+			
 			row = 
 			
-			<div id="rowID" className="row" key={"row"} >
-				<div  key={"colmd6"}  className="col-md-6">
+			<div id="rowID" className=" " key={"row"} >
+			<JumbotronComponent  />
+				<div  key={"colmd6"}  className="col-md-6 ">
 				
 					<div className="panel " key={"panel"}>
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
@@ -504,7 +505,7 @@ class ContentComponent extends React.Component{
 				</div>
 				<div className="col-md-6" key={6}>
 					<div className="panel " key={"videoLink"} >
-							<b onClick={this.removeThisDiv.bind(this, this.state)}>dsd </b>
+							<b  onClick={this.removeThisDiv.bind(this, this.state)}>Luk Alt </b>
 							
 							
 						
@@ -539,12 +540,13 @@ class ContentComponent extends React.Component{
 		
 				
 					<CSSTransitionGroup
-					  className="row "
-					  transitionEnterTimeout={250}
-					  transitionLeaveTimeout={250}
+					  className=" "
+					  transitionEnterTimeout={525}
+					  transitionLeaveTimeout={525}
 					  transitionName="example"
 					  component="div"
 					  >
+			
 						{row}
 						
 						
@@ -570,8 +572,8 @@ class FooterComponent extends
 			
 			return(
 				<div>
-					<button className="btn btn-xs btn-info"> Made with {this.props.framework}</button>
-					<button onClick={this.handleChange.bind(this)} value="Easter Eag" className="btn btn-xs btn-success"> {value} </button>
+					<button className="btn btn-xs btn-info "> Made with {this.props.framework}</button>
+					<button onClick={this.handleChange.bind(this)} value="Easter Eag" className="btn btn-xs btn-success "> {value} </button>
 
 				</div>
 			);
@@ -660,14 +662,14 @@ class Hello extends  React.Component{
 	);
 
 	
-	ReactDOM.render(
+	/*ReactDOM.render(
 		
 			<JumbotronComponent  >
 				 
 			</JumbotronComponent>
 		, 
 		document.getElementById('jumbotronId')
-	);
+	);*/
 	
 	ReactDOM.render(
 		
