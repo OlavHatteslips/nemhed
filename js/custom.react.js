@@ -376,7 +376,8 @@ class ContentComponent extends React.Component{
 			showNextQuestion : false,
 			sloganQuestion : false,
 			sloganText : '',
-			showPreview: false
+			showPreview: false,
+			logoUrl : ''
 			
 		}
 		//var results = this.props.results;
@@ -429,6 +430,12 @@ class ContentComponent extends React.Component{
 		
 	}
 	
+	handleAddLogoUrl() {
+		var newItems = this.state.logoUrl.concat([prompt('Enter some text')]);
+		this.setState({logoUrl: newItems});
+		
+	}
+	
 	changeStateOfMount(){
 		this.setState({
             mounted: false,
@@ -441,71 +448,69 @@ class ContentComponent extends React.Component{
 		//this.setState({ sloganQuestion: false });
 		//this.setState({ mounted: false });
 		return(
+		<div>
 			<div id="rowID" className=" row" key={"row"} >
-			
-				<div  key={"colmd12"}  className="col-md-12 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+				<div className="container">
+					<div  key={"colmdLogo"}  className="col-md-3 ">
+					
+						<div className="panel " key={"panel"}>
+							<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+							
+											
+									<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
+									
+									<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+									
 								
-								<h1>{this.state.sloganText}</h1>
+							</div>
+						</div>
+					</div>
+					<div  key={"colmdSlogan"}  className="col-md-9 ">
+					
+						<div className="panel " key={"panel"}>
+							<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
 								
-							</p>
+											
+									<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+									
+									<h1>{this.state.sloganText}</h1>
+									
+								
+							</div>
 						</div>
 					</div>
 				</div>
-				<div  key={"colmd12s"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								Kasse eet
-								
-							</p>
+			</div>
+			<div id="rowContentD" className=" row" key={"row2Content"} >
+				<div className="container">
+					<div  key={"colmd12s"}  className="col-md-6 ">
+					
+						<div className="panel " key={"panel"}>
+							<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+								<p className="text-center" key={"textCenter"}>
+											
+									Kasse eet
+									
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div  key={"colmd12v"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-							Kasse to
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				<div  key={"colmd12fdf"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								Kasse tre
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				<div  key={"colmd12assa"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								Kasse fire
-								
-							</p>
+					<div  key={"colmd12v"}  className="col-md-6 ">
+					
+						<div className="panel " key={"panel"}>
+							<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+								<p className="text-center" key={"textCenter"}>
+											
+								Kasse to
+									
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>	
+			
+		</div>
 		);
 		
 		
