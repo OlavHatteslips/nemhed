@@ -386,10 +386,8 @@ class ContentComponent extends React.Component{
 	 
 	  this.setState({ mounted: true });
 	}
-	componentWillUnmount() {
-		
-		clearInterval(this.interval);
-	}
+	
+
 	
 	handleAdd() {
 		var newItems = this.state.videoLink.concat([prompt('Enter some text')]);
@@ -422,6 +420,7 @@ class ContentComponent extends React.Component{
 	//	this.setState({ mounted: true });
 		//this.setState({ sloganQuestion: false });
 		this.setState({showPreview : true});
+		
 	}
 	
 	handleAddSloganText() {
@@ -430,10 +429,17 @@ class ContentComponent extends React.Component{
 		
 	}
 	
+	changeStateOfMount(){
+		this.setState({
+            mounted: false,
+			showPreview: true
+        });
+	}
 	previewFix(){
+		
 	//	this.setState({ mounted: true });
 		//this.setState({ sloganQuestion: false });
-		this.setState({ mounted: false });
+		//this.setState({ mounted: false });
 		return(
 			<div id="rowID" className=" row" key={"row"} >
 			
@@ -501,19 +507,21 @@ class ContentComponent extends React.Component{
 				</div>
 			</div>	
 		);
+		
+		
 	}
 	
 	answerBasedOnSlogan(){
 		return(
-	
+				
 				<div className="">
-					<p >Tak for dine svar</p>
+				
 					
-					<button className="btn btn-xs btn-info" onClick={this.bindPreview.bind(this)}>Smugkig Resultatet</button>
+					<button className="btn btn-xs btn-info" onClick={this.changeStateOfMount.bind(this)}>Vis Resultatet</button>
 					
 				</div>
 				
-					
+				
 			);
 	}
 	
@@ -597,7 +605,6 @@ class ContentComponent extends React.Component{
 				</div>
 				<div className="col-md-6" key={6}>
 					<div className="panel " key={"videoLink"} >
-							<b  onClick={this.removeThisDiv.bind(this, this.state)}>Luk Alt </b>
 							
 							
 						
@@ -735,8 +742,89 @@ class Hello extends  React.Component{
 };	
 
 class HeaderLoadComponent extends  React.Component{
+	
+	constructor(props){
+		super(props);
+		this.state = {
+			isShowing : false,
+			hideMyDiv : "panelVideoId",
+			sloganText : ""
+		}
+	}
+	
+	handleAddSloganText() {
+		var newItems = this.state.sloganText.concat([prompt('Enter some text')]);
+		this.setState({sloganText: newItems});
+		
+	}
     render() {
-        return <div>Hello { this.props.name }</div>;
+        return(
+			<div id="rowID" className=" row" key={"row"} >
+			
+				<div  key={"colmd12"}  className="col-md-12 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+								
+								<h1>{this.state.sloganText}</h1>
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12s"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								Kasse eet
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12v"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+							Kasse to
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12fdf"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								Kasse tre
+								
+							</p>
+						</div>
+					</div>
+				</div>
+				<div  key={"colmd12assa"}  className="col-md-3 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
+							<p className="text-center" key={"textCenter"}>
+										
+								Kasse fire
+								
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>	
+		);
     }
 };	
 
