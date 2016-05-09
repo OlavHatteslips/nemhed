@@ -370,7 +370,7 @@ class ContentComponent extends React.Component{
 			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
 			mounted: false,
 			mountedInfo: false,
-			videoLink: ['https://www.youtube.com/embed/v4oN4DuR7YU'],
+			videoLink: ['https://www.youtube.com/embed/v4oN4DuR7YU&amp;itag=43&amp;ipbits=0&amp;signature=D2BCBE2F115E68C5FF97673F1D797F3C3E3BFB99.59252109C7D2B995A8D51A461FF9A6264879948E&amp;sver=3&amp;ratebypass=yes&amp;expire=1300417200&amp;key=yt1&amp;ip=0.0.0.0&amp;id=37da319914f6616c'],
 			value: "banner",
 			bval : "logo",
 			showNextQuestion : false,
@@ -584,10 +584,13 @@ class ContentComponent extends React.Component{
 					<div className="panel " key={"panel"}>
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
 							<p className="text-center" key={"textCenter"}>
-										
-								<iframe width="420" height="315" src= {this.state.videoLink}  frameborder="0"  className="text-center" key={"iframe"} allowfullscreen>
-								</iframe>
-								
+
+									<video controls="controls" 
+								   className="video-stream" 
+								   x-webkit-airplay="allow" 
+								   data-youtube-id="v4oN4DuR7YU" 
+								   src={this.state.videoLink}>
+								   </video>
 							</p>
 						</div>
 					</div>
@@ -725,12 +728,18 @@ class AnimateComponent extends React.Component{
 	}
 }
 
-
 class Hello extends  React.Component{
     render() {
         return <div>Hello { this.props.name }</div>;
     }
 };	
+
+class HeaderLoadComponent extends  React.Component{
+    render() {
+        return <div>Hello { this.props.name }</div>;
+    }
+};	
+
 
 	ReactDOM.render(
 		<div  >
