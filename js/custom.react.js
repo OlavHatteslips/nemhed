@@ -111,15 +111,7 @@
 				handleChange(event) {
 					this.setState({mounted: this.state.mounted = false});
 				}
-					
-					
 
-			
-
-
-	
-				
-				
 				render(){
 					return(
 						
@@ -169,12 +161,15 @@ class MenuComponent extends React.Component{
 			items:[],
 			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret Din Side'],
 			mounted: false
+			
 		}
 	}
 	componentDidMount() {
 	  this.state.interval = setInterval(this.state.tick, INTERVAL);
 	 
 	  this.setState({ mounted: true });
+	  
+	
 	}
 	componentWillUnmount() {
 		
@@ -221,6 +216,8 @@ class MenuComponent extends React.Component{
 				return (
 					<a className="blog-nav-item active"   href="#" key={item} onClick={this.handleRemove.bind(this, i)}>
 						{item}
+						
+						
 					</a>
 				);
 			}.bind(this));	
@@ -241,30 +238,56 @@ class MenuComponent extends React.Component{
 		if(this.state.mounted ){	
 			x = this.state.children.map(function(child, i) {
 				return (
-					<a className="blog-nav-item active"    href="#" key={child} onClick={this.handleRemove.bind(this, i)}>
+				 <li class="active">
+				<a className="blog-nav-item active"    href="#" key={child} onClick={this.handleRemove.bind(this, i)}>
 						{child}
+						
+						
 					</a>
+					</li>
 				);
 			}.bind(this));
 		}
 	/* <button className="btn btn-info" onClick={this.handleAdd.bind(this)}>Tilføj Menu</button>*/
 		return (
 		
-				<div>
+				<div className="blog-masthead" >
 					
 					
 					<CSSTransitionGroup
-					  className="animateExample blog-nav"
-					  transitionEnterTimeout={250}
-					  transitionLeaveTimeout={250}
-					  transitionName="example"
+					  className="header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top animated rotateInDownRight"
+					  transitionEnterTimeout={225}
+					  transitionLeaveTimeout={225}
+					  transitionName=""
+					  transitionAppear={true}
+					  transitionAppearTimeout={500}
 					  component="nav"
 					  >
-					
-						
-						{x}
+						<div className="container">
+							<div className="navbar-header">
+
+								<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>                        
+								</button>
+								<a className="navbar-brand" href="#">Nemhed.dk</a>
+							</div>
 							
-						
+					
+							<div class="collapse navbar-collapse" id="myNavbar">
+
+
+ 
+								<ul className="nav navbar-nav">
+									{x}
+								</ul>
+								<ul className="nav navbar-nav navbar-right">
+									<li  role="presentation" className="active" ><a href="#"> Opret Bruger</a></li>
+									<li><a href="#">Login</a></li>
+								</ul>
+							</div>
+					</div>	
 						
 					</CSSTransitionGroup>
 					
@@ -285,6 +308,7 @@ class JumbotronComponent extends React.Component{
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Vælg et logo eller banner?']
+			
 		}
 	}
 	componentDidMount() {
@@ -343,9 +367,11 @@ class JumbotronComponent extends React.Component{
 		
 				<div>
 					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors"
+					  className=" jumbotron jumbotroncolors animated rotateInDownRight"
 					  transitionEnterTimeout={250}
 					  transitionLeaveTimeout={250}
+					  transitionAppear={true}
+					  transitionAppearTimeout = {250}
 					  transitionName="example"
 					  component="div"
 					  >
@@ -370,14 +396,19 @@ class ContentComponent extends React.Component{
 			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
 			mounted: false,
 			mountedInfo: false,
-			videoLink: ['https://www.youtube.com/embed/v4oN4DuR7YU&amp;itag=43&amp;ipbits=0&amp;signature=D2BCBE2F115E68C5FF97673F1D797F3C3E3BFB99.59252109C7D2B995A8D51A461FF9A6264879948E&amp;sver=3&amp;ratebypass=yes&amp;expire=1300417200&amp;key=yt1&amp;ip=0.0.0.0&amp;id=37da319914f6616c'],
+			videoLink: ['https://www.youtube.com/embed/9gTw2EDkaDQ?html5=1'],
 			value: "banner",
 			bval : "logo",
 			showNextQuestion : false,
 			sloganQuestion : false,
 			sloganText : '',
 			showPreview: false,
-			logoUrl : ''
+			logoUrl : '',
+			mountedFrontpage : false,
+			jumbotronWelcomeTitle : 'Velkommen til Nemsiden',
+			startSetup: false,
+			logoBannerSelected : false,
+			alertLogoImageCopyright : false
 			
 		}
 		//var results = this.props.results;
@@ -432,14 +463,54 @@ class ContentComponent extends React.Component{
 	
 	handleAddLogoUrl() {
 		var newItems = this.state.logoUrl.concat([prompt('Enter some text')]);
-		this.setState({logoUrl: newItems});
+		this.setState({logoUrl: newItems,
+		 alertLogoImageCopyright: true
+		});
+		
+	}
+	GoToLogoBannerChoice(){
+		this.setState({
+			logoBannerSelected : false,
+			 mounted: true,
+			 showPreview: false,
+			 sloganQuestion : false,
+			 showNextQuestion : false
+		})
+		
+	}
+	
+	AlertCopyright(){
+		
+		return(
+		<div class="alert alert-danger alert-dismissible fade in" role="alert"> 
+			<button type="button" className="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">×</span></button> 
+			<h4>Copyright</h4> 
+			<p>
+				Hej - Vi skal g&oslash; opmærksom på, at det er strengt ulovligt, at benytte eller uploade billeder som man ikke har tilladelse til at bruge. Copyright! Denne side fraskriver sig hermed et hvert (med)ansvar for brugen af andres værker.
+			</p>
+			<blockquote>
+				<a href="http://kum.dk/kulturpolitik/ophavsret/billedkunst-og-fotografier/" alt="copyright paa billeder">Link</a>
+			</blockquote>
+			<p> 
+				<button type="button" className="btn btn-danger">
+					Forstået
+				</button> 
+			</p> 
+		</div>
+		);
+	}
+	
+	GoToFrontpage(){
+		this.setState({ startSetup: false });
 		
 	}
 	
 	changeStateOfMount(){
 		this.setState({
             mounted: false,
-			showPreview: true
+			showPreview: true,
+			logoBannerSelected: true
         });
 	}
 	previewFix(){
@@ -447,8 +518,12 @@ class ContentComponent extends React.Component{
 	//	this.setState({ mounted: true });
 		//this.setState({ sloganQuestion: false });
 		//this.setState({ mounted: false });
-		return(
-		<div>
+		
+		var contentPreview;
+		
+		if(this.state.logoBannerSelected == true)
+		{
+			contentPreview = <div>
 			<div id="rowID" className=" row" key={"row"} >
 				<div className="container">
 					<div  key={"colmdLogo"}  className="col-md-3 ">
@@ -461,7 +536,7 @@ class ContentComponent extends React.Component{
 									
 									<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
 									
-								
+								   
 							</div>
 						</div>
 					</div>
@@ -507,10 +582,45 @@ class ContentComponent extends React.Component{
 							</div>
 						</div>
 					</div>
+					<div className="col-md-12" key={"backBtnPreview"}>
+
+						<ul className="pager">
+							<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage Til Valg Af Logo eller Banner</a></li>
+					
+						
+							<li className="next"><a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage Til Forsiden</a></li>
+					
+						</ul>
+					</div>
+					 { this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 				</div>
+				
 			</div>	
 			
 		</div>
+		}
+		
+		return(
+		
+	
+		
+					<CSSTransitionGroup
+					  className="animated wobble"
+					  transitionEnterTimeout={525}
+					  transitionLeaveTimeout={525}
+					  transitionName="example"
+					  transitionAppear={false}
+					  transitionAppearTimeout={1500}
+					  component="div"
+					  >
+						{contentPreview}
+						
+					
+					</CSSTransitionGroup>
+					
+			
+		
+		
 		);
 		
 		
@@ -570,9 +680,17 @@ class ContentComponent extends React.Component{
 	
 	checkSetBanner() {
 		this.setState({ showNextQuestion: false });
-		console.log("not implemented yet");
+		
 		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
 	}
+	
+	runSetup() {
+		this.setState({ startSetup: true });
+	
+		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
+	}
+	
+
 		
 	render(){
 		
@@ -583,27 +701,100 @@ class ContentComponent extends React.Component{
 		var row;
 		var infoRow;
 		var {value} = this.state;
-		
+		var rowSetup;
 
 		if(this.state.mounted ){	
 		
+			if(this.state.startSetup == false ){
+				rowSetup = 
+				
+				<div id="rowID" className=" " key={"rowForStart"} >
+				<div  key={"colmd12Welcome"}  className="col-md-12 ">
+					
+						
+							
+							<div className=" jumbotron jumbotroncolors  text-center">
+							
+								<h1>{this.state.jumbotronWelcomeTitle}</h1>
+								<p >
+								
+									Nemhed.dk er en udstrækt hånd til dig der gerne vil skabe din helt egen, unikke hjemmeside, men ikke har nogen erfaring med html-koder. Du vil blive guidet gennem alle trin. Og skulle det ikke være nok, kan du også få hjælp fra vores hjælpevideoer.
+								</p>
+							</div>
+							
+
+				
+				</div>
+			
+		
+				<div  key={"colmd6bob"}  className="col-md-4 ">
+				
+					<div className="panel effect2" key={"panelbob"}>
+						<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBodyBob"} >
+						
+								
+								<h2>Hvorfor?</h2>
+								<p>
+									<img className="img img-responsive img-rounded" src="img/question-1332062.png" alt="why"/>
+								</p>	
+							
+						</div>
+					</div>
+				</div>
+				<div className="col-md-4" key={63}>
+					<div className="panel effect2 text-center" key={"videoLink"} >
+							
+							
+					
+							<h2>Hvem er vi?</h2>
+							<p>
+								<img className="img img-responsive img-rounded" src="img/question-1332054.png" alt="why"/>
+							</p>
+							
+					</div>
+				</div>
+				
+				<div className="col-md-4" key={"Left"}>
+					<a href="#OpretSide" onClick={this.runSetup.bind(this)} >
+						<div className="panel effect2 text-center " key={"videoLink"} >
+								
+								
+							
+								<h2>Opret Din Side</h2>
+								<p>
+									<img className="img img-responsive img-rounded" src="img/blank-1217348_1920.jpg" alt="why"/>
+								</p>
+									
+						</div>
+					</a>
+				</div>
+			</div>
+				
+				
+				
+			}
+			
+		if(this.state.startSetup == true && this.state.logoBannerSelected == false){
+			
+		
+						
+	
 			
 			row = 
 			
+			
+				
 			<div id="rowID" className=" " key={"row"} >
-			<JumbotronComponent  />
+			
+				<JumbotronComponent  />
 				<div  key={"colmd6"}  className="col-md-6 ">
 				
 					<div className="panel " key={"panel"}>
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
 							<p className="text-center" key={"textCenter"}>
-
-									<video controls="controls" 
-								   className="video-stream" 
-								   x-webkit-airplay="allow" 
-								   data-youtube-id="v4oN4DuR7YU" 
-								   src={this.state.videoLink}>
-								   </video>
+								
+								<iframe src={this.state.videoLink}></iframe>
+									
 							</p>
 						</div>
 					</div>
@@ -626,36 +817,47 @@ class ContentComponent extends React.Component{
 										<input type="radio" name="inlineRadioOptions" id="QuestionOneBanner"   value={this.state.value}  onClick={this.checkSetBanner.bind(this)} /> Banner
 									</label>
 								</p>
-								</form>
+							</form>
 								
-									//hvis den variabel er sat til...yes så vis logodimsen ellers lad være
+								
 								{ this.state.showNextQuestion ? this.basedOnLogo(): null }
 								
 					</div>
 				</div>
+				
+				<div className="col-md-12" key={"backBtn"}>
+
+					<ul className="pager">
+						<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage Til Forsiden</a></li>
+					
+					</ul>
+				</div>
 			</div>
-			
-		}
 		
+		
+		}}
 			
 		
 
 		return (
-		
-				
+	
 					<CSSTransitionGroup
-					  className=" "
-					  transitionEnterTimeout={525}
-					  transitionLeaveTimeout={525}
-					  transitionName="example"
+					  className="animated    zoomIn"
+					  transitionEnterTimeout={225}
+					  transitionLeaveTimeout={225}
+					  transitionName=""
+					  transitionAppear={true}
+					  transitionAppearTimeout={200}
 					  component="div"
 					  >
-			
+						{rowSetup}
 						{row}
 						
 						{ this.state.showPreview ? this.previewFix(): null }
 					</CSSTransitionGroup>
-				
+					
+					
+			
 			);
 	}
 }
@@ -676,7 +878,7 @@ class FooterComponent extends
 			
 			return(
 				<div>
-					<button className="btn btn-xs btn-info "> Made with {this.props.framework}</button>
+					<button  className="btn btn-xs btn-info "> Made with {this.props.framework}</button>
 					<button onClick={this.handleChange.bind(this)} value="Easter Eag" className="btn btn-xs btn-success "> {value} </button>
 
 				</div>
@@ -731,10 +933,10 @@ class AnimateComponent extends React.Component{
 					</div>
 					*/
 					<div  >
-					{myDiv}
+						{myDiv}
 					
 					
-					 { this.state.isShowing ? <Hello name="Peter" />: null }
+						{ this.state.isShowing ? <Hello name="Peter" />: null }
 					</div>
 			);
 	}
@@ -763,8 +965,8 @@ class HeaderLoadComponent extends  React.Component{
 		
 	}
     render() {
-        return(
-			<div id="rowID" className=" row" key={"row"} >
+		var content;
+		content = <div id="rowID" className=" row" key={"row"} >
 			
 				<div  key={"colmd12"}  className="col-md-12 ">
 				
@@ -822,13 +1024,35 @@ class HeaderLoadComponent extends  React.Component{
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
 							<p className="text-center" key={"textCenter"}>
 										
-								Kasse fire
+								Kasse firevcv
 								
 							</p>
 						</div>
 					</div>
 				</div>
+				
+				
 			</div>	
+		
+		
+		
+        return(
+		
+					<CSSTransitionGroup
+					  className="animated rotateInDownRight"
+					  transitionEnterTimeout={525}
+					  transitionLeaveTimeout={525}
+					  transitionName="example"
+					  transitionAppear={false}
+					  transitionAppearTimeout={500}
+					  component="div"
+					  >
+						{content}
+						
+					
+					</CSSTransitionGroup>
+					
+			
 		);
     }
 };	

@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/Site.css" />
 		<link rel="stylesheet" href="css/transition.css" />
-		
+		<link rel="stylesheet" href="css/animates.css" />
 	</head>
 
 	<body>
@@ -26,8 +26,9 @@
 		
 		<!-- det er bare jquery -->
 		<script src="js/jquery.js"></script>
-	
-			 <div id="pageMenuLayout "  class="header clearfix  headercolor">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="js/bootstrap.min.js"  crossorigin="anonymous"></script>
+			 <!--<div id="pageMenuLayout "  class="header clearfix  headercolor  blog-nav navbar  navbar-fixed-top">
 				 <div class="container">
 				
 					<p>
@@ -36,10 +37,10 @@
 					
 					</p>
 				</div>
-			</div>
-			<div class="container">
+			</div>-->
+			<div class="container" id="menuId">
 				
-				<div class="blog-masthead" id="menuId">
+				
 					<!--
 					<nav class="blog-nav ">
 						<a class="blog-nav-item active" href="#">Forside</a>
@@ -52,10 +53,10 @@
 							<li role="presentation" class="active"><a href="#">Login</a></li>
 						</ul>
 					</nav>-->
-				</div>
+				
 			</div>
     
-	
+
 	
 	 <div id="pageMenuLayout "  class="pagebodylayout">
 		<div class="container">
@@ -87,18 +88,13 @@
 									<!--<iframe width="420" height="315" src="http://www.youtube.com/embed/v4oN4DuR7YU" frameborder="0"  class="text-center" allowfullscreen></iframe>
 									-->
 									
-									<video controls="controls" 
-								   class="video-stream" 
-								   x-webkit-airplay="allow" 
-								   data-youtube-id="N9oxmRT2YWw" 
-								   src="https://www.youtube.com/watch?v=Pd6Ub7Ju2RM&amp;itag=43&amp;ipbits=0&amp;signature=D2BCBE2F115E68C5FF97673F1D797F3C3E3BFB99.59252109C7D2B995A8D51A461FF9A6264879948E&amp;sver=3&amp;ratebypass=yes&amp;expire=1300417200&amp;key=yt1&amp;ip=0.0.0.0&amp;id=37da319914f6616c">
-								   </video>
+									
 															
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6" >
 						<div class="panel ">
 							<div class="panel-body" id="panelbody">		
 							</div>
@@ -119,14 +115,16 @@
         </div>
 	</div>
 	</div>
-		<div id="pageMenuLayout "  class="pagefooter text-center">
-			<div class="container">
-				<footer id="footer" class=" ">
-				   
-				</footer>
-			</div>
-		</div>
+		
 	</div>
+	<footer id="footer" class="footer text-center " >
+	   <div class="container" id="pageMenuLayout ">
+	   
+	   </div>
+	</footer>
+			
+	
+	
 		<!-- det er vores custom react kode -->
 		<script type="text/babel" src="js/custom.react.js"></script>
 		

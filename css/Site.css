@@ -1,15 +1,30 @@
-﻿body {
-  /*padding-top: 50px;
-    padding-bottom: 20px;*/
-   
-  
+﻿html {
+    font-family: "Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    font-family: proxima-nova,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+    color: #484848;
+    line-height: 1.28;
 }
+
+body {
+	padding-top: 50px;
+    padding-bottom: 20px;
+   
+}
+
+
 .row{
 
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
  
+}
+
+.pagebodylayout {
+    background-color: rgba(243,207,135,1);
+    padding: 1rem;
+    min-height: 70rem !important;
+    height: 100%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -34,49 +49,136 @@ textarea {
 }
 
 .blog-nav  {
-    color: rgba(0,0,0,1);
+    color: rgba(255,255,255,1);
     background-color: rgba(255,255,255,1);
-    padding:1rem;
+ 
 }
 
 .blog-nav .active {
-    color:  rgba(0,0,0,1);
+   color: rgba(255,255,255,1);
 }
 .blog-nav-item {
     position: relative;
     display: inline-block;
-    padding: 10px;
+
     font-weight: 500;
     color:  rgba(0,0,0,1);
 }
 
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #fff;
+	border:0px none;
+	color:rgba(0,0,0,1);
+}
+
+
+
+ /* unvisited link */
+a:link {
+   	 text-decoration: none !important;
+	 color:rgba(255,255,255,1.0);
+}
+
+/* visited link */
+a:visited {
+    	 text-decoration: none !important;
+	 color:rgba(255,255,255,1.0);
+}
+
+/* mouse over link */
+a:hover {
+   text-decoration: none !important;
+	
+}
+
+/* selected link */
+a:active {
+    	 text-decoration: none !important;
+	 color:rgba(255,255,255,1.0);
+}
+
+a:focus{
+	 text-decoration: none !important;
+	 color:rgba(255,255,255,1.0);
+}
+
+li.a{
+	color:rgba(255,255,255,1);
+	text-decoration: none !important;
+}
+
+.pager li > a:focus, .pager li > a:hover {
+    text-decoration: none;
+    color:rgba(0,0,0,1);
+}
+
+.pager li > a {
+    text-decoration: none;
+    color:rgba(0,0,0,1);
+}
+
+
+
+div > h2{
+	color:rgba(0,0,0,1);
+}
 
 .panel {
     margin-bottom: 0px !important;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.7) !important;
    
-    border: 1px dashed rgba(180,180,180,1);
-    border-radius: 4px;
+    
+
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+   
     padding:1rem;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
+
 
 
 
 .headercolor{
     /*grøn*/
     background-color:rgba(113,192,58, 1);
-    color: rgba(0,0,0,1);
+    color: rgba(255,255,255,1);
+	border-color: #080808;
+}
+
+.navbar-inverse {
+   background-color: rgba(113,192,58, 1);
+    border-color: #fff;
+	color:rgba(255,255,255,1) !important;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #fff;
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    box-sizing: content-box;
+	padding: 0 10px;
+	line-height: 50px;
+	display: inline-block;
+	height: 50px;
+	color: #fff;
 }
 
 .headercolor .text-muted{
     color:rgba(255,255,255,1);
 }
 
-.pagebodylayout{
+.navbar-inverse .navbar-brand {
+    color: rgba(255,255,255,1);
+}
+
+.>{
     background-color:rgba(243,207,135,1);
-    padding:1rem;
+
     min-height:70rem !important;
     height:100%;
 
@@ -87,6 +189,30 @@ textarea {
     background-color:rgba(113,192,58, 1);
     color: rgba(0,0,0,1);
     padding:1rem;
+	
+	
+}
+
+.footer{
+	
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+   background-color: rgba(113,192,58, 1);
+
+}
+
+#push, .footer {
+    height: 60px;
+}
+
+.navbar-toggle {
+
+    background-color: transparent;
+    background-image: none;
+
+
 }
 
 .jumbotroncolors{
@@ -98,4 +224,22 @@ textarea {
  
     padding:1rem;
     margin:1rem;
+}
+
+.btn-info{
+	background-color:rgba(2,66,190, 1);
+    color: rgba(255,255,255,1);
+    padding:1rem;
+	margin:1rem;
+}
+
+.btn-info:active{
+	background-color:rgba(2,66,190, 1);
+    color: rgba(0,0,0,1);
+    padding:1rem;
+	margin:1rem;
+}
+
+.navbar-nav .li.a{
+	color:rgba(255,255,255,1);
 }
