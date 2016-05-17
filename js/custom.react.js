@@ -367,11 +367,11 @@ class JumbotronComponent extends React.Component{
 		
 				<div>
 					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors animated rotateInDownRight"
-					  transitionEnterTimeout={250}
-					  transitionLeaveTimeout={250}
+					  className=" jumbotron jumbotroncolors animated rotateInDownRight text-center"
+					  transitionEnterTimeout={150}
+					  transitionLeaveTimeout={150}
 					  transitionAppear={true}
-					  transitionAppearTimeout = {250}
+					  transitionAppearTimeout = {150}
 					  transitionName="example"
 					  component="div"
 					  >
@@ -735,7 +735,7 @@ class ContentComponent extends React.Component{
 								
 								<h2>Hvorfor?</h2>
 								<p>
-									<img className="img img-responsive img-rounded" src="img/question-1332062.png" alt="why"/>
+									<img className="img img-responsive  img-circle" src="img/question-1332062.png" alt="why"/>
 								</p>	
 							
 						</div>
@@ -748,7 +748,7 @@ class ContentComponent extends React.Component{
 					
 							<h2>Hvem er vi?</h2>
 							<p>
-								<img className="img img-responsive img-rounded" src="img/question-1332054.png" alt="why"/>
+								<img className="img img-responsive  img-circle" src="img/question-1332054.png" alt="why"/>
 							</p>
 							
 					</div>
@@ -762,7 +762,7 @@ class ContentComponent extends React.Component{
 							
 								<h2>Opret Din Side</h2>
 								<p>
-									<img className="img img-responsive img-rounded" src="img/blank-1217348_1920.jpg" alt="why"/>
+									<img className="img img-responsive   img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
 								</p>
 									
 						</div>
