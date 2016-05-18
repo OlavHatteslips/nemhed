@@ -255,12 +255,13 @@ class MenuComponent extends React.Component{
 					
 					
 					<CSSTransitionGroup
-					  className="header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top animated rotateInDownRight"
-					  transitionEnterTimeout={225}
-					  transitionLeaveTimeout={225}
+					  className="header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top "
+					  id="header"
+					  transitionEnterTimeout={125}
+					  transitionLeaveTimeout={125}
 					  transitionName=""
 					  transitionAppear={true}
-					  transitionAppearTimeout={500}
+					  transitionAppearTimeout={125}
 					  component="nav"
 					  >
 						<div className="container">
@@ -356,7 +357,7 @@ class JumbotronComponent extends React.Component{
 								{jumbotronTitle}
 							</h1>
 							<p>
-								S&aring;dan g&oslash;r du...blablabla
+								S&aring;dan g&oslash;r du...
 							</p>
 					</div>
 				);
@@ -367,7 +368,93 @@ class JumbotronComponent extends React.Component{
 		
 				<div>
 					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors animated rotateInDownRight text-center"
+					  className=" jumbotron jumbotroncolors  text-center"
+					  transitionEnterTimeout={150}
+					  transitionLeaveTimeout={150}
+					  transitionAppear={true}
+					  transitionAppearTimeout = {150}
+					  transitionName="example"
+					  component="div"
+					  >
+						{x}
+					</CSSTransitionGroup>
+				</div>
+			);
+	}
+}
+
+
+class JumbotronMenuComponent extends React.Component{
+	constructor (props){
+		super(props);
+		this.state = {
+			current: 0,
+			colors: "red",
+			interval: 0,
+			tick:0,
+			items:[],
+			mounted: false,
+			jumbotronTitle: ['Hvor vil du have placeret din menu?']
+			
+		}
+	}
+	componentDidMount() {
+	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
+	  this.setState({ mounted: true });
+	}
+	componentWillUnmount() {
+		
+		clearInterval(this.interval);
+	}
+	
+	handleAdd() {
+		var newItems = this.state.jumbotronTitle.concat([prompt('Enter some text')]);
+		this.setState({jumbotronTitle: newItems});
+		
+	}
+	
+	handleRemove(i) {
+		var newItems = this.state.jumbotronTitle.slice();
+		newItems.splice(i, 1);
+		this.setState({jumbotronTitle: newItems});
+	}
+  
+	render(){
+	
+		var pos = 0;
+		var colors = ['red', 'gray', 'blue'];
+		var style = {
+		  left: pos * 128,
+		  padding:"0.5rem",
+		  margin: "5px",
+		  background: colors[1]
+		};
+
+	
+		
+		var x;
+		
+		if(this.state.mounted ){	
+			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+				return (
+					<div className="container "    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
+							<h1>
+								{jumbotronTitle}
+							</h1>
+							<p>
+								S&aring;dan g&oslash;r du...
+							</p>
+					</div>
+				);
+			}.bind(this));
+		}
+
+		return (
+		
+				<div>
+					<CSSTransitionGroup
+					  className=" jumbotron jumbotroncolors  text-center"
 					  transitionEnterTimeout={150}
 					  transitionLeaveTimeout={150}
 					  transitionAppear={true}
@@ -408,7 +495,9 @@ class ContentComponent extends React.Component{
 			jumbotronWelcomeTitle : 'Velkommen til Nemsiden',
 			startSetup: false,
 			logoBannerSelected : false,
-			alertLogoImageCopyright : false
+			alertLogoImageCopyright : false,
+			createMenu : false,
+			menuSelected : 0
 			
 		}
 		//var results = this.props.results;
@@ -501,9 +590,80 @@ class ContentComponent extends React.Component{
 		);
 	}
 	
+	showMenu(){
+		
+		return(
+			<div className="alert alert-danger alert-dismissible fade in" role="alert"> 
+				show something
+			</div>
+		);
+	}
+	
 	GoToFrontpage(){
 		this.setState({ startSetup: false });
 		
+	}
+	
+	GoToCreateMenu(){
+		this.setState({ createMenu : true});
+	}
+	
+	menuChoice(choice_param){
+		this.setState({menuSelected: choice_param});
+	}
+	
+	insertMenuQuestions(){
+		return(
+		
+					<div id="rowID" className=" " key={"rowMenu"} >
+			
+				<JumbotronMenuComponent  />
+				<div  key={"colmdMenu6"}  className="col-md-6 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
+							<p className="text-center" key={"textCenterMenu"}>
+								
+								<iframe src={this.state.videoLink}></iframe>
+									
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="col-md-6" key={7}>
+					<div className="panel " key={"videoLinkMenu"} >
+							
+							
+						
+							<h2>Hvor vil du have din <p className="small-caps small"> Menu </p> placeret?</h2>
+				
+							<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.menuChoice.bind(this, 1)}  /> Over Logo Headeren
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.menuChoice.bind(this, 2)} /> I højre side af headeren
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuChoice.bind(this, 3)} /> Under headeren
+									</label>
+								</p>
+							</form>
+								
+					</div>
+				</div>
+				{ this.state.menuSelected ? this.previewFix(): null }
+			</div>
+			
+		
+			
+		);
 	}
 	
 	changeStateOfMount(){
@@ -520,10 +680,10 @@ class ContentComponent extends React.Component{
 		//this.setState({ mounted: false });
 		
 		var contentPreview;
-		
-		if(this.state.logoBannerSelected == true)
+		var menuObject;
+		if(this.state.logoBannerSelected == true && this.state.createMenu == false)
 		{
-			contentPreview = <div>
+			contentPreview = <div> 
 			<div id="rowID" className=" row" key={"row"} >
 				<div className="container">
 					<div  key={"colmdLogo"}  className="col-md-3 ">
@@ -558,38 +718,21 @@ class ContentComponent extends React.Component{
 			</div>
 			<div id="rowContentD" className=" row" key={"row2Content"} >
 				<div className="container">
-					<div  key={"colmd12s"}  className="col-md-6 ">
-					
-						<div className="panel " key={"panel"}>
-							<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-								<p className="text-center" key={"textCenter"}>
-											
-									Kasse eet
-									
-								</p>
-							</div>
-						</div>
-					</div>
-					<div  key={"colmd12v"}  className="col-md-6 ">
-					
-						<div className="panel " key={"panel"}>
-							<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-								<p className="text-center" key={"textCenter"}>
-											
-								Kasse to
-									
-								</p>
-							</div>
-						</div>
-					</div>
+
 					<div className="col-md-12" key={"backBtnPreview"}>
 
 						<ul className="pager">
-							<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage Til Valg Af Logo eller Banner</a></li>
+							<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a></li>
 					
 						
-							<li className="next"><a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage Til Forsiden</a></li>
-					
+							<li className="next">
+								<a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+							</li>
+							
+							<li className="next">
+								<a href="#" onClick={this.GoToCreateMenu.bind(this)}>Skab Menu</a>
+							</li>
+							
 						</ul>
 					</div>
 					 { this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
@@ -598,14 +741,82 @@ class ContentComponent extends React.Component{
 			</div>	
 			
 		</div>
+		
 		}
+		
+		if(this.state.createMenu )
+		{
+			contentPreview = 
+			
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container">
+					
+					<div  key={"colmdMyPersonalMenuShow"}  className="col-md-12 ">
+						<nav className="navbar navbar-default navbar-static-top">
+							<div className="navbar-header">
+
+								<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>                        
+								</button>
+								<a className="navbar-brand" href="#">Menu </a>
+							</div>
+							
+					
+							<div class="collapse navbar-collapse" id="myNavbar">
+
+
+ 
+								<ul className="nav navbar-nav">
+									<li ><a href="#" className="btn btn-info" onClick="alert('hej');">indsæt Links</a></li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+					
+					
+						<div  key={"colmdMenuShow"}  className="col-md-3 ">
+						
+							<div className="panel " key={"panel"}>
+								<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+								
+												
+										<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
+										
+										<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+										
+									   
+								</div>
+							</div>
+						</div>
+						<div  key={"colmdSlogan"}  className="col-md-9 ">
+						
+							<div className="panel " key={"panel"}>
+								<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+									
+												
+										<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+										
+										<h1>{this.state.sloganText}</h1>
+										
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		
+		}
+		
+		
 		
 		return(
 		
-	
+				<div>
 		
 					<CSSTransitionGroup
-					  className="animated wobble"
+					  className=""
 					  transitionEnterTimeout={525}
 					  transitionLeaveTimeout={525}
 					  transitionName="example"
@@ -614,11 +825,11 @@ class ContentComponent extends React.Component{
 					  component="div"
 					  >
 						{contentPreview}
-						
+							{menuObject}
 					
 					</CSSTransitionGroup>
 					
-			
+			</div>
 		
 		
 		);
@@ -776,10 +987,12 @@ class ContentComponent extends React.Component{
 			
 		if(this.state.startSetup == true && this.state.logoBannerSelected == false){
 			
-		
-						
-	
 			
+				//$("#header").attr({"class":"header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top animated bounceOutUp"});		
+				//$("div#menuId").attr({"class":"animated  bounceOutUp"});	
+				//$("div#blog-masthead").delay(300).slideUp(500);				
+			
+					
 			row = 
 			
 			
@@ -828,7 +1041,7 @@ class ContentComponent extends React.Component{
 				<div className="col-md-12" key={"backBtn"}>
 
 					<ul className="pager">
-						<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage Til Forsiden</a></li>
+						<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a></li>
 					
 					</ul>
 				</div>
@@ -842,7 +1055,7 @@ class ContentComponent extends React.Component{
 		return (
 	
 					<CSSTransitionGroup
-					  className="animated    zoomIn"
+					  className=""
 					  transitionEnterTimeout={225}
 					  transitionLeaveTimeout={225}
 					  transitionName=""
@@ -853,7 +1066,13 @@ class ContentComponent extends React.Component{
 						{rowSetup}
 						{row}
 						
-						{ this.state.showPreview ? this.previewFix(): null }
+						{ 
+						this.state.showPreview ? this.previewFix(): null 
+						
+						}
+						{
+							this.state.createMenu ? this.insertMenuQuestions(): null 
+						}
 					</CSSTransitionGroup>
 					
 					
@@ -879,7 +1098,7 @@ class FooterComponent extends
 			return(
 				<div>
 					<button  className="btn btn-xs btn-info "> Made with {this.props.framework}</button>
-					<button onClick={this.handleChange.bind(this)} value="Easter Eag" className="btn btn-xs btn-success "> {value} </button>
+					<button onClick={this.handleChange.bind(this)} value="Beaver got money!" className="btn btn-xs btn-success "> {value} </button>
 
 				</div>
 			);
