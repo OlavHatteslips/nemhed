@@ -197,6 +197,38 @@ div > h2{
 
 }
 
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #fff !important;
+    
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff !important;
+    
+}
+
+.btn-default.focus, .btn-default:focus {
+    color: rgba(0,0,0,1);
+    background-color: #eee;
+    border-color: #8c8c8c;
+}
+
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
+    color: rgba(0,0,0,1);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.list-group > a.list-group-item {
+	color:rgba(0,0,0,1);
+}
+
+.list-group {
+    color: rgba(0,0,0,1);
+    text-decoration: none;
+    background-color: transparent;
+}
+
 .pagefooter{
     /*grøn*/
     background-color:rgba(113,192,58, 1);
@@ -228,6 +260,115 @@ div > h2{
 
 }
 
+.sidebar{
+
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: transparent;
+	border-right: 0px none #eee;
+}
+
+.sidebar > .navbar-usermenu{
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgba(255,255,255,1);
+	border: 2px dotted #eee;
+}
+
+.sidebar-right{
+	position:  relative;
+
+	right: 0;
+	z-index: 1000;
+	display: block;
+	
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: transparent;
+
+}
+
+.sidebar > .navbar-default{
+	background-color: transparent;
+	border:0px none #ccc;
+	
+}
+
+.navbar-header > a, a:active, a:focus{
+	color: rgba(113,192,58, 1);
+}
+.sidebar-left{
+	position:  relative;
+
+	left: 0;
+	z-index: 1000;
+	display: block;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgba(255,255,255,1.0);
+	border-right: 1px solid #eee;
+}
+
+.sidebar-optionpanel{
+	position: relative;
+	
+	z-index: 1000;
+	display: block;
+	
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgba(255,255,255,1);
+	
+	
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    padding:1rem;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	
+	border-top:1px solid rgba(255,255,255,1);
+}
+
+.animated {
+    -webkit-animation-fill-mode: none !important;
+    animation-fill-mode: none !important;
+}
+
+div > nav{
+	background-color: rgba(255,255,255,1.0);
+}
+
+.main {
+	
+	position: absolute;
+
+
+	z-index: 1500;
+	display: block;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgb(245, 245, 245);
+	border-right: 1px solid rgb(238, 238, 238);
+	
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.main {
+    padding: 20px;
+	background-color: rgba(255,255,255,1.0);
+}
+
+.main .page-header {
+    margin-top: 0;
+	
+	
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 .jumbotroncolors{
     
     background-color: transparent;
@@ -244,9 +385,21 @@ div > h2{
     color: rgba(255,255,255,1);
     padding:1rem;
 	margin:1rem;
+	border:0px none #fff;
 }
 
 .btn-info:active{
+	background-color:rgba(2,66,190, 1);
+    color: rgba(0,0,0,1);
+    padding:1rem;
+	margin:1rem;
+}
+
+.container > .btn-default{
+	color:rgba(0,0,0,1);
+}
+
+.btn-info:focus{
 	background-color:rgba(2,66,190, 1);
     color: rgba(0,0,0,1);
     padding:1rem;

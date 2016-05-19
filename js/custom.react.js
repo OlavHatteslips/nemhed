@@ -168,13 +168,14 @@ class MenuComponent extends React.Component{
 	  this.state.interval = setInterval(this.state.tick, INTERVAL);
 	 
 	  this.setState({ mounted: true });
-	  
-	
+
 	}
+	
 	componentWillUnmount() {
 		
 		clearInterval(this.interval);
 	}
+	
 	tick() {
 		this.setState({current: this.state.current + 1});
 	}
@@ -492,12 +493,13 @@ class ContentComponent extends React.Component{
 			showPreview: false,
 			logoUrl : '',
 			mountedFrontpage : false,
-			jumbotronWelcomeTitle : 'Velkommen til Nemsiden',
+			jumbotronWelcomeTitle : 'Velkommen til Nemhed.dk',
 			startSetup: false,
 			logoBannerSelected : false,
 			alertLogoImageCopyright : false,
 			createMenu : false,
-			menuSelected : 0
+			menuSelected : 0,
+			menuItem: []
 			
 		}
 		//var results = this.props.results;
@@ -551,12 +553,21 @@ class ContentComponent extends React.Component{
 	}
 	
 	handleAddLogoUrl() {
-		var newItems = this.state.logoUrl.concat([prompt('Enter some text')]);
+		var newItems = this.state.logoUrl.concat([prompt('Skriv addressen til et billed')]);
 		this.setState({logoUrl: newItems,
 		 alertLogoImageCopyright: true
 		});
 		
 	}
+	
+	addMenuArea(){
+		
+		var menuItems = this.state.menuItem.concat([prompt('Indtast Menupunkt')]);
+		this.setState({menuItem: menuItems});
+
+	}
+	
+	
 	GoToLogoBannerChoice(){
 		this.setState({
 			logoBannerSelected : false,
@@ -606,10 +617,20 @@ class ContentComponent extends React.Component{
 	
 	GoToCreateMenu(){
 		this.setState({ createMenu : true});
+		this.setState({ showPreview: false});
+		
+	}
+	
+	GoToMenuChoice(){
+		this.setState({ createMenu : false});
+		this.setState({ showPreview: true});
+		this.setState({menuSelected: 0});
 	}
 	
 	menuChoice(choice_param){
+		this.setState({ createMenu : false});
 		this.setState({menuSelected: choice_param});
+		this.setState({ showPreview : true});
 	}
 	
 	insertMenuQuestions(){
@@ -681,61 +702,127 @@ class ContentComponent extends React.Component{
 		
 		var contentPreview;
 		var menuObject;
-		if(this.state.logoBannerSelected == true && this.state.createMenu == false)
+		var menuLinks;
+		
+		var menuLinksHorizontal;
+		
+		menuLinks = this.state.menuItem.map(function(item, i) {
+			return (
+				<li className="active">
+					<a className=" "  href="#" key={item} >
+						{item}
+					</a>
+				</li>
+			);
+		}.bind(this));
+		
+		menuLinksHorizontal = this.state.menuItem.map(function(item, i) {
+			return (
+				<div className="list-group">
+					<a className="list-group-item "  href="#" key={item} >
+						{item}
+					</a>
+				</div>
+			);
+		}.bind(this));
+		
+			
+		if(this.state.logoBannerSelected == true && this.state.menuSelected == 0)
 		{
 			contentPreview = <div> 
-			<div id="rowID" className=" row" key={"row"} >
-				<div className="container">
-					<div  key={"colmdLogo"}  className="col-md-3 ">
+			
+			<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container">
 					
-						<div className="panel " key={"panel"}>
-							<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
-							
-											
-									<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
-									
-									<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
-									
-								   
-							</div>
-						</div>
-					</div>
-					<div  key={"colmdSlogan"}  className="col-md-9 ">
 					
-						<div className="panel " key={"panel"}>
-							<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
-								
-											
-									<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
-									
-									<h1>{this.state.sloganText}</h1>
-									
-								
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="rowContentD" className=" row" key={"row2Content"} >
-				<div className="container">
-
-					<div className="col-md-12" key={"backBtnPreview"}>
-
-						<ul className="pager">
-							<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a></li>
 					
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 						
-							<li className="next">
-								<a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-							</li>
+
+						
 							
-							<li className="next">
-								<a href="#" onClick={this.GoToCreateMenu.bind(this)}>Skab Menu</a>
-							</li>
+									<div    className=" col-sm-3 col-md-3   ">
+										<div className="panel " key={"panel"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div className="panel " key={"panelTwo"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
 							
-						</ul>
-					</div>
-					 { this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+							
+							
+							
+							
+								<div className="container">		
+									<div  className="col-sm-12 col-md-12  ">								
+									<h1 className="page-header">Dit Indhold</h1>
+									
+									<div className="row placeholders">
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something</span>
+										</div>
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something </span>
+										</div>
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something </span>
+										</div>
+									</div>
+							
+									</div>
+								
+								</div>
+						
+
+					
+
+								</div>
+						</div>
+				</div>
+				
+				
+				<div id="rowID" className=" row" key={"rowOptionsShow"} >
+					
+					
+						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+			
+						<div className="container">
+
+							<div className="col-md-12" key={"backBtnPreview"}>
+								<div className="container">
+									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+							
+								
+									
+										<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+									
+									
+									
+										<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+									
+								</div>
+								
+							</div>
+							 { this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+				
+						</div>
+					
 				</div>
 				
 			</div>	
@@ -744,69 +831,257 @@ class ContentComponent extends React.Component{
 		
 		}
 		
-		if(this.state.createMenu )
+		if(this.state.menuSelected == 1 && this.state.logoBannerSelected == true  )
 		{
 			contentPreview = 
 			
+				
+				
+				
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container">
 					
-					<div  key={"colmdMyPersonalMenuShow"}  className="col-md-12 ">
-						<nav className="navbar navbar-default navbar-static-top">
-							<div className="navbar-header">
+					
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+					
+					
+				
+					
+								<div   className="col-sm-12 col-md-12 sidebar ">
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
 
-								<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-									<span className="icon-bar"></span>
-									<span className="icon-bar"></span>
-									<span className="icon-bar"></span>                        
-								</button>
-								<a className="navbar-brand" href="#">Menu </a>
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+
+			 <a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											<nav className="navbar navbar-default">
+												<div className="container-fluid">
+													<div className="navbar-header">
+														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+															<ul className="nav navbar-nav">
+																{menuLinks}
+															</ul>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+									</nav>
+								</div>
+								
+							</div>
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+
+						
+									<div    className=" col-sm-3 col-md-3   ">
+										<div className="panel " key={"panel"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div className="panel " key={"panelTwo"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+							
+							
+							
+							
+							
+									<div  className="col-sm-12 col-md-12  ">								
+									<h1 className="page-header">Dit Indhold</h1>
+									
+									<div className="row placeholders">
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something</span>
+										</div>
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something </span>
+										</div>
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something </span>
+										</div>
+									</div>
+							
+									</div>
+								
+							
+
+						</div>
+
+						
+					</div>
+				
+				<div id="rowIDExport" className=" row" key={"rowOptionsShowSecond"} >
+					
+					
+						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+			
+						<div className="container">
+
+							<div className="col-md-12" key={"backBtnPreview"}>
+								<div className="container">
+									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
+							
+								
+									
+										
+									
+									
+									
+										<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Eksporter hjemmesiden</a>
+									
+								</div>
+								
+							</div>
+							 { this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+				
+						</div>
+					</div>
+				</div>
+				</div>
+			
+				
+				
+		
+		}else if(this.state.menuSelected == 2 && this.state.logoBannerSelected == true  )
+		{
+			
+		
+				
+			contentPreview = 
+			<div>
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container">
+					
+					
+					
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+
+							<div  className="col-sm-9 col-md-9  ">
+								
+									
+									
+									<div    className=" col-sm-3 col-md-3   ">
+										<div className="panel " key={"panel"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div className="panel " key={"panelTwo"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+								
+									<div  className="col-sm-12 col-md-12  ">								
+										<h1 className="page-header">Dit Indhold</h1>
+										
+										<div className="row placeholders">
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something</span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+										</div>
+							
+									</div>
+								
+								</div>
+							
+<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+					
+								<div   className="col-sm-12 col-md-12 sidebar ">
+									<nav className="navbar navbar-default navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div class="collapse navbar-collapse" id="myNavbar">
+
+
+			 
+											
+											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+												
+										
+											{menuLinksHorizontal}
+											
+										</div>
+									</nav>
+								</div>
+								
 							</div>
 							
-					
-							<div class="collapse navbar-collapse" id="myNavbar">
-
-
- 
-								<ul className="nav navbar-nav">
-									<li ><a href="#" className="btn btn-info" onClick="alert('hej');">indsæt Links</a></li>
-								</ul>
-							</div>
-						</nav>
-					</div>
-					
-					
-						<div  key={"colmdMenuShow"}  className="col-md-3 ">
-						
-							<div className="panel " key={"panel"}>
-								<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
-								
-												
-										<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Logo</button>
-										
-										<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
-										
-									   
-								</div>
-							</div>
 						</div>
-						<div  key={"colmdSlogan"}  className="col-md-9 ">
+
 						
-							<div className="panel " key={"panel"}>
-								<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
-									
-												
-										<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
-										
-										<h1>{this.state.sloganText}</h1>
-										
-									
+					</div>
+				</div>
+				
+				<div id="rowIDExport" className=" row" key={"rowOptionsShowThird"} >
+					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+						<div className="container">
+							<div className="col-md-12" key={"backBtnPreview"}>
+								<div className="container">
+									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
+									<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Eksporter hjemmesiden</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-		
+		</div>
 		}
 		
 		
@@ -817,11 +1092,11 @@ class ContentComponent extends React.Component{
 		
 					<CSSTransitionGroup
 					  className=""
-					  transitionEnterTimeout={525}
-					  transitionLeaveTimeout={525}
+					  transitionEnterTimeout={225}
+					  transitionLeaveTimeout={225}
 					  transitionName="example"
 					  transitionAppear={false}
-					  transitionAppearTimeout={1500}
+					  transitionAppearTimeout={200}
 					  component="div"
 					  >
 						{contentPreview}
