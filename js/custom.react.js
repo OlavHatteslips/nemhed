@@ -202,26 +202,9 @@ class MenuComponent extends React.Component{
 		  margin: "5px",
 		  background: colors[1]
 		};
-		/*
-			children.push(
-			<nav className="blog-nav"  key={pos}  >
-				<a className="blog-nav-item active" style={style} href="#">Forside</a>
-				<a className="blog-nav-item" href="#">Hvorfor?</a>
-				<a className="blog-nav-item" href="#">Hvem er vi?</a>
-				<a className="blog-nav-item" href="#">Opret Din Side</a>
+
 			
-			</nav>);*/
-			
-		
-			var items = this.state.items.map(function(item, i) {
-				return (
-					<a className="blog-nav-item active"   href="#" key={item} onClick={this.handleRemove.bind(this, i)}>
-						{item}
-						
-						
-					</a>
-				);
-			}.bind(this));	
+	
 		
 		/*
 		 for (var i = this.state.current; i < this.state.current + colors.length; i++) {
@@ -237,17 +220,7 @@ class MenuComponent extends React.Component{
 		var x;
 		
 		if(this.state.mounted ){	
-			x = this.state.children.map(function(child, i) {
-				return (
-				 <li class="active">
-				<a className="blog-nav-item active"    href="#" key={child} onClick={this.handleRemove.bind(this, i)}>
-						{child}
-						
-						
-					</a>
-					</li>
-				);
-			}.bind(this));
+			x = <MyLinks  />
 		}
 	/* <button className="btn btn-info" onClick={this.handleAdd.bind(this)}>Tilføj Menu</button>*/
 		return (
@@ -276,18 +249,11 @@ class MenuComponent extends React.Component{
 								<a className="navbar-brand" href="#">Nemhed.dk</a>
 							</div>
 							
-					
+						
 							<div class="collapse navbar-collapse" id="myNavbar">
 
-
- 
-								<ul className="nav navbar-nav">
-									{x}
-								</ul>
-								<ul className="nav navbar-nav navbar-right">
-									<li  role="presentation" className="active" ><a href="#"> Opret Bruger</a></li>
-									<li><a href="#">Login</a></li>
-								</ul>
+								{x}
+							
 							</div>
 					</div>	
 						
@@ -1436,121 +1402,46 @@ class AnimateComponent extends React.Component{
 	}
 }
 
-class Hello extends  React.Component{
+
+var menuData = [
+	{title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation" },
+	{title : "Hvorfor", linkref: " hvorfor.html", targetWindow : "_blank", selectedClass: "" , role:"presentation" },
+	{title : "Hvem er vi", linkref: " hvem.html", targetWindow : "_blank", selectedClass: "" , role:"presentation" },
+	{title : "Opret din side", linkref: " #setup", targetWindow : "_self", selectedClass: "" , role:"presentation" }
+	
+]
+	
+
+
+class MyLinks extends  React.Component{
     render() {
-        return <div>Hello { this.props.name }</div>;
+        return <LinkList data={ menuData }/>;
     }
 };	
 
-class HeaderLoadComponent extends  React.Component{
-	
-	constructor(props){
-		super(props);
-		this.state = {
-			isShowing : false,
-			hideMyDiv : "panelVideoId",
-			sloganText : ""
-		}
-	}
-	
-	handleAddSloganText() {
-		var newItems = this.state.sloganText.concat([prompt('Enter some text')]);
-		this.setState({sloganText: newItems});
-		
-	}
-    render() {
-		var content;
-		content = <div id="rowID" className=" row" key={"row"} >
+
+class LinkList extends  React.Component{
+	render() {
+        
+			var recipeNodes = this.props.data.map(function(links,index){
+				return (
+					<li key={index} className={links.selectedClass} role={links.role}>
+						<a href={links.linkref} target={links.targetWindow} >
+							{links.title}
+						</a>
+					</li>
+				)
+			})
 			
-				<div  key={"colmd12"}  className="col-md-12 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
-								
-								<h1>{this.state.sloganText}</h1>
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				<div  key={"colmd12s"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								Kasse eet
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				<div  key={"colmd12v"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-							Kasse to
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				<div  key={"colmd12fdf"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								Kasse tre
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				<div  key={"colmd12assa"}  className="col-md-3 ">
-				
-					<div className="panel " key={"panel"}>
-						<div className="panel-body"  id="panelVideoId" key={"panelVideoBody"} >
-							<p className="text-center" key={"textCenter"}>
-										
-								Kasse firevcv
-								
-							</p>
-						</div>
-					</div>
-				</div>
-				
-				
-			</div>	
-		
-		
-		
-        return(
-		
-					<CSSTransitionGroup
-					  className="animated rotateInDownRight"
-					  transitionEnterTimeout={525}
-					  transitionLeaveTimeout={525}
-					  transitionName="example"
-					  transitionAppear={false}
-					  transitionAppearTimeout={500}
-					  component="div"
-					  >
-						{content}
-						
-					
-					</CSSTransitionGroup>
-					
+			return (
 			
-		);
+				<ul className="nav navbar-nav">
+					{recipeNodes}
+				</ul>
+			
+			)
     }
 };	
-
 
 	ReactDOM.render(
 		<div  >
@@ -1570,16 +1461,6 @@ class HeaderLoadComponent extends  React.Component{
 		document.getElementById('menuId')
 	);
 
-	
-	/*ReactDOM.render(
-		
-			<JumbotronComponent  >
-				 
-			</JumbotronComponent>
-		, 
-		document.getElementById('jumbotronId')
-	);*/
-	
 	ReactDOM.render(
 		
 			<ContentComponent  >
@@ -1588,7 +1469,7 @@ class HeaderLoadComponent extends  React.Component{
 		, 
 		document.getElementById('insertContentStuff')
 	);
-
+	
 	ReactDOM.render(
 		<div>
 			<FooterComponent framework="ReactJS" copyright="2016" >
@@ -1597,11 +1478,6 @@ class HeaderLoadComponent extends  React.Component{
 		</div>, 
 		document.getElementById('footer')
 	);
-
-
-
-
-
 
 //ECMAScript6 måden...
 /*class Profile extends 
