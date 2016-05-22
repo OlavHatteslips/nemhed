@@ -1,7 +1,8 @@
 			var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 			var INTERVAL = 2000;
 
-			
+			var Flux = new McFly();
+		
 			
 			var LogoComponent = React.createClass({
 				basedOnSloganNo : function(){
@@ -344,6 +345,8 @@ class JumbotronComponent extends React.Component{
 					  component="div"
 					  >
 						{x}
+						
+					
 					</CSSTransitionGroup>
 				</div>
 			);
@@ -412,6 +415,8 @@ class JumbotronMenuComponent extends React.Component{
 							<p>
 								S&aring;dan g&oslash;r du...
 							</p>
+							
+				
 					</div>
 				);
 			}.bind(this));
@@ -462,9 +467,13 @@ class ContentComponent extends React.Component{
 			jumbotronWelcomeTitle : 'Velkommen til Nemhed.dk',
 			startSetup: false,
 			logoBannerSelected : false,
+			bannerMounted: false,
 			alertLogoImageCopyright : false,
 			createMenu : false,
+			createBannerMenu : false,
 			menuSelected : 0,
+			menuBannerSelected : 0,
+			displayBannerImgBtn: true,
 			menuItem: []
 			
 		}
@@ -521,10 +530,14 @@ class ContentComponent extends React.Component{
 	handleAddLogoUrl() {
 		var newItems = this.state.logoUrl.concat([prompt('Skriv addressen til et billed')]);
 		this.setState({logoUrl: newItems,
-		 alertLogoImageCopyright: true
+			alertLogoImageCopyright: true,
+			displayBannerImgBtn: false
 		});
 		
+		
 	}
+	
+
 	
 	addMenuArea(){
 		
@@ -587,6 +600,13 @@ class ContentComponent extends React.Component{
 		
 	}
 	
+	GoToCreateBannerMenu(){
+		
+		
+		this.setState({ createBannerMenu : true});
+		this.setState({ showPreview: false});
+	}
+	
 	GoToMenuChoice(){
 		this.setState({ createMenu : false});
 		this.setState({ showPreview: true});
@@ -596,6 +616,19 @@ class ContentComponent extends React.Component{
 	menuChoice(choice_param){
 		this.setState({ createMenu : false});
 		this.setState({menuSelected: choice_param});
+		this.setState({ showPreview : true});
+	}
+	
+	
+	GoToMenuBannerChoice(){
+		this.setState({ createMenu : false});
+		this.setState({ showPreview: true});
+		this.setState({menuBannerSelected: 0});
+	}
+	
+	menuBannerChoice(choice_param){
+		this.setState({ createMenu : false});
+		this.setState({ menuBannerSelected: choice_param});
 		this.setState({ showPreview : true});
 	}
 	
@@ -622,7 +655,7 @@ class ContentComponent extends React.Component{
 							
 							
 						
-							<h2>Hvor vil du have din <p className="small-caps small"> Menu </p> placeret?</h2>
+							<h2>Hvor vil du have din Menu  placeret?</h2>
 				
 							<form>
 								<p className="form-group">
@@ -646,6 +679,64 @@ class ContentComponent extends React.Component{
 					</div>
 				</div>
 				{ this.state.menuSelected ? this.previewFix(): null }
+				
+				{ this.state.menuBannerSelected ? this.previewFix(): null }
+			</div>
+			
+		
+			
+		);
+	}
+	
+	
+	insertBannerMenuQuestions(){
+		return(
+		
+				<div id="rowID" className=" " key={"rowMenu"} >
+			
+				<JumbotronMenuComponent  />
+				<div  key={"colmdMenu6"}  className="col-md-6 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
+							<p className="text-center" key={"textCenterMenu"}>
+								
+								<iframe src={this.state.videoLink}></iframe>
+									
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="col-md-6" key={7}>
+					<div className="panel " key={"videoLinkMenu"} >
+							
+							
+						
+							<h2>Hvor vil du have din Menu placeret? dfdf</h2>
+				
+							<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.menuBannerChoice.bind(this, 1)}  /> Over Logo Headeren
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.menuBannerChoice.bind(this, 2)} /> I højre side af headeren
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuBannerChoice.bind(this, 3)} /> Under headeren
+									</label>
+								</p>
+							</form>
+								
+					</div>
+				</div>
+				
+				{ this.state.menuBannerSelected ? this.previewFix(): null }
 			</div>
 			
 		
@@ -661,10 +752,6 @@ class ContentComponent extends React.Component{
         });
 	}
 	previewFix(){
-		
-	//	this.setState({ mounted: true });
-		//this.setState({ sloganQuestion: false });
-		//this.setState({ mounted: false });
 		
 		var contentPreview;
 		var menuObject;
@@ -684,11 +771,14 @@ class ContentComponent extends React.Component{
 		
 		menuLinksHorizontal = this.state.menuItem.map(function(item, i) {
 			return (
-				<div className="list-group">
-					<a className="list-group-item "  href="#" key={item} >
-						{item}
-					</a>
-				</div>
+			
+		
+					<div className="list-group">
+						<a className="list-group-item "  href="#" key={item} >
+							{item}
+						</a>
+					</div>
+			
 			);
 		}.bind(this));
 		
@@ -796,13 +886,10 @@ class ContentComponent extends React.Component{
 		</div>
 		
 		}
-		
-		if(this.state.menuSelected == 1 && this.state.logoBannerSelected == true  )
+		else if(this.state.menuSelected == 1 && this.state.logoBannerSelected == true  )
 		{
 			contentPreview = 
-			
-				
-				
+		
 				
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container">
@@ -935,7 +1022,7 @@ class ContentComponent extends React.Component{
 				
 				
 		
-		}else if(this.state.menuSelected == 2 && this.state.logoBannerSelected == true  )
+		}else if(this.state.menuSelected == 2 && this.state.menuBannerSelected == null )
 		{
 			
 		
@@ -1000,31 +1087,33 @@ class ContentComponent extends React.Component{
 							
 <div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
-								<div   className="col-sm-12 col-md-12 sidebar ">
-									<nav className="navbar navbar-default navbar-static-top">
-										<div className="navbar-header">
+								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+							
+											<nav className="navbar navbar-default navbar-static-top">
+												<div className="navbar-header">
 
-											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-												<span className="icon-bar"></span>
-												<span className="icon-bar"></span>
-												<span className="icon-bar"></span>                        
-											</button>
-											
-										</div>
-										
-								
-										<div class="collapse navbar-collapse" id="myNavbar">
-
-
-			 
-											
-											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+													<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>                        
+													</button>
+													
+												</div>
 												
 										
-											{menuLinksHorizontal}
-											
-										</div>
-									</nav>
+												<div class="collapse navbar-collapse" id="myNavbar">
+
+
+					 
+													
+													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+														
+												
+													{menuLinksHorizontal}
+													
+												</div>
+											</nav>
+										
 								</div>
 								
 							</div>
@@ -1092,6 +1181,466 @@ class ContentComponent extends React.Component{
 			);
 	}
 	
+	basedOnBanner(){
+	
+		var contentPreview;
+		var menuObject;
+		var menuLinks;
+		
+		var menuLinksHorizontal;
+		
+		menuLinks = this.state.menuItem.map(function(item, i) {
+			return (
+				<li className="active">
+					<a className=" "  href="#" key={item} >
+						{item}
+					</a>
+				</li>
+			);
+		}.bind(this));
+		
+		menuLinksHorizontal = this.state.menuItem.map(function(item, i) {
+			return (
+			
+		
+					<div className="list-group">
+						<a className="list-group-item "  href="#" key={item} >
+							{item}
+						</a>
+					</div>
+			
+			);
+		}.bind(this));
+		
+			
+		if(this.state.bannerMounted)
+		{
+			
+			var divStyle = {
+			  color: 'white',
+			  backgroundSize: '100%',
+			  
+			  backgroundImage: 'url(' + this.state.logoUrl + ')',
+			  WebkitTransition: 'all', // note the capital 'W' here
+			  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
+			};
+			
+console.log(this.state.menuBannerSelected);
+			
+			
+			
+			if(this.state.displayBannerImgBtn && this.state.menuBannerSelected == 0){
+				
+				contentPreview = <div> 
+				
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+						<div className="container">
+						
+			
+						
+						
+							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+							
+
+						
+								
+										<div  style={divStyle}   className=" col-lg-12 col-md-12 col-sm-12 col-xs-12   ">
+											
+												
+													<button className="btn btn-info" onClick={this.handleAddLogoUrl.bind(this)}>Indsæt Banner</button>
+													<img className="img img-responsive" src={this.state.logoUrl} alt={this.state.logoUrl} />
+													
+																	
+										</div>
+								
+								
+								
+								
+								
+									<div className="container">		
+										<div  className="col-sm-12 col-md-12  ">								
+										<h1 className="page-header">Dit Indhold</h1>
+										
+										<div className="row placeholders">
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something</span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+										</div>
+								
+										</div>
+									
+									</div>
+
+									</div>
+							</div>
+					</div>
+					
+					
+					<div id="rowID" className=" row" key={"rowOptionsShow"} >
+						
+						
+							<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+				
+							<div className="container">
+
+								<div className="col-md-12" key={"backBtnPreview"}>
+									<div className="container">
+										<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+								
+									
+										
+											<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+										
+										
+									</div>
+									
+								</div>
+								
+					
+							</div>
+						
+					</div>
+					
+				</div>	
+				
+			</div>
+			}else if(this.state.menuBannerSelected == 1 ) 
+			{
+				
+				contentPreview = <div> 
+				
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+						<div className="container">
+						
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+
+								<div   className="col-sm-12 col-md-12 sidebar ">
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+
+			 <a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											<nav className="navbar navbar-default">
+												<div className="container-fluid">
+													<div className="navbar-header">
+														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+															<ul className="nav navbar-nav">
+																{menuLinks}
+															</ul>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+									</nav>
+								</div>
+								
+							</div>
+
+							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+	
+										<div  style={divStyle}   className=" col-lg-12 col-md-12 col-sm-12 col-xs-12   ">
+													<img className="img img-responsive" src={this.state.logoUrl} alt={this.state.logoUrl} />								
+										</div>
+
+									<div className="container">		
+										<div  className="col-sm-12 col-md-12  ">								
+										<h1 className="page-header">Dit Indhold</h1>
+										
+										<div className="row placeholders">
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something</span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+										</div>
+								
+										</div>
+									
+									</div>
+									</div>
+							</div>
+					</div>
+
+					<div id="rowID" className=" row" key={"rowOptionsShow"} >
+						
+						
+							<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+				
+							<div className="container">
+
+								<div className="col-md-12" key={"backBtnPreview"}>
+									<div className="container">
+										<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+								
+									
+										
+											<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+										
+										
+										
+									</div>
+									
+								</div>
+
+							</div>
+						
+					</div>
+					
+				</div>	
+				
+			</div>
+				
+					
+					
+			}else if(this.state.menuBannerSelected == 2 ) 
+			{
+				
+				contentPreview = 
+			<div>
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container">
+					
+					
+					
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+
+							<div  className="col-sm-9 col-md-9  ">
+								
+									
+									
+									<div   style={divStyle}  className=" col-sm-12 col-md-12   ">
+										
+												
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+										
+																		
+									</div>
+							
+								
+									<div  className="col-sm-12 col-md-12  ">								
+										<h1 className="page-header">Dit Indhold</h1>
+										
+										<div className="row placeholders">
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something</span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+										</div>
+							
+									</div>
+								
+								</div>
+							
+								<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+					
+									<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+							
+											<nav className="navbar navbar-default navbar-static-top">
+												<div className="navbar-header">
+
+													<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>                        
+													</button>
+													
+												</div>
+												
+										
+												<div class="collapse navbar-collapse" id="myNavbar">
+
+
+					 
+													
+													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+														
+												
+													{menuLinksHorizontal}
+													
+												</div>
+											</nav>
+										
+									</div>
+								
+							</div>
+							
+						</div>
+
+						
+					</div>
+				</div>
+				
+				<div id="rowIDExport" className=" row" key={"rowOptionsShowThird"} >
+					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+						<div className="container">
+							<div className="col-md-12" key={"backBtnPreview"}>
+								<div className="container">
+									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
+									<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Eksporter hjemmesiden</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+					
+					
+				
+				
+				
+				
+			
+				
+				
+				
+			}else{
+				contentPreview = <div> 
+			
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+						<div className="container">
+
+							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+	
+										<div  style={divStyle}   className=" col-lg-12 col-md-12 col-sm-12 col-xs-12   ">
+													<img className="img img-responsive" src={this.state.logoUrl} alt={this.state.logoUrl} />								
+										</div>
+
+									<div className="container">		
+										<div  className="col-sm-12 col-md-12  ">								
+										<h1 className="page-header">Dit Indhold</h1>
+										
+										<div className="row placeholders">
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something</span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+											<div className="col-xs-6 col-sm-4 placeholder">
+												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+												<h4>Label</h4>
+												<span className="text-muted">Something </span>
+											</div>
+										</div>
+								
+										</div>
+									
+									</div>
+									</div>
+							</div>
+					</div>
+
+					<div id="rowID" className=" row" key={"rowOptionsShow"} >
+						
+						
+							<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+				
+							<div className="container">
+
+								<div className="col-md-12" key={"backBtnPreview"}>
+									<div className="container">
+										<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+								
+									
+										
+											<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+										
+										
+										
+											<a href="#" className="btn btn-success" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
+										
+									</div>
+									
+								</div>
+
+							</div>
+						
+					</div>
+					
+				</div>	
+				
+			</div>
+			}
+		
+	
+		}
+		
+		return(
+		
+				<div>
+		
+					<CSSTransitionGroup
+					  className=""
+					  transitionEnterTimeout={225}
+					  transitionLeaveTimeout={225}
+					  transitionName="example"
+					  transitionAppear={false}
+					  transitionAppearTimeout={200}
+					  component="div"
+					  >
+						{contentPreview}
+							{menuObject}
+					
+					</CSSTransitionGroup>
+					
+			</div>
+		
+		
+		);
+	
+	}
+	
 	basedOnLogo(){
 		
 	
@@ -1125,21 +1674,18 @@ class ContentComponent extends React.Component{
 	}
 	
 	checkSetLogo() {
-		
 		this.setState({ showNextQuestion: true });
-		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
 	}
 	
 	checkSetBanner() {
-		this.setState({ showNextQuestion: false });
+	//	this.setState({ showNextQuestion: false });
+		this.setState({bannerMounted : true});
 		
-		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
+		this.setState({ mounted: false });
 	}
 	
 	runSetup() {
 		this.setState({ startSetup: true });
-	
-		//this.setState({value: this.state.value = 'Easter Eeg ;) '});
 	}
 	
 
@@ -1312,8 +1858,14 @@ class ContentComponent extends React.Component{
 						
 						}
 						{
+							this.state.createBannerMenu ? this.insertBannerMenuQuestions(): null 
+						}
+						
+						{
 							this.state.createMenu ? this.insertMenuQuestions(): null 
 						}
+						
+						{ this.state.bannerMounted ? this.basedOnBanner(): null }
 					</CSSTransitionGroup>
 					
 					
@@ -1402,7 +1954,7 @@ class AnimateComponent extends React.Component{
 	}
 }
 
-
+/**store - er et array o.s.v data*/
 var menuData = [
 	{title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation" },
 	{title : "Hvorfor", linkref: " hvorfor.html", targetWindow : "_blank", selectedClass: "" , role:"presentation" },
@@ -1410,7 +1962,8 @@ var menuData = [
 	{title : "Opret din side", linkref: " #setup", targetWindow : "_self", selectedClass: "" , role:"presentation" }
 	
 ]
-	
+
+var _emptyArr = [];
 
 
 class MyLinks extends  React.Component{
@@ -1443,6 +1996,90 @@ class LinkList extends  React.Component{
     }
 };	
 
+
+
+
+
+
+
+
+
+
+
+
+/*
+		 Store 
+
+        var _recipes = [];
+
+        function addRecipe(text){
+            _recipes.push(text);
+        }
+
+        var RecipeStore = Flux.createStore({
+            getRecipes(){
+               return _recipes;
+            }
+        }, function(payload){
+            if(payload.actionType === "ADD_RECIPE") {
+                addRecipe(payload.text);
+                RecipeStore.emitChange();
+            }
+        });
+
+        /** Actions 
+
+        var RecipeActions = Flux.createActions({
+            addRecipe(text){
+               return {
+                  actionType: "ADD_RECIPE",
+                  text: text
+               }
+            }
+        });
+
+        function getRecipes(){
+           return {
+               recipes: RecipeStore.getRecipes()
+           }
+        }
+*/
+/*
+class TestRecipe extends  React.Component{
+    addRecipe(){
+		
+		RecipeActions.addRecipe({title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation"});
+	}
+	render(){
+		return (
+			<div class="panel panel-default">
+				<ul className="nav navbar-nav">
+					{
+						
+						this.props.data.map(function(links,index){
+							return (
+								<li key={index} className={links.selectedClass} role={links.role}>
+									<a href={links.linkref} target={links.targetWindow} >
+										{links.title}
+									</a>
+								</li>
+							)
+						})
+					}
+				</ul>
+				<button onClick={this.addRecipe}>Add Recipe</button>
+			</div>
+		)
+	}
+};
+
+	ReactDOM.render(	
+			<TestRecipe data={ _recipes } />
+		, 
+		document.getElementById('dataTest')
+	);
+*/
+
 	ReactDOM.render(
 		<div  >
 			<AnimateComponent  >
@@ -1464,7 +2101,7 @@ class LinkList extends  React.Component{
 	ReactDOM.render(
 		
 			<ContentComponent  >
-				  Logo eller banner
+				  Logo eller Banner
 			</ContentComponent>
 		, 
 		document.getElementById('insertContentStuff')
