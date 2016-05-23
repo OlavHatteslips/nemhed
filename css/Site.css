@@ -28,7 +28,6 @@ html, body{
     background-color: rgba(243,207,135,1);
     padding: 1rem;
     min-height: 70rem !important;
-    height: 100%;
 }
 
 .header{
@@ -260,6 +259,21 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 
 }
 
+.nav-stacked > li > a, a:active, a:focus{
+	color: rgba(255,255,255,1);
+}
+
+.nav-stacked{
+	margin-bottom: 0.2rem;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    color: rgba(2,66,190, 1);
+    border-color: rgba(2,66,190, 1);
+	background-color: transparent;
+	border: 1px solid rgba(2,66,190, 1);
+}
+
 .sidebar{
 
 	overflow-x: hidden;
@@ -297,6 +311,10 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 .navbar-header > a, a:active, a:focus{
 	color: rgba(113,192,58, 1);
 }
+
+.nav-sidebar > li > a, a:active, a:focus{
+	color:rgba(2,66,190, 1);
+}
 .sidebar-left{
 	position:  relative;
 
@@ -311,13 +329,12 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 }
 
 .sidebar-optionpanel{
-	position: relative;
+
 	
-	z-index: 1000;
-	display: block;
+
+
 	
-	overflow-x: hidden;
-	overflow-y: auto;
+
 	background-color: rgba(255,255,255,1);
 	
 	
@@ -325,7 +342,54 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
     padding:1rem;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	
-	border-top:1px solid rgba(255,255,255,1);
+
+	margin-top:0.5rem;
+
+	
+}
+
+.navbar-default {
+  
+ 
+
+	color: rgba(0,0,0,1);
+}
+
+ol > li > a, a:focus, a:active{
+	text-decoration: none !important;
+	color: rgba(0,0,0,1);
+	
+	background-color: rgba(113,192,58, 1);
+
+	border: 0 none #ccc;
+	box-sizing: content-box;
+	padding: 0 10px;
+	line-height: 50px;
+	display: inline-block;
+	height: 50px;
+	color: #fff;
+	margin: 0.2rem;
+	border-radius: 4px;
+}
+
+.breadcrumb {
+  
+	background-color: transparent;
+	color: rgba(0,0,0,1);
+}
+
+.sidebar-optionpanel > a, a:active, a:focus{
+	background-color: rgba(113,192,58, 1);
+	color: rgba(255,255,255,1);
+	border:0 none #ccc;
+	
+	box-sizing: content-box;
+	padding: 0 10px;
+	line-height: 50px;
+	display: inline-block;
+	height: 50px;
+	color: #fff;
+	margin: 0.2rem;
 }
 
 .animated {
@@ -354,8 +418,9 @@ div > nav{
     padding-left: 40px;
 }
 .main {
-    padding: 20px;
+  
 	background-color: rgba(255,255,255,1.0);
+
 }
 
 .main .page-header {
