@@ -696,17 +696,17 @@ class ContentComponent extends React.Component{
 								<p className="form-group">
 
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.menuChoice.bind(this, 1)}  /> Over Logo Headeren
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.menuChoice.bind(this, 1)}  /> Over Logo'et
 									</label>
 								</p>
 								<p className="form-group">
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.menuChoice.bind(this, 2)} /> I højre side af headeren
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.menuChoice.bind(this, 2)} /> I højre side af siden
 									</label>
 								</p>
 								<p className="form-group">
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuChoice.bind(this, 3)} /> Under headeren
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuChoice.bind(this, 3)} /> Under logo'et
 									</label>
 								</p>
 							</form>
@@ -753,19 +753,20 @@ class ContentComponent extends React.Component{
 								<p className="form-group">
 
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.menuBannerChoice.bind(this, 1)}  /> Over Logo Headeren
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.menuBannerChoice.bind(this, 1)}  /> Over Logo'et
 									</label>
 								</p>
 								<p className="form-group">
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.menuBannerChoice.bind(this, 2)} /> I højre side af headeren
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.menuBannerChoice.bind(this, 2)} /> I højre side af siden
 									</label>
 								</p>
 								<p className="form-group">
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuBannerChoice.bind(this, 3)} /> Under headeren
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuBannerChoice.bind(this, 3)} /> Under logo'et
 									</label>
 								</p>
+								
 							</form>
 								
 					</div>
