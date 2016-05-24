@@ -668,10 +668,18 @@ class ContentComponent extends React.Component{
 	}
 	
 	insertMenuQuestions(){
+		
+		var progressStyle = {
+		  width: '10%'
+		};
+		
 		return(
 		
-					<div id="rowID" className=" " key={"rowMenu"} >
-			
+		
+				<div id="rowID" className=" " key={"rowMenu"} >
+					
+					<progessBar progText={"Hej"} width={ 10 }/ >;
+					
 				<JumbotronMenuComponent  />
 				<div  key={"colmdMenu6"}  className="col-md-6 ">
 				
@@ -690,7 +698,7 @@ class ContentComponent extends React.Component{
 							
 							
 						
-							<h2>Hvor vil du have din Menu  placeret?</h2>
+							<h2>Hvor vil du have din menu-linje placeret?</h2>
 				
 							<form>
 								<p className="form-group">
@@ -796,6 +804,10 @@ class ContentComponent extends React.Component{
 		
 		var menuLinksHorizontal;
 		
+		var progressStyle = {
+		  width: '60%'
+		};
+		
 		menuLinks = this.state.menuItem.map(function(item, i) {
 			return (
 				<li className="active">
@@ -825,12 +837,18 @@ class ContentComponent extends React.Component{
 			
 		if(this.state.logoBannerSelected == true && this.state.menuSelected == 0)
 		{
+			
 			contentPreview = <div> 
 			
+
+			
 			<div id="rowID" className=" row" key={"rowMenuShow"} >
-					<div className="container">
 					
+
+			
+					<div className="container-fluid">
 					
+						<ProgBar progText="Trin 3 har du et slogan?" width={ 50 }/>
 					
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -916,16 +934,19 @@ class ContentComponent extends React.Component{
 		}
 		else if(this.state.menuSelected == 1 && this.state.logoBannerSelected == true  )
 		{
+		
 			contentPreview = 
 		
-				
+			
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
-					<div className="container">
+					<div className="container-fluid">
 					
+					
+							<ProgBar progText="Menu 1 Valgt" width={ '95' }/>
 					
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 					
-					
+
 				
 					
 								
@@ -1009,11 +1030,6 @@ class ContentComponent extends React.Component{
 							
 
 						</div>
-
-						
-			
-				
-			
 				
 						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 							<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
@@ -1265,9 +1281,9 @@ class ContentComponent extends React.Component{
 				contentPreview = <div> 
 					<div className="container-fluid">
 						<div id="rowID" className=" row" key={"rowMenuShow"} >
-					
-						<div  key={"colmdOptionsShow"}  className=" col-md-12    ">
 						
+						<div  key={"colmdOptionsShow"}  className=" col-md-12    ">
+							<ProgBar progText="Vaelg Menu " width={ 50 }/>
 								<div  key={"colmdMenuShow"}  className=" col-sm-12 col-md-12  sidebar-left  ">
 											{divImage}
 							
@@ -1320,6 +1336,7 @@ class ContentComponent extends React.Component{
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 						<div className="row">
 						
+						<ProgBar progText="Menulinje Valgt" width={ 90 }/>
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 
 								
@@ -1415,7 +1432,7 @@ class ContentComponent extends React.Component{
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 					<div className="row">
 					
-						
+							<ProgBar progText="Menulinje Valgt" width={ 90 }/>
 						
 					
 							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -1595,8 +1612,9 @@ class ContentComponent extends React.Component{
 		
 	
 		return(
-	
+			
 				<div className="">
+				
 					<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
 					
 					<form>
@@ -1724,18 +1742,13 @@ class ContentComponent extends React.Component{
 			
 		if(this.state.startSetup == true && this.state.logoBannerSelected == false){
 			
-			
-				//$("#header").attr({"class":"header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top animated bounceOutUp"});		
-				//$("div#menuId").attr({"class":"animated  bounceOutUp"});	
-				//$("div#blog-masthead").delay(300).slideUp(500);				
-			
-					
-			row = 
-			
-			
 				
+			row = 
+
 			<div id="rowID" className=" " key={"row"} >
 			
+				
+				<ProgBar progText="Trin 1 - logo eller banner" width={ 10 }/>
 				<JumbotronComponent  />
 				<div  key={"colmd6"}  className="col-md-6 ">
 				
@@ -1832,7 +1845,7 @@ class FooterComponent extends
 		constructor(props){
 			super(props);
 			this.state = {
-				value : 'Powered by Bootstrap 2016'
+				value : 'Lavet med Bootstrap 2016'
 			}
 		}
 		render(){
@@ -1840,8 +1853,8 @@ class FooterComponent extends
 			
 			return(
 				<div>
-					<button  className="btn btn-xs btn-info "> Made with {this.props.framework}</button>
-					<button onClick={this.handleChange.bind(this)} value="Beaver got money!" className="btn btn-xs btn-success "> {value} </button>
+					<button  className="btn btn-xs btn-success "> Lavet med {this.props.framework}</button>
+					<button onClick={this.handleChange.bind(this)}  className="btn btn-xs btn-success "> {value} </button>
 
 				</div>
 			);
@@ -1950,11 +1963,60 @@ class LinkList extends  React.Component{
 
 
 
+class ProgBar extends  React.Component{
+	render() {
+        
+		
+			console.log(this.props.width)
+			var progressStyle = {
+				width: this.props.width +'%'
+			  
+			};
+			
+			return (
+					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
+
+						<div className="progress">
+							<div className="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow={progressStyle} aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
+								{this.props.progText}
+							</div>
+						</div>
 
 
+					</div>
+			)
+    }
+};
 
 
+class myProgressbar extends  React.Component{
+    render() {
+        return <ReactProgressBar  width={ '10' }/>;
+    }
+};	
 
+class ReactProgressBar  extends React.Component{
+	render() {
+			
+			var progressStyle = {
+			  width: this.props.width
+			  
+			};
+			
+			return (
+					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
+
+						<div className="progress">
+							<div className="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
+								{this.props.progText}
+							</div>
+						</div>
+
+
+					</div>
+			)
+    }
+};	
 
 
 /*
