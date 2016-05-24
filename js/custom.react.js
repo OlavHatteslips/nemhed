@@ -3,149 +3,6 @@
 
 			var Flux = new McFly();
 		
-			
-			var LogoComponent = React.createClass({
-				basedOnSloganNo : function(){
-					ReactDOM.render(
-						<NextStepNoSloganComponent option="Logo" />,
-						document.getElementById('forwardDivID')
-					);
-				},
-				basedOnSloganYes : function(){
-					this.setState({
-						count: this.state.count + 1
-					});
-					localStorage.setItem("count", this.state.count);
-					ReactDOM.render(
-						<NextStepSloganComponent option="Logo" />,
-						document.getElementById('forwardDivID')
-					);
-				},
-				getInitialState: function(){
-					return {
-						count: 0
-					}
-				},
-				render: function(){
-					return(
-						<div>
-							<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
-							<form>
-							<h1>Count: {this.state.count}</h1>
-								<p className="form-group">
-
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganYesId"  value="yes" onClick={this.basedOnSloganYes} /> Ja
-									</label>
-								</p>
-								<p className="form-group">
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganNoId"  value="no" onClick={this.basedOnSloganNo} /> Nej
-									</label>
-								</p>
-
-							</form>
-						</div>
-					);
-				}
-			});
-			
-			  
-			
-			class NextStepNoSloganComponent extends React.Component{
-				constructor (props){
-					super(props);
-					
-				}
-				countColumns(){
-					alert("Optalt : 1 kolonne");
-				}
-				removeThisDiv(i){
-					//console.log('You clicked: ' + this.state.items[i] );
-					this.setState({ mountedInfo: false });
-					this.setState({mounted: false});
-					
-					
-				}
-				render(){
-					return(
-						<div>
-							<div className="alert alert-warning">Bem&aelig;rk; Du har ikke valgt et slogan</div>
-							<button onClick={this.removeThisDiv.bind(this, "videoLink", this.state) } className="btn btn-xs btn-info"> Forts&aelig;t </button>
-						</div>
-					);
-				}
-			}
-			
-			class NextStepSloganComponent extends React.Component{
-				
-				constructor (props){
-					super(props);
-					this.state = {
-						mounted : true
-					}
-				}
-				countColumns(){
-					//alert("Optalt : 2 kolonner");
-				}
-				
-				removeThisDiv(i){
-					//console.log('You clicked: ' + this.state.items[i] );
-					this.setState({ mountedInfo: false });
-				}
-
-				handleChange(event) {
-					this.setState({value: event.target.value.substr(0, 140)});
-					//localStorage.setItem(2);
-				}
-				testChange(){
-					return (
-						<div>
-							<h2>Local Storage Count: {localStorage.getItem("count") }</h2>
-							<a href="#" onClick={this.removeThisDiv.bind(this, "videoLink", this.state) } target="_self" className="btn btn-xs btn-success"> Smugkig </a>
-						
-							<button onClick={this.handleChange.bind(this)} value="Easter Eag" className="btn btn-xs btn-success"> dssd </button>
-						</div>
-					);
-				}
-				
-				handleChange(event) {
-					this.setState({mounted: this.state.mounted = false});
-				}
-
-				render(){
-					return(
-						
-						<div>
-						{
-							this.testChange()}
-							
-						
-						</div>
-					);
-				}
-			}
-			
-			
-/*
-			var FooterComponent = React.createClass({
-				getInitialState: function() {
-					return {value: 'Powered by Bootstrap'};
-				},
-				handleChange: function(event) {
-					this.setState({value: event.target.value});
-				},
-				render: function(){
-					return(
-						<div>
-							<button className="btn btn-xs btn-info"> Made with {this.props.framework}</button>
-							<button onClick={this.handleChange} value="Easter Eag" className="btn btn-xs btn-success"> {this.state.value} </button>
-						</div>
-					);
-				}
-			});
-			
-		*/
 	
 	
 
@@ -160,7 +17,7 @@ class MenuComponent extends React.Component{
 			interval: 0,
 			tick:0,
 			items:[],
-			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret Din Side'],
+			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret din side'],
 			mounted: false
 			
 		}
@@ -247,7 +104,7 @@ class MenuComponent extends React.Component{
 									<span className="icon-bar"></span>
 									<span className="icon-bar"></span>                        
 								</button>
-								<a className="navbar-brand" href="#">Nemhed.dk</a>
+								<h2>nemhed.dk</h2>
 							</div>
 							
 						
@@ -256,7 +113,17 @@ class MenuComponent extends React.Component{
 								{x}
 							
 							</div>
-					</div>	
+					</div>
+
+					<div className="row">
+					  <div className="col-xs-3 col-md-1">
+							<div className="panel-photo">
+								<a  href="index.html">
+									<img src="./img/logo/logo.png" className=" img img-responsive " alt="logo"/>
+								</a>
+							</div>	
+						</div>
+					</div>					
 						
 					</CSSTransitionGroup>
 					
@@ -408,7 +275,7 @@ class JumbotronMenuComponent extends React.Component{
 		if(this.state.mounted ){	
 			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
-					<div className="container "    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
+					<div className="container-fluid "    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
 							<h1>
 								{jumbotronTitle}
 							</h1>
@@ -507,6 +374,8 @@ class ContentComponent extends React.Component{
 	
 	basedOnSloganNo(){
 		this.setState({ mounted: false });
+		
+	
 			
 	}
 	basedOnSloganYes(){
@@ -848,7 +717,7 @@ class ContentComponent extends React.Component{
 			
 					<div className="container-fluid">
 					
-						<ProgBar progText="Trin 3 har du et slogan?" width={ 50 }/>
+						<ProgBar progText="" width={ 0}/>
 					
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -1630,9 +1499,9 @@ class ContentComponent extends React.Component{
 							</label>
 						</p>
 					</form>
-					{ this.state.sloganQuestion ? this.answerBasedOnSlogan(): null }
+					{ this.state.sloganQuestion ? this.answerBasedOnSlogan(): <ErrorMessages Type="hvis du vælger nej til slogan, så vil der opstå en fejl"/>}
 					
-				
+					
 				</div>
 			);
 	}
@@ -1698,11 +1567,12 @@ class ContentComponent extends React.Component{
 					<div className="panel effect2" key={"panelbob"}>
 						<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBodyBob"} >
 						
-								
-								<h2>Hvorfor?</h2>
-								<p>
-									<img className="img img-responsive  img-circle" src="img/question-1332062.png" alt="why"/>
-								</p>	
+								<a href="hvorfor.html" alt="hvorfor">
+									<h2>Hvorfor?</h2>
+									<p>
+										<img className="img img-responsive  img-circle" src="img/question-1332062.png" alt="why"/>
+									</p>	
+								</a>
 							
 						</div>
 					</div>
@@ -1711,11 +1581,12 @@ class ContentComponent extends React.Component{
 					<div className="panel effect2 text-center" key={"videoLink"} >
 							
 							
-					
-							<h2>Hvem er vi?</h2>
-							<p>
-								<img className="img img-responsive  img-circle" src="img/question-1332054.png" alt="why"/>
-							</p>
+							<a href='hvem.html' alt='hvem er vi'>
+								<h2>Hvem er vi?</h2>
+								<p>
+									<img className="img img-responsive  img-circle" src="img/question-1332054.png" alt="why"/>
+								</p>
+							</a>
 							
 					</div>
 				</div>
@@ -1726,7 +1597,7 @@ class ContentComponent extends React.Component{
 								
 								
 							
-								<h2>Opret Din Side</h2>
+								<h2>Opret din side</h2>
 								<p>
 									<img className="img img-responsive   img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
 								</p>
@@ -1790,10 +1661,15 @@ class ContentComponent extends React.Component{
 				
 				<div className="col-md-12" key={"backBtn"}>
 
-					<ul className="pager">
-						<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a></li>
-					
-					</ul>
+				
+					<nav>
+						<ul className="nav nav-pills pull-left pager">
+							<li role="presentation" className="active ">
+								<a href="#" className="pagerLink" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		
@@ -1845,17 +1721,34 @@ class FooterComponent extends
 		constructor(props){
 			super(props);
 			this.state = {
-				value : 'Lavet med Bootstrap 2016'
+				value : 'Lavet med bootstrap',
+				github : 'Gemt På Github'
 			}
 		}
 		render(){
 			var {value} = this.state;
-			
+			var {github} = this.state;
 			return(
-				<div>
-					<button  className="btn btn-xs btn-success "> Lavet med {this.props.framework}</button>
-					<button onClick={this.handleChange.bind(this)}  className="btn btn-xs btn-success "> {value} </button>
-
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-3" >
+						</div>
+						<div className="col-md-6 text-center" >
+							<nav>
+								<ul className="nav nav-pills pull-left pager">
+									<li role="presentation" className="active ">
+									
+							
+										<a className="btn btn-xs btn-success "> Lavet med {this.props.framework}</a>
+										<a onClick={this.handleChange.bind(this)}  className="btn btn-xs btn-success "> {value} </a>
+										<a href="http://github.com" target='_blank'  className="btn btn-xs btn-success "> {github} </a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+						<div className="col-md-3" >
+						</div>
+					</div>
 				</div>
 			);
 		}
@@ -1920,9 +1813,9 @@ class AnimateComponent extends React.Component{
 /**store - er et array o.s.v data*/
 var menuData = [
 	{title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation" },
-	{title : "Hvorfor", linkref: " hvorfor.html", targetWindow : "_blank", selectedClass: "" , role:"presentation" },
+	{title : "Hvorfor", linkref: " hvorfor.html",  targetWindow : "_blank", selectedClass: "" , role:"presentation" },
 	{title : "Hvem er vi", linkref: " hvem.html", targetWindow : "_blank", selectedClass: "" , role:"presentation" },
-	{title : "Opret din side", linkref: " #setup", targetWindow : "_self", selectedClass: "" , role:"presentation" }
+	{title : "Opret din side",onLink : "disabled"  , linkref: " #setup", targetWindow : "_self", selectedClass: "" , role:"presentation" }
 	
 ]
 
@@ -1942,7 +1835,7 @@ class LinkList extends  React.Component{
 			var recipeNodes = this.props.data.map(function(links,index){
 				return (
 					<li key={index} className={links.selectedClass} role={links.role}>
-						<a href={links.linkref} target={links.targetWindow} >
+						<a href={links.linkref} disabled={links.onLink} target={links.targetWindow} >
 							{links.title}
 						</a>
 					</li>
@@ -1977,7 +1870,7 @@ class ProgBar extends  React.Component{
 					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
 
 						<div className="progress">
-							<div className="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow={progressStyle} aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
+							<div className="progress-bar progress-bar-info " role="progressbar" aria-valuenow={progressStyle} aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
 								{this.props.progText}
 							</div>
 						</div>
@@ -2017,6 +1910,22 @@ class ReactProgressBar  extends React.Component{
 			)
     }
 };	
+
+
+	class ErrorMessages  extends React.Component{
+		render() {
+				return (
+						<div class="bs-callout bs-callout-warning" id="callout-alerts-dismiss-use-button"> 
+							<h4>Whoops</h4> 
+							<p>
+								<code>
+									{ this.props.Type}
+								</code> 
+							</p> 
+						</div>
+				)
+		}
+	};
 
 
 /*

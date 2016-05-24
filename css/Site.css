@@ -16,6 +16,17 @@ html, body{
 	height: 100%;
 }
 
+.bs-callout-warning {
+    border-left-color: #aa6708;
+}
+.bs-callout {
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+}
+
 .row{
 
 }
@@ -27,7 +38,13 @@ html, body{
 .pagebodylayout {
     background-color: rgba(243,207,135,1);
     padding: 1rem;
-    min-height: 70rem !important;
+    
+	height:100%;
+}
+
+.fill { 
+    min-height: 100%;
+    height: 100%;
 }
 
 .header{
@@ -268,10 +285,13 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-    color: rgba(2,66,190, 1);
-    border-color: rgba(2,66,190, 1);
-	background-color: transparent;
-	border: 1px solid rgba(2,66,190, 1);
+    color: rgba(255,255,255, 1);
+  
+	background-color: rgba(2,66,190, 1);
+	border: 0px none #ccc;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+   
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .sidebar{
@@ -363,14 +383,26 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
     height: 25px;
     margin-bottom: 20px;
     overflow: hidden;
-    background-color: #f5f5f5;
+    background-color: rgba(255,255,255,0.4);
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
     box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
     font-size: large;
 	line-height: 50px;
 		
-		color: rgba(0,0,0,1);
+	color: rgba(0,0,0,1);
+	height: 50px;
+	font-size: 14px;
+}
+
+.progress-bar {
+
+
+    font-size: 16px;
+    line-height: 20px;
+
+
+
 }
 
 .navbar-default {
@@ -395,6 +427,28 @@ ol > li > a, a:focus, a:active{
 	color: #fff;
 	margin: 0.2rem;
 	border-radius: 4px;
+}
+
+.pagerLink {
+	background-color: rgba(2,66,190, 1);
+	color: rgba(255,255,255,1);
+}
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+	color: #fff;
+	background-color: rgba(2,66,190, 1);
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #fff;
+    background-color: rgba(2,66,190, 1);
+}
+
+.progress-bar-info {
+    background-color:  rgba(113,192,58, 1);
+
+	  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
 }
 
 .breadcrumb {
