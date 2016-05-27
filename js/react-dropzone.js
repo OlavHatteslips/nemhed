@@ -252,27 +252,33 @@ let activeStyle;
 
 
 
-var DropzoneDemo = React.createClass({
-    getInitialState: function () {
-        return {
-          files: []
-        };
-    },
 
-    onDrop: function (files) {
+class DropzoneDemo extends React.Component{
+	constructor (props){
+		super(props);
+		
+		this.state = {
+			files: []
+			
+		}
+	}
+	onDrop(files) {
       this.setState({
         files: files
       });
-    },
+    }
 
-    onOpenClick: function () {
+    onOpenClick() {
       this.refs.dropzone.open();
-    },
+    }
+  
+	render(){
 
-    render: function () {
-        return (
+		return (
+		
+				 
             <div>
-                <Dropzone ref="dropzone" onDrop={this.onDrop}>
+                <Dropzone ref="dropzone" onDrop={this.onDrop.bind(this)}>
                     <div>Try dropping some files here, or click to select files to upload.</div>
                 </Dropzone>
                 <button type="button" onClick={this.onOpenClick}>
@@ -283,13 +289,10 @@ var DropzoneDemo = React.createClass({
                 <div>{this.state.files.map((file) => <img src={file.preview} /> )}</div>
                 </div> : null}
             </div>
-        );
-    }
-});
-
-ReactDOM.render(<DropzoneDemo />, document.getElementById('dataTest'));
-
-
+        )
+			
+	}
+}
 
 
 Dropzone.defaultProps = {
