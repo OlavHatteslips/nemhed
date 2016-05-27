@@ -1,12 +1,5 @@
-			var CSSTransitionGroup = React.addons.CSSTransitionGroup;
-			var INTERVAL = 2000;
-
-			var Flux = new McFly();
-		
-	
-	
-
-			
+var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+var INTERVAL = 2000;
 
 class MenuComponent extends React.Component{
 	constructor (props){
@@ -104,7 +97,15 @@ class MenuComponent extends React.Component{
 									<span className="icon-bar"></span>
 									<span className="icon-bar"></span>                        
 								</button>
-								<h2>nemhed.dk</h2>
+								
+								
+									
+											
+									<a  href="index.html">
+										<img src="./img/logo/logo.png" className=" img img-responsive navbar-brand" alt="logo"/>
+									</a>
+										
+										
 							</div>
 							
 						
@@ -115,15 +116,7 @@ class MenuComponent extends React.Component{
 							</div>
 					</div>
 
-					<div className="row">
-					  <div className="col-xs-3 col-md-1">
-							<div className="panel-photo">
-								<a  href="index.html">
-									<img src="./img/logo/logo.png" className=" img img-responsive " alt="logo"/>
-								</a>
-							</div>	
-						</div>
-					</div>					
+								
 						
 					</CSSTransitionGroup>
 					
@@ -1555,6 +1548,8 @@ class ContentComponent extends React.Component{
 								
 									Nemhed.dk er en udstrækt hånd til dig der gerne vil skabe din helt egen, unikke hjemmeside, men ikke har nogen erfaring med html-koder. Du vil blive guidet gennem alle trin. Og skulle det ikke være nok, kan du også få hjælp fra vores hjælpevideoer.
 								</p>
+								
+							
 							</div>
 							
 
@@ -1928,79 +1923,6 @@ class ReactProgressBar  extends React.Component{
 	};
 
 
-/*
-		 Store 
-
-        var _recipes = [];
-
-        function addRecipe(text){
-            _recipes.push(text);
-        }
-
-        var RecipeStore = Flux.createStore({
-            getRecipes(){
-               return _recipes;
-            }
-        }, function(payload){
-            if(payload.actionType === "ADD_RECIPE") {
-                addRecipe(payload.text);
-                RecipeStore.emitChange();
-            }
-        });
-
-        /** Actions 
-
-        var RecipeActions = Flux.createActions({
-            addRecipe(text){
-               return {
-                  actionType: "ADD_RECIPE",
-                  text: text
-               }
-            }
-        });
-
-        function getRecipes(){
-           return {
-               recipes: RecipeStore.getRecipes()
-           }
-        }
-*/
-/*
-class TestRecipe extends  React.Component{
-    addRecipe(){
-		
-		RecipeActions.addRecipe({title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation"});
-	}
-	render(){
-		return (
-			<div class="panel panel-default">
-				<ul className="nav navbar-nav">
-					{
-						
-						this.props.data.map(function(links,index){
-							return (
-								<li key={index} className={links.selectedClass} role={links.role}>
-									<a href={links.linkref} target={links.targetWindow} >
-										{links.title}
-									</a>
-								</li>
-							)
-						})
-					}
-				</ul>
-				<button onClick={this.addRecipe}>Add Recipe</button>
-			</div>
-		)
-	}
-};
-
-	ReactDOM.render(	
-			<TestRecipe data={ _recipes } />
-		, 
-		document.getElementById('dataTest')
-	);
-*/
-
 	ReactDOM.render(
 		<div  >
 			<AnimateComponent  >
@@ -2037,41 +1959,7 @@ class TestRecipe extends  React.Component{
 		document.getElementById('footer')
 	);
 
-//ECMAScript6 måden...
-/*class Profile extends 
-  React.Component{
-    constructor(props){
-      super(props);
-      this.state = {
-        height: 100
-      };
-    }
-    render(){
-      //detruction..pulls props from props
-      pull out all values
-     var { name, age, bio, pic } = this.props;
-      var {height} = this.state;
-      return (
-        <div className="profile-box">
-          <h2>Name:{name}</h2>
-          <h2>Age:{age}</h2>
-          <h2>Bio: {bio}</h2>
-          <img src={pic} height={height}/>
-          <button onClick={ this.ZoomPicIn.bind(this) }>Zoom Out</button>
-          <button onClick={ this.ZoomPicOut.bind(this) }>Zoom In</button>
-        </div>
-      );
-    }
-    ZoomPicIn(){
-      this.setState({height: this.state.height + 20});
-    }
-    ZoomPicOut(){
-       this.setState({height: this.state.height - 20});
-    }
-}*/
 
 
 // state
 // den kigger på om der sker noget med komponenten. Hvis den gør, så genindlæses det.
-
-//ReactDOM.render(<Profile name="Tim" age={24} bio="I like puppies" pic="http://coolwildlife.com/wp-content/uploads/galleries/post-3004/Fox%20Picture%20003.jpg" />, document.getElementById("panelbody"));

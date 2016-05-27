@@ -1,6 +1,3 @@
-import accepts from 'attr-accept';
-import React from 'react';
-
 const supportMultiple = (typeof document !== 'undefined' && document && document.createElement) ?
   'multiple' in document.createElement('input') :
   true;
@@ -125,23 +122,40 @@ class Dropzone extends React.Component {
   }
 
   render() {
-    const {
+	  /**
+    const  {
       accept,
       activeClassName,
       inputProps,
       multiple,
       name,
       rejectClassName,
-      ...rest
+      rest
+    } = this.props;*/
+	
+let accept;
+let activeClassName;
+let inputProps;
+let  multiple;
+let rejectClassName;
+let rest;
+
+let className;
+let rejectStyle;
+let style;
+let activeStyle;
+
+	let propAttributes = {
+      accept,
+      activeClassName,
+      inputProps,
+      multiple,
+      name,
+      rejectClassName,
+      rest
     } = this.props;
 
-    let {
-      activeStyle,
-      className,
-      rejectStyle,
-      style,
-      ...props // eslint-disable-line prefer-const
-    } = rest;
+  
 
     const { isDragActive, isDragReject } = this.state;
 
@@ -173,56 +187,110 @@ class Dropzone extends React.Component {
       };
     }
 
-    let appliedStyle;
+   var appliedStyle;
     if (activeStyle && isDragActive) {
+		
       appliedStyle = {
-        ...style,
-        ...activeStyle
+        style,
+        activeStyle
       };
     } else if (rejectStyle && isDragReject) {
       appliedStyle = {
-        ...style,
-        ...rejectStyle
+        style,
+        rejectStyle
       };
     } else {
       appliedStyle = {
-        ...style
+        style
       };
     }
 
-    const inputAttributes = {
-      accept,
+   var inputAttributes = [{
+      accept:'',
       type: 'file',
       style: { display: 'none' },
       multiple: supportMultiple && multiple,
       ref: el => this.fileInputEl = el,
       onChange: this.onDrop
-    };
+    }];
+	
+	var myStyle = {
+		display: 'block'
+
+	};
 
     if (name && name.length) {
       inputAttributes.name = name;
     }
+		
+	var inputAttr = 
+				console.log(propAttributes);
+				return(
+					<div>
+						 <input accept='' onChange={this.onDrop.bind(this)} ref={el => this.fileInputEl = el} type='file' multiple={supportMultiple && multiple} style={myStyle} />
+					</div>
+				)
+	
+		
+	return (
 
-    return (
-      <div
-        className={className}
-        style={appliedStyle}
-        {...props /* expand user provided props first so event handlers are never overridden */}
-        onClick={this.onClick}
-        onDragEnter={this.onDragEnter}
-        onDragOver={this.onDragOver}
-        onDragLeave={this.onDragLeave}
-        onDrop={this.onDrop}
-      >
-        {this.props.children}
-        <input
-          {...inputProps /* expand user provided inputProps first so inputAttributes override them */}
-          {...inputAttributes}
-        />
-      </div>
-    );
+		<div>
+			<div className={className} style={appliedStyle}   onClick={this.onClick}  onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
+			
+				
+				
+				
+				{inputAttr}
+  
+				{this.props.children}
+			</div>
+		</div>
+
+	);
   }
 }
+
+
+
+var DropzoneDemo = React.createClass({
+    getInitialState: function () {
+        return {
+          files: []
+        };
+    },
+
+    onDrop: function (files) {
+      this.setState({
+        files: files
+      });
+    },
+
+    onOpenClick: function () {
+      this.refs.dropzone.open();
+    },
+
+    render: function () {
+        return (
+            <div>
+                <Dropzone ref="dropzone" onDrop={this.onDrop}>
+                    <div>Try dropping some files here, or click to select files to upload.</div>
+                </Dropzone>
+                <button type="button" onClick={this.onOpenClick}>
+                    Open Dropzone
+                </button>
+                {this.state.files.length > 0 ? <div>
+                <h2>Uploading {this.state.files.length} files...</h2>
+                <div>{this.state.files.map((file) => <img src={file.preview} /> )}</div>
+                </div> : null}
+            </div>
+        );
+    }
+});
+
+ReactDOM.render(<DropzoneDemo />, document.getElementById('dataTest'));
+
+
+
 
 Dropzone.defaultProps = {
   disablePreview: false,
@@ -254,4 +322,4 @@ Dropzone.propTypes = {
   name: React.PropTypes.string
 };
 
-export default Dropzone;
+//export default Dropzone;

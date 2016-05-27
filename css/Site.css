@@ -27,6 +27,17 @@ html, body{
     border-radius: 3px;
 }
 
+a > .navbar-brand {
+    float: none
+    height: 50px;
+    padding: 0;
+
+}
+
+.panel > a{
+	color:rgba(0,0,0,1);
+}
+
 .row{
 
 }
@@ -107,6 +118,35 @@ textarea {
 a:link {
    	 text-decoration: none !important;
 	 color:rgba(255,255,255,1.0);
+	 
+	 background-color: rgba(113,192,58, 1);
+}
+
+a:link:active{
+	   	 text-decoration: none !important;
+	 color:rgba(0,0,0,1);
+	 
+	 background-color: rgba(113,192,58, 1);
+}
+
+a:link > h2{
+	 text-decoration: none !important;
+	 color:rgba(0,0,0,1);
+	 
+	 background-color: rgba(113,192,58, 1);
+}
+
+.effect2 > h2{
+	 text-decoration: none !important;
+	 color:rgba(255,255,255,1);
+	 background-color: rgba(113,192,58, 1);
+}
+
+a:link:visited{
+	   	 text-decoration: none !important;
+	 color:rgba(0,0,0,1);
+	 
+	 background-color: rgba(113,192,58, 1);
 }
 
 /* visited link */
