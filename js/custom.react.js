@@ -1588,18 +1588,18 @@ class ContentComponent extends React.Component{
 				</div>
 				
 				<div className="col-md-4" key={"Left"}>
-					<a href="#OpretSide" onClick={this.runSetup.bind(this)} >
-						<div className="panel effect2 text-center " key={"videoLink"} >
-								
-								
+					
+					<div className="panel effect2 text-center " key={"videoLink"} >
+						<a href="#OpretSide" onClick={this.runSetup.bind(this)} >	
 							
-								<h2>Opret din side</h2>
-								<p>
-									<img className="img img-responsive   img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
-								</p>
-									
-						</div>
-					</a>
+						
+							<h2>Opret din side</h2>
+							<p>
+								<img className="img img-responsive   img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
+							</p>
+						</a>
+					</div>
+					
 				</div>
 			</div>
 				
@@ -1740,9 +1740,11 @@ class FooterComponent extends
 										<a href="http://github.com" target='_blank'  className="btn btn-xs btn-success "> {github} </a>
 									</li>
 								</ul>
+								<FluxTest />
 							</nav>
 						</div>
 						<div className="col-md-3" >
+							
 						</div>
 					</div>
 				</div>
@@ -1925,7 +1927,26 @@ class ReactProgressBar  extends React.Component{
 	
 	
 	
-	const supportMultiple = (typeof document !== 'undefined' && document && document.createElement) ?
+	// FLUX
+	var flightDispatcher = new Dispatcher();
+	
+	class FluxTest  extends React.Component{
+		render() {
+				
+
+				
+				return (
+						<div  key={"colmdOptionsShow2"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
+
+							<button className="btn btn-success" >New Item</button>  
+
+
+						</div>
+				)
+		}
+	};	
+	
+const supportMultiple = (typeof document !== 'undefined' && document && document.createElement) ?
   'multiple' in document.createElement('input') :
   true;
 
@@ -2251,8 +2272,6 @@ Dropzone.propTypes = {
 
 //export default Dropzone;
 
-
-
 	ReactDOM.render(
 		<div  >
 			<AnimateComponent  >
@@ -2267,6 +2286,8 @@ Dropzone.propTypes = {
 			<MenuComponent  >
 				
 			</MenuComponent>
+			
+		
 		, 
 		document.getElementById('menuId')
 	);
@@ -2290,6 +2311,10 @@ Dropzone.propTypes = {
 	);
 
 
+	
+	
+	
+	
 
 // state
 // den kigger på om der sker noget med komponenten. Hvis den gør, så genindlæses det.
