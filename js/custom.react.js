@@ -1740,7 +1740,7 @@ class FooterComponent extends
 										<a href="http://github.com" target='_blank'  className="btn btn-xs btn-success "> {github} </a>
 									</li>
 								</ul>
-								<FluxTest />
+								<RecipesController/>
 							</nav>
 						</div>
 						<div className="col-md-3" >
@@ -1928,23 +1928,113 @@ class ReactProgressBar  extends React.Component{
 	
 	
 	// FLUX
-	var flightDispatcher = new Dispatcher();
-	
-	class FluxTest  extends React.Component{
-		render() {
+        /** McFly */
+
+        var Flux = new McFly();
+
+        /** Store */
+
+        var _recipes = [];
+
+        function addRecipe(text){
+		
+            _recipes.push(text);
+			
+        }
+
+        var RecipeStore = Flux.createStore({
+            getRecipes: function(){
+               return _recipes;
+            }
+        }, function(payload){
+            if(payload.actionType === "ADD_RECIPE") {
 				
+                addRecipe(payload.text);
+                RecipeStore.emitChange();
+            }
+        });
 
+        /** Actions */
+
+        var RecipeActions = Flux.createActions({
+            addRecipe: function(text){
+               return {
+                  actionType: "ADD_RECIPE",
+                  text: text
+               }
+            }
+        });
+
+        function getRecipes(){
+           
+		 
+		   return {
+			   
+               recipes: RecipeStore.getRecipes()
+			   
+           }
+        }
+
+        /** Controller View */
+
+/*
+        var RecipesController = React.createClass({
+            mixins: [RecipeStore.mixin],
+            getInitialState: function(){
+                return getRecipes();
+            },
+            storeDidChange: function() {
+                this.setState(getRecipes());
+            },
+            render: function() {
+                return <FluxTest recipes={this.state.recipes} />;
+            }
+        });
+		*/
+		
+		var RecipesController = React.createClass({
+            mixins: [RecipeStore.mixin],
+            getInitialState: function(){
+                return getRecipes();
+            },
+            storeDidChange: function() {
+                this.setState(getRecipes());
+            },
+            render: function() {
+                return <FluxTest recipes={this.state.recipes} />;
+            }
+        });
+
+        /** Component */
+
+       class FluxTest extends React.Component{
+		   
+		    constructor(props) {
+				super(props);
+			}
+            addRecipe(){
 				
-				return (
-						<div  key={"colmdOptionsShow2"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
-
-							<button className="btn btn-success" >New Item</button>  
-
-
-						</div>
-				)
-		}
-	};	
+                RecipeActions.addRecipe({_message:'hej'});
+            }
+            render() {
+				
+				var testMessage = this.props.recipes.map(function(item, i) {
+					return <div key={i}> {item._message}</div>
+				});
+				
+				
+                return (
+				
+                 <div className="recipes_app">
+					<div className='panel panel-default'>
+						{testMessage}
+					</div>
+                    <button onClick={this.addRecipe.bind(this)}>Add recipe</button>
+                </div>
+				
+                )
+            }
+        };
 	
 const supportMultiple = (typeof document !== 'undefined' && document && document.createElement) ?
   'multiple' in document.createElement('input') :
