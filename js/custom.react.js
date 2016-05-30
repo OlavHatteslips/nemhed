@@ -54,19 +54,6 @@ class MenuComponent extends React.Component{
 		  background: colors[1]
 		};
 
-			
-	
-		
-		/*
-		 for (var i = this.state.current; i < this.state.current + colors.length; i++) {
-			var style = {
-			  left: pos * 5,
-			  background: colors[i % colors.length]
-			};
-			pos++;
-			children.push(<a className="blog-nav-item active"   href="#"  onClick={this.handleRemove.bind(this, i)} key={i}  onClick={this.handleRemove.bind(this, i)} style={style}>{i}</a>);
-		}
-		*/
 		
 		var x;
 		
@@ -156,11 +143,7 @@ class JumbotronComponent extends React.Component{
 		
 	}
 	
-	handleRemove(i) {
-		var newItems = this.state.jumbotronTitle.slice();
-		newItems.splice(i, 1);
-		this.setState({jumbotronTitle: newItems});
-	}
+
   
 	render(){
 	
@@ -180,7 +163,7 @@ class JumbotronComponent extends React.Component{
 		if(this.state.mounted ){	
 			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
-					<div className="container "    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
+					<div className="container "    href="#" key={jumbotronTitle} >
 							<h1>
 								{jumbotronTitle}
 							</h1>
@@ -268,7 +251,159 @@ class JumbotronMenuComponent extends React.Component{
 		if(this.state.mounted ){	
 			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
-					<div className="container-fluid "    href="#" key={jumbotronTitle} onClick={this.handleRemove.bind(this, i)}>
+					<div className="container-fluid "    href="#" key={jumbotronTitle} >
+							<h1>
+								{jumbotronTitle}
+							</h1>
+							<p>
+								S&aring;dan g&oslash;r du...
+							</p>
+							
+				
+					</div>
+				);
+			}.bind(this));
+		}
+
+		return (
+		
+				<div>
+					<CSSTransitionGroup
+					  className=" jumbotron jumbotroncolors  text-center"
+					  transitionEnterTimeout={150}
+					  transitionLeaveTimeout={150}
+					  transitionAppear={true}
+					  transitionAppearTimeout = {150}
+					  transitionName="example"
+					  component="div"
+					  >
+						{x}
+					</CSSTransitionGroup>
+				</div>
+			);
+	}
+}
+
+
+class JumbotronFooterComponent extends React.Component{
+	constructor (props){
+		super(props);
+		this.state = {
+			current: 0,
+			colors: "red",
+			interval: 0,
+			tick:0,
+			items:[],
+			mounted: false,
+			jumbotronTitle: ['Hvad vil du have placeret i din sidefod?']
+			
+		}
+	}
+	componentDidMount() {
+	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
+	  this.setState({ mounted: true });
+	}
+	componentWillUnmount() {
+		
+		clearInterval(this.interval);
+	}
+
+	render(){
+	
+		var pos = 0;
+		var colors = ['red', 'gray', 'blue'];
+		var style = {
+		  left: pos * 128,
+		  padding:"0.5rem",
+		  margin: "5px",
+		  background: colors[1]
+		};
+
+	
+		
+		var x;
+		
+		if(this.state.mounted ){	
+			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+				return (
+					<div className="container-fluid "    href="#" key={jumbotronTitle} >
+							<h1>
+								{jumbotronTitle}
+							</h1>
+							<p>
+								S&aring;dan g&oslash;r du...
+							</p>
+							
+				
+					</div>
+				);
+			}.bind(this));
+		}
+
+		return (
+		
+				<div>
+					<CSSTransitionGroup
+					  className=" jumbotron jumbotroncolors  text-center"
+					  transitionEnterTimeout={150}
+					  transitionLeaveTimeout={150}
+					  transitionAppear={true}
+					  transitionAppearTimeout = {150}
+					  transitionName="example"
+					  component="div"
+					  >
+						{x}
+					</CSSTransitionGroup>
+				</div>
+			);
+	}
+}
+
+
+class JumbotronUserContentComponent extends React.Component{
+	constructor (props){
+		super(props);
+		this.state = {
+			current: 0,
+			colors: "red",
+			interval: 0,
+			tick:0,
+			items:[],
+			mounted: false,
+			jumbotronTitle: ['Vælg typen af indhold']
+			
+		}
+	}
+	componentDidMount() {
+	  this.state.interval = setInterval(this.state.tick, INTERVAL);
+	 
+	  this.setState({ mounted: true });
+	}
+	componentWillUnmount() {
+		
+		clearInterval(this.interval);
+	}
+
+	render(){
+	
+		var pos = 0;
+		var colors = ['red', 'gray', 'blue'];
+		var style = {
+		  left: pos * 128,
+		  padding:"0.5rem",
+		  margin: "5px",
+		  background: colors[1]
+		};
+
+	
+		
+		var x;
+		
+		if(this.state.mounted ){	
+			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+				return (
+					<div className="container-fluid "    href="#" key={jumbotronTitle} >
 							<h1>
 								{jumbotronTitle}
 							</h1>
@@ -321,6 +456,7 @@ class ContentComponent extends React.Component{
 			showNextQuestion : false,
 			sloganQuestion : false,
 			sloganText : '',
+			footerText : '',
 			showPreview: false,
 			logoUrl : '',
 			mountedFrontpage : false,
@@ -331,10 +467,15 @@ class ContentComponent extends React.Component{
 			alertLogoImageCopyright : false,
 			createMenu : false,
 			createBannerMenu : false,
+			createContent : false,
 			menuSelected : 0,
 			menuBannerSelected : 0,
 			displayBannerImgBtn: true,
+			footerSelected : 0,
+			contentSelected : 0,
+			createFooter : false,
 			downloadLink: '',
+			NextContentQuestion: false,
 			menuItem: []
 			
 		}
@@ -388,6 +529,11 @@ class ContentComponent extends React.Component{
 		var newItems = this.state.sloganText.concat([prompt('Enter some text')]);
 		this.setState({sloganText: newItems});
 		
+	}
+	
+	handleAddFooterText() {
+		var newItems = this.state.footerText.concat([prompt('Enter some text')]);
+		this.setState({footerText: newItems});
 	}
 	
 	handleAddLogoUrl() {
@@ -494,6 +640,21 @@ class ContentComponent extends React.Component{
 		
 	}
 	
+	GoToCreateFooter(){
+		this.setState({ createFooter : true});
+		this.setState({ showPreview: false});
+		this.setState({ bannerMounted : false});
+		this.setState({ createBannerMenu : false});
+	}
+	
+	GoToCreateContent(){
+		this.setState({ createContent : true});
+		this.setState({ showPreview: false});
+		this.setState({ bannerMounted : false});
+		this.setState({ createBannerMenu : false});
+		this.setState({ createFooter : false});
+	}
+	
 	GoToCreateBannerMenu(){
 		
 		
@@ -512,6 +673,32 @@ class ContentComponent extends React.Component{
 		this.setState({ createMenu : false});
 		this.setState({menuSelected: choice_param});
 		this.setState({ showPreview : true});
+	}
+	
+	footerChoice(choice_param){
+		this.setState({ createFooter : false});
+		this.setState({ footerSelected: choice_param});
+		this.setState({ showPreview : true});
+
+	}
+	
+	
+	contentChoice(choice_param){
+	//	this.setState({ createContent : false});
+		//this.setState({ contentSelected: choice_param});
+		//this.setState({ showPreview : true});
+		//console.log(this.state.NextContentQuestion);
+		this.setState({ NextContentQuestion : true});
+
+	}
+	
+	contentChoiceTwo(choice_param){
+		this.setState({ createContent : false});
+		this.setState({ contentSelected: choice_param});
+		this.setState({ showPreview : true});
+		
+		//this.setState({ NextContentQuestion : true});
+
 	}
 	
 	
@@ -584,6 +771,181 @@ class ContentComponent extends React.Component{
 					</div>
 				</div>
 				{ this.state.menuSelected ? this.previewFix(): null }
+				
+		
+			</div>
+			
+		
+			
+		);
+	}
+	
+	contentQuestionTwo(){
+		var progressStyle = {
+		  width: '60%'
+		};
+		
+		return(
+		
+		
+				<div>
+					
+						<progessBar progText={"Spørgsmål 2 af 2"} width={ 10 }/ >;
+					
+		
+				
+				
+							
+							
+						
+							<h2>Hvor mange kolonner ønsker du?</h2>
+				
+							<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.contentChoiceTwo.bind(this, 1)}  /> 1
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.contentChoiceTwo.bind(this, 2)} /> 2
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionThreeMenuRight"  value="3" onClick={this.contentChoiceTwo.bind(this, 3)} /> 3
+									</label>
+								</p>
+							</form>
+								
+				
+			
+				
+				
+				{ this.state.contentSelected ? this.previewFix(): null }
+				
+				
+			</div>)
+	}
+	
+	insertContentQuestions(){
+		
+		var progressStyle = {
+		  width: '60%'
+		};
+		
+		return(
+		
+		
+				<div id="rowID" className=" " key={"rowMenu"} >
+					
+					<progessBar progText={"Spørgsmål 1 af 2"} width={ 10 }/ >;
+					
+				<JumbotronUserContentComponent  />
+				<div  key={"colmdMenu6"}  className="col-md-6 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
+							<p className="text-center" key={"textCenterMenu"}>
+								
+								<iframe src={this.state.videoLink}></iframe>
+									
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="col-md-6" key={7}>
+					<div className="panel " key={"videoLinkMenu"} >
+							
+							
+						
+							<h2>Hvordan skal indholdet på din side være ?</h2>
+				
+							<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.contentChoice.bind(this, 1)}  /> Kun Tekst
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.contentChoice.bind(this, 2)} /> Tekst & Billeder
+									</label>
+								</p>
+							</form>
+								{ this.state.NextContentQuestion ? this.contentQuestionTwo(): null }	
+					</div>
+				</div>
+				
+			
+				
+			
+				
+				
+			</div>
+			
+		
+			
+		);
+	}
+	
+	insertFooterQuestions(){
+		
+		var progressStyle = {
+		  width: '60%'
+		};
+		
+		return(
+		
+		
+				<div id="rowID" className=" " key={"rowMenu"} >
+					
+					<progessBar progText={"Hej"} width={ 10 }/ >;
+					
+				<JumbotronFooterComponent  />
+				<div  key={"colmdMenu6"}  className="col-md-6 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
+							<p className="text-center" key={"textCenterMenu"}>
+								
+								<iframe src={this.state.videoLink}></iframe>
+									
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="col-md-6" key={7}>
+					<div className="panel " key={"videoLinkMenu"} >
+							
+							
+						
+							<h2>Hvor vil du have i din sidefod ?</h2>
+				
+							<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.footerChoice.bind(this, 1)}  /> En copyright tekst
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.footerChoice.bind(this, 2)} /> Tilmelding til nyhedsbrev
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.footerChoice.bind(this, 3)} /> En knap til feedback
+									</label>
+								</p>
+							</form>
+								
+					</div>
+				</div>
+				{ this.state.footerSelected ? this.previewFix(): null }
 				
 		
 			</div>
@@ -669,6 +1031,24 @@ class ContentComponent extends React.Component{
 		var progressStyle = {
 		  width: '60%'
 		};
+		
+		var pageFooter = 
+			
+				<footer className="bs-docs-footer" role="contentinfo"> 
+					<div className="container"> 
+
+					
+				
+							<button className="btn btn-info" onClick={this.handleAddFooterText.bind(this)}>Indsæt Tekst Til Sidefod</button>
+					
+					
+					<p>
+						{this.state.footerText}
+					</p>
+					
+					</div> 
+				</footer>
+			
 		
 		menuLinks = this.state.menuItem.map(function(item, i) {
 			return (
@@ -783,6 +1163,9 @@ class ContentComponent extends React.Component{
 
 						<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
 							
+						<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+						
+						<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
 						
 
 					</div>
@@ -795,7 +1178,7 @@ class ContentComponent extends React.Component{
 		</div>
 		
 		}
-		else if(this.state.menuSelected == 1 && this.state.logoBannerSelected == true  )
+		else if(this.state.menuSelected == 1 && this.state.footerSelected == 1 && this.state.logoBannerSelected == true  )
 		{
 		
 			contentPreview = 
@@ -890,10 +1273,15 @@ class ContentComponent extends React.Component{
 							
 									</div>
 								
-							
+								
 
 						</div>
-				
+						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+							<div  className="col-sm-12 col-md-12  ">	
+								{pageFooter}
+							</div>
+						</div>
+			
 						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 							<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
 							<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this)}>Eksporter hjemmesiden</a>
@@ -911,7 +1299,7 @@ class ContentComponent extends React.Component{
 				
 				
 		
-		}else if(this.state.menuSelected == 2 && this.state.menuBannerSelected == null )
+		}else if(this.state.menuSelected == 2 && this.state.footerSelected == 2 && this.state.menuBannerSelected == null )
 		{
 			
 		
@@ -1011,6 +1399,7 @@ class ContentComponent extends React.Component{
 
 						
 					</div>
+					{pageFooter}
 				</div>
 						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									
@@ -1026,6 +1415,140 @@ class ContentComponent extends React.Component{
 									
 								
 		</div>
+		}else{
+			
+			
+		
+			contentPreview = 
+		
+			
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container-fluid">
+					
+					
+							<ProgBar progText="Fallback View" width={ '10' }/>
+					
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+					
+
+				
+					
+								
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+
+											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											<nav className="navbar navbar-default">
+												<div className="container-fluid">
+													<div className="navbar-header">
+														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+															<ol  className="breadcrumb">
+																{menuLinks}
+															</ol>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+									</nav>
+							
+								
+							</div>
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+
+						
+									<div    className=" col-sm-3 col-md-3   ">
+										<div className="panel " key={"panel"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div className="panel " key={"panelTwo"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+									<div  className="col-sm-12 col-md-12  ">								
+									<h1 className="page-header">Dit Indhold</h1>
+									
+									<div className="row placeholders">
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something</span>
+										</div>
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something </span>
+										</div>
+										<div className="col-xs-6 col-sm-4 placeholder">
+											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
+											<h4>Label</h4>
+											<span className="text-muted">Something test </span>
+										</div>
+									</div>
+							
+									</div>
+								
+								
+
+						</div>
+						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+							<div  className="col-sm-12 col-md-12  ">	
+								
+							</div>
+						</div>
+			
+						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+					
+							<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+
+							<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+
+							<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+								
+							<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+							
+							<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+
+			
+					
+
+						</div>
+						
+						
+					
+						
+				
+				</div>
+				
+				</div>
+			
+				
+				
+		
+		
 		}
 		
 		
@@ -1178,7 +1701,10 @@ class ContentComponent extends React.Component{
 										
 												<a href="#" className="btn btn-default" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
 										
-											
+												<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+												
+												<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+												
 												<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
 											
 
@@ -1187,6 +1713,7 @@ class ContentComponent extends React.Component{
 								</div>
 						
 					</div>
+		
 
 				</div>	
 				
@@ -1268,7 +1795,11 @@ class ContentComponent extends React.Component{
 									</div>
 							
 					
-
+								<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+									<div  className="col-sm-12 col-md-12  ">	
+										
+									</div>
+								</div>
 					
 						
 						
@@ -1359,6 +1890,13 @@ class ContentComponent extends React.Component{
 							
 						
 							</div>
+							
+							<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+								<div  className="col-sm-12 col-md-12  ">	
+									
+								</div>
+							</div>
+								
 								<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
 									<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this)}>Eksporter hjemmesiden</a>
@@ -1429,7 +1967,8 @@ class ContentComponent extends React.Component{
 										
 												<a href="#" className="btn btn-default" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
 										
-											
+												<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+												
 												<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
 											
 
@@ -1700,6 +2239,13 @@ class ContentComponent extends React.Component{
 							this.state.createMenu ? this.insertMenuQuestions(): null 
 						}
 						
+						{
+							this.state.createContent ? this.insertContentQuestions(): null 
+						}
+						
+						{
+							this.state.createFooter ? this.insertFooterQuestions(): null 
+						}
 						{ this.state.bannerMounted ? this.basedOnBanner(): null }
 					</CSSTransitionGroup>
 					
@@ -1740,14 +2286,16 @@ class FooterComponent extends
 										<a href="http://github.com" target='_blank'  className="btn btn-xs btn-success "> {github} </a>
 									</li>
 								</ul>
-								<RecipesController/>
+								
 							</nav>
 						</div>
 						<div className="col-md-3" >
 							
 						</div>
 					</div>
+				
 				</div>
+				
 			);
 		}
 
@@ -1822,7 +2370,7 @@ var _emptyArr = [];
 
 class MyLinks extends  React.Component{
     render() {
-        return <LinkList data={ menuData }/>;
+        return (<LinkList data={ menuData }/>);
     }
 };	
 
@@ -1882,7 +2430,7 @@ class ProgBar extends  React.Component{
 
 class myProgressbar extends  React.Component{
     render() {
-        return <ReactProgressBar  width={ '10' }/>;
+        return (<ReactProgressBar  width={ '10' }/>);
     }
 };	
 
@@ -1976,21 +2524,6 @@ class ReactProgressBar  extends React.Component{
         }
 
         /** Controller View */
-
-/*
-        var RecipesController = React.createClass({
-            mixins: [RecipeStore.mixin],
-            getInitialState: function(){
-                return getRecipes();
-            },
-            storeDidChange: function() {
-                this.setState(getRecipes());
-            },
-            render: function() {
-                return <FluxTest recipes={this.state.recipes} />;
-            }
-        });
-		*/
 		
 		var RecipesController = React.createClass({
             mixins: [RecipeStore.mixin],
@@ -2014,23 +2547,40 @@ class ReactProgressBar  extends React.Component{
 			}
             addRecipe(){
 				
-                RecipeActions.addRecipe({_message:'hej'});
+                RecipeActions.addRecipe({_message:'Der opstod en fejl'});
+            }
+			removeRecipe(message){
+				
+                RecipeActions.removeRecipe({_message:message});
             }
             render() {
 				
 				var testMessage = this.props.recipes.map(function(item, i) {
-					return <div key={i}> {item._message}</div>
+					return (
+						<div className="col-md-3 sidebar-optionpaneltop">
+						
+					
+									<div className="bs-callout bs-callout-danger" role="alert" key={i} > <h4>Fejl</h4> <p>{item._message}</p> </div>
+						
+						
+						
+							
+						</div>
+						)
 				});
 				
 				
                 return (
 				
-                 <div className="recipes_app">
-					<div className='panel panel-default'>
+					<div className="container-fluid">
+						<div className="row">
+						
+						
 						{testMessage}
+					
+						<button className="btn btn-info disabled" onClick={this.addRecipe.bind(this)}>Add recipe</button>
+						</div>
 					</div>
-                    <button onClick={this.addRecipe.bind(this)}>Add recipe</button>
-                </div>
 				
                 )
             }
