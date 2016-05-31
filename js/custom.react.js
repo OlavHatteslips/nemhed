@@ -727,7 +727,8 @@ class ContentComponent extends React.Component{
 		
 				<div id="rowID" className=" " key={"rowMenu"} >
 					
-					<progessBar progText={"Hej"} width={ 10 }/ >;
+					
+				<ProgBar progText="Trin 2 / 4 - Menu placering" width={ 40 }/>
 					
 				<JumbotronMenuComponent  />
 				<div  key={"colmdMenu6"}  className="col-md-6 ">
@@ -836,12 +837,10 @@ class ContentComponent extends React.Component{
 		};
 		
 		return(
-		
-		
 				<div id="rowID" className=" " key={"rowMenu"} >
 					
-					<progessBar progText={"Spørgsmål 1 af 2"} width={ 10 }/ >;
 					
+					<ProgBar progText="Trin 3 / 4 - Valg af indhold" width={ 60 }/>
 				<JumbotronUserContentComponent  />
 				<div  key={"colmdMenu6"}  className="col-md-6 ">
 				
@@ -898,11 +897,11 @@ class ContentComponent extends React.Component{
 		};
 		
 		return(
-		
-		
 				<div id="rowID" className=" " key={"rowMenu"} >
 					
-					<progessBar progText={"Hej"} width={ 10 }/ >;
+					
+					
+					<ProgBar progText="Trin 4 / 4 - Placering af sidefod" width={ 80 }/>
 					
 				<JumbotronFooterComponent  />
 				<div  key={"colmdMenu6"}  className="col-md-6 ">
@@ -958,7 +957,6 @@ class ContentComponent extends React.Component{
 	
 	insertBannerMenuQuestions(){
 		return(
-		
 				<div id="rowID" className=" " key={"rowMenu"} >
 			
 				<JumbotronMenuComponent  />
@@ -1081,23 +1079,15 @@ class ContentComponent extends React.Component{
 		{
 			
 			contentPreview = <div> 
-			
-
-			
+	
 			<div id="rowID" className=" row" key={"rowMenuShow"} >
-					
 
-			
 					<div className="container-fluid">
 					
 						<ProgBar progText="" width={ 0}/>
-					
-					
-						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-						
 
-						
-							
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+
 									<div    className=" col-sm-3 col-md-3   ">
 										<div className="panel " key={"panel"}>
 											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
@@ -1426,7 +1416,7 @@ class ContentComponent extends React.Component{
 					<div className="container-fluid">
 					
 					
-							<ProgBar progText="Fallback View" width={ '10' }/>
+							<ProgBar progText="Fallback View" width={ '0' }/>
 					
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 					
@@ -1726,7 +1716,7 @@ class ContentComponent extends React.Component{
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 						<div className="row">
 						
-						<ProgBar progText="Menulinje Valgt" width={ 90 }/>
+						<ProgBar progText="Menulinje Valgt" width={ 98 }/>
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 
 								
@@ -1826,7 +1816,7 @@ class ContentComponent extends React.Component{
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 					<div className="row">
 					
-							<ProgBar progText="Menulinje Valgt" width={ 90 }/>
+							<ProgBar progText="Menulinje Valgt" width={ 98 }/>
 						
 					
 							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -2154,7 +2144,7 @@ class ContentComponent extends React.Component{
 			<div id="rowID" className=" " key={"row"} >
 			
 				
-				<ProgBar progText="Trin 1 - logo eller banner" width={ 10 }/>
+				<ProgBar progText="Trin 1 / 4 - logo eller banner" width={ 20 }/>
 				<JumbotronComponent  />
 				<div  key={"colmd6"}  className="col-md-6 ">
 				
