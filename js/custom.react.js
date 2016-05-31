@@ -7,8 +7,6 @@ class MenuComponent extends React.Component{
 		this.state = {
 			current: 0,
 			colors: "red",
-			interval: 0,
-			tick:0,
 			items:[],
 			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret din side'],
 			mounted: false
@@ -24,7 +22,7 @@ class MenuComponent extends React.Component{
 	
 	componentWillUnmount() {
 		
-		clearInterval(this.interval);
+	
 	}
 	
 	tick() {
@@ -35,12 +33,6 @@ class MenuComponent extends React.Component{
 		var newItems = this.state.items.concat([prompt('Enter some text')]);
 		this.setState({items: newItems});
 		
-	}
-	
-	handleRemove(i) {
-		var newItems = this.state.children.slice();
-		newItems.splice(i, 1);
-		this.setState({children: newItems});
 	}
   
 	render(){
@@ -101,9 +93,7 @@ class MenuComponent extends React.Component{
 								{x}
 							
 							</div>
-					</div>
-
-								
+					</div>			
 						
 					</CSSTransitionGroup>
 					
@@ -119,8 +109,6 @@ class JumbotronComponent extends React.Component{
 		this.state = {
 			current: 0,
 			colors: "red",
-			interval: 0,
-			tick:0,
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Vælg et logo eller banner?']
@@ -128,13 +116,10 @@ class JumbotronComponent extends React.Component{
 		}
 	}
 	componentDidMount() {
-	  this.state.interval = setInterval(this.state.tick, INTERVAL);
-	 
 	  this.setState({ mounted: true });
 	}
 	componentWillUnmount() {
 		
-		clearInterval(this.interval);
 	}
 	
 	handleAdd() {
@@ -143,8 +128,6 @@ class JumbotronComponent extends React.Component{
 		
 	}
 	
-
-  
 	render(){
 	
 		var pos = 0;
@@ -156,8 +139,6 @@ class JumbotronComponent extends React.Component{
 		  background: colors[1]
 		};
 
-	
-		
 		var x;
 		
 		if(this.state.mounted ){	
@@ -203,8 +184,6 @@ class JumbotronMenuComponent extends React.Component{
 		this.state = {
 			current: 0,
 			colors: "red",
-			interval: 0,
-			tick:0,
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Hvor vil du have placeret din menu?']
@@ -212,13 +191,11 @@ class JumbotronMenuComponent extends React.Component{
 		}
 	}
 	componentDidMount() {
-	  this.state.interval = setInterval(this.state.tick, INTERVAL);
-	 
 	  this.setState({ mounted: true });
 	}
 	componentWillUnmount() {
 		
-		clearInterval(this.interval);
+		
 	}
 	
 	handleAdd() {
@@ -227,12 +204,6 @@ class JumbotronMenuComponent extends React.Component{
 		
 	}
 	
-	handleRemove(i) {
-		var newItems = this.state.jumbotronTitle.slice();
-		newItems.splice(i, 1);
-		this.setState({jumbotronTitle: newItems});
-	}
-  
 	render(){
 	
 		var pos = 0;
@@ -244,13 +215,11 @@ class JumbotronMenuComponent extends React.Component{
 		  background: colors[1]
 		};
 
-	
-		
 		var x;
 		
 		if(this.state.mounted ){	
 			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
-				return (
+				
 					<div className="container-fluid "    href="#" key={jumbotronTitle} >
 							<h1>
 								{jumbotronTitle}
@@ -261,7 +230,7 @@ class JumbotronMenuComponent extends React.Component{
 							
 				
 					</div>
-				);
+				
 			}.bind(this));
 		}
 
@@ -291,8 +260,6 @@ class JumbotronFooterComponent extends React.Component{
 		this.state = {
 			current: 0,
 			colors: "red",
-			interval: 0,
-			tick:0,
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Hvad vil du have placeret i din sidefod?']
@@ -300,13 +267,10 @@ class JumbotronFooterComponent extends React.Component{
 		}
 	}
 	componentDidMount() {
-	  this.state.interval = setInterval(this.state.tick, INTERVAL);
-	 
 	  this.setState({ mounted: true });
 	}
 	componentWillUnmount() {
 		
-		clearInterval(this.interval);
 	}
 
 	render(){
@@ -320,8 +284,6 @@ class JumbotronFooterComponent extends React.Component{
 		  background: colors[1]
 		};
 
-	
-		
 		var x;
 		
 		if(this.state.mounted ){	
@@ -367,8 +329,6 @@ class JumbotronUserContentComponent extends React.Component{
 		this.state = {
 			current: 0,
 			colors: "red",
-			interval: 0,
-			tick:0,
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Vælg typen af indhold']
@@ -376,13 +336,9 @@ class JumbotronUserContentComponent extends React.Component{
 		}
 	}
 	componentDidMount() {
-	  this.state.interval = setInterval(this.state.tick, INTERVAL);
-	 
 	  this.setState({ mounted: true });
 	}
 	componentWillUnmount() {
-		
-		clearInterval(this.interval);
 	}
 
 	render(){
@@ -396,8 +352,6 @@ class JumbotronUserContentComponent extends React.Component{
 		  background: colors[1]
 		};
 
-	
-		
 		var x;
 		
 		if(this.state.mounted ){	
@@ -444,9 +398,7 @@ class ContentComponent extends React.Component{
 		this.state = {
 			current: 0,
 			colors: "red",
-			interval: 0,
 			teddybear: "testDiv",
-			tick:0,
 			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
 			mounted: false,
 			mountedInfo: false,
@@ -476,18 +428,15 @@ class ContentComponent extends React.Component{
 			createFooter : false,
 			downloadLink: '',
 			NextContentQuestion: false,
-			menuItem: []
+			menuItem: [],
+			contentType : ''
 			
 		}
 		//var results = this.props.results;
 	}
 	componentDidMount() {
-	 
-	 
 	  this.setState({ mounted: true });
 	}
-	
-
 	
 	handleAdd() {
 		var newItems = this.state.videoLink.concat([prompt('Enter some text')]);
@@ -495,22 +444,8 @@ class ContentComponent extends React.Component{
 		
 	}
 	
-	handleRemove(i) {
-		var newItems = this.state.videoLink.slice();
-		newItems.splice(i, 1);
-		this.setState({videoLink: newItems});
-	}
-	
-	removeThisDiv(){
-		//console.log('You clicked: ' + this.state.items[i] );
-		this.setState({ mounted: false });
-	}
-	
 	basedOnSloganNo(){
-		this.setState({ mounted: false });
-		
-	
-			
+		this.setState({ mounted: false });	
 	}
 	basedOnSloganYes(){
 	//	this.setState({ mounted: true });
@@ -528,7 +463,6 @@ class ContentComponent extends React.Component{
 	handleAddSloganText() {
 		var newItems = this.state.sloganText.concat([prompt('Enter some text')]);
 		this.setState({sloganText: newItems});
-		
 	}
 	
 	handleAddFooterText() {
@@ -536,17 +470,6 @@ class ContentComponent extends React.Component{
 		this.setState({footerText: newItems});
 	}
 	
-	handleAddLogoUrl() {
-		var newItems = this.state.logoUrl.concat([prompt('Skriv addressen til et billed')]);
-		this.setState({logoUrl: newItems,
-			alertLogoImageCopyright: true,
-			displayBannerImgBtn: false
-		});
-		
-		
-	}
-	
-
 	
 	addMenuArea(){
 		
@@ -556,11 +479,8 @@ class ContentComponent extends React.Component{
 	}
 	
 	removeImageWarning(){
-		
 		this.setState({alertLogoImageCopyright : false});
-
 	}
-	
 	
 	GoToLogoBannerChoice(){
 		this.setState({
@@ -684,24 +604,23 @@ class ContentComponent extends React.Component{
 	
 	
 	contentChoice(choice_param){
-	//	this.setState({ createContent : false});
-		//this.setState({ contentSelected: choice_param});
-		//this.setState({ showPreview : true});
-		//console.log(this.state.NextContentQuestion);
-		this.setState({ NextContentQuestion : true});
-
+		this.setState({ 
+			NextContentQuestion : true,
+			contentType: choice_param
+		});
 	}
 	
 	contentChoiceTwo(choice_param){
-		this.setState({ createContent : false});
-		this.setState({ contentSelected: choice_param});
-		this.setState({ showPreview : true});
+		
+		this.setState({ 
+			createContent : false,
+			contentSelected: choice_param,
+			showPreview : true
+		});
 		
 		//this.setState({ NextContentQuestion : true});
-
 	}
-	
-	
+
 	GoToMenuBannerChoice(){
 		this.setState({ createBannerMenu : false});
 		this.setState({ showPreview: true});
@@ -723,10 +642,7 @@ class ContentComponent extends React.Component{
 		};
 		
 		return(
-		
-		
 				<div id="rowID" className=" " key={"rowMenu"} >
-					
 					
 				<ProgBar progText="Trin 2 / 4 - Menu placering" width={ 40 }/>
 					
@@ -736,18 +652,14 @@ class ContentComponent extends React.Component{
 					<div className="panel " key={"panel"}>
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
 							<p className="text-center" key={"textCenterMenu"}>
-								
 								<iframe src={this.state.videoLink}></iframe>
-									
 							</p>
 						</div>
 					</div>
 				</div>
 				<div className="col-md-6" key={7}>
 					<div className="panel " key={"videoLinkMenu"} >
-							
-							
-						
+
 							<h2>Hvor vil du have din menu-linje placeret?</h2>
 				
 							<form>
@@ -771,13 +683,9 @@ class ContentComponent extends React.Component{
 								
 					</div>
 				</div>
-				{ this.state.menuSelected ? this.previewFix(): null }
 				
-		
+
 			</div>
-			
-		
-			
 		);
 	}
 	
@@ -787,18 +695,7 @@ class ContentComponent extends React.Component{
 		};
 		
 		return(
-		
-		
 				<div>
-					
-						<progessBar progText={"Spørgsmål 2 af 2"} width={ 10 }/ >;
-					
-		
-				
-				
-							
-							
-						
 							<h2>Hvor mange kolonner ønsker du?</h2>
 				
 							<form>
@@ -819,14 +716,7 @@ class ContentComponent extends React.Component{
 									</label>
 								</p>
 							</form>
-								
-				
-			
-				
-				
-				{ this.state.contentSelected ? this.previewFix(): null }
-				
-				
+						
 			</div>)
 	}
 	
@@ -838,9 +728,7 @@ class ContentComponent extends React.Component{
 		
 		return(
 				<div id="rowID" className=" " key={"rowMenu"} >
-					
-					
-					<ProgBar progText="Trin 3 / 4 - Valg af indhold" width={ 60 }/>
+				<ProgBar progText="Trin 3 / 4 - Valg af indhold" width={ 60 }/>
 				<JumbotronUserContentComponent  />
 				<div  key={"colmdMenu6"}  className="col-md-6 ">
 				
@@ -857,37 +745,26 @@ class ContentComponent extends React.Component{
 				<div className="col-md-6" key={7}>
 					<div className="panel " key={"videoLinkMenu"} >
 							
-							
-						
 							<h2>Hvordan skal indholdet på din side være ?</h2>
 				
 							<form>
 								<p className="form-group">
 
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.contentChoice.bind(this, 1)}  /> Kun Tekst
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.contentChoice.bind(this, 'text')}  /> Kun Tekst
 									</label>
 								</p>
 								<p className="form-group">
 									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.contentChoice.bind(this, 2)} /> Tekst & Billeder
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.contentChoice.bind(this, 'imgText')} /> Tekst & Billeder
 									</label>
 								</p>
 							</form>
-								{ this.state.NextContentQuestion ? this.contentQuestionTwo(): null }	
+							{ this.state.NextContentQuestion ? this.contentQuestionTwo(): null }	
 					</div>
 				</div>
-				
-			
-				
-			
-				
-				
 			</div>
-			
-		
-			
-		);
+		)
 	}
 	
 	insertFooterQuestions(){
@@ -898,9 +775,7 @@ class ContentComponent extends React.Component{
 		
 		return(
 				<div id="rowID" className=" " key={"rowMenu"} >
-					
-					
-					
+
 					<ProgBar progText="Trin 4 / 4 - Placering af sidefod" width={ 80 }/>
 					
 				<JumbotronFooterComponent  />
@@ -944,13 +819,7 @@ class ContentComponent extends React.Component{
 								
 					</div>
 				</div>
-				{ this.state.footerSelected ? this.previewFix(): null }
-				
-		
 			</div>
-			
-		
-			
 		);
 	}
 	
@@ -1002,7 +871,7 @@ class ContentComponent extends React.Component{
 					</div>
 				</div>
 				
-				{ this.state.menuBannerSelected ? this.previewFix(): null }
+				
 			</div>
 			
 		
@@ -1018,6 +887,61 @@ class ContentComponent extends React.Component{
 		
         });
 	}
+	
+	insertContentBox(){
+
+		return ( <ContentBar logoUrl={this.state.logoUrl} choiceOfContent={this.state.contentType} boxes={this.state.contentSelected} /> )
+		
+	}
+	
+	insertUserOptionsMenu(){
+		
+			
+				
+				return(
+					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+						<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+						<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+					</div>
+					
+				)
+				
+			
+	}
+	
+	insertUserOptionsContent(){
+			return(
+					<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+						<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+						<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+					</div>
+				)
+		
+	}
+	
+	insertUserOptionsFooter(){
+			return(
+					<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+						<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+						<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+					</div>
+				)
+		
+	}
+	
+	insertUserOptionsDefault(){
+		return(
+			<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+				<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+				<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+				<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+				<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+			</div>
+		)
+		
+	}
+	
+	
 	previewFix(){
 		
 		var contentPreview;
@@ -1030,24 +954,20 @@ class ContentComponent extends React.Component{
 		  width: '60%'
 		};
 		
+	
+		
+		
 		var pageFooter = 
 			
 				<footer className="bs-docs-footer" role="contentinfo"> 
 					<div className="container"> 
-
-					
-				
-							<button className="btn btn-info" onClick={this.handleAddFooterText.bind(this)}>Indsæt Tekst Til Sidefod</button>
-					
-					
-					<p>
-						{this.state.footerText}
-					</p>
-					
+						<button className="btn btn-info" onClick={this.handleAddFooterText.bind(this)}>Indsæt Tekst Til Sidefod</button>
+						<p>
+							{this.state.footerText}
+						</p>
 					</div> 
 				</footer>
-			
-		
+	
 		menuLinks = this.state.menuItem.map(function(item, i) {
 			return (
 				<li className="active">
@@ -1084,8 +1004,8 @@ class ContentComponent extends React.Component{
 
 					<div className="container-fluid">
 					
-						<ProgBar progText="" width={ 0}/>
-
+			
+						
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 
 									<div    className=" col-sm-3 col-md-3   ">
@@ -1105,87 +1025,34 @@ class ContentComponent extends React.Component{
 											</div>
 										</div>									
 									</div>
-							
-							
-							
-							
-							
-								<div className="container">		
-									<div  className="col-sm-12 col-md-12  ">								
-									<h1 className="page-header">Dit Indhold</h1>
 									
-									<div className="row placeholders">
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something</span>
-										</div>
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something </span>
-										</div>
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something </span>
-										</div>
-									</div>
-							
-									</div>
+									
+								</div>
+								{ this.state.createMenu == false  ? this.insertUserOptionsMenu(): null }
 								
-								</div>
-						
-
-					
-
-								</div>
 						</div>
+						
 				</div>
+	
 				
-				
-		
-				
-					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-						<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-
-						<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-
-						<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
-							
-						<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
-						
-						<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
-						
-
-					</div>
-					
+					{ this.state.contentSelected  ? this.insertContentBox(): null }
 				
 					{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-					
-			
-			
+
 		</div>
 		
 		}
-		else if(this.state.menuSelected == 1 && this.state.footerSelected == 1 && this.state.logoBannerSelected == true  )
+		else if(this.state.menuSelected == 1  && this.state.logoBannerSelected == true  )
 		{
 		
 			contentPreview = 
 		
-			
+				
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
-					
-					
-							<ProgBar progText="Menu 1 Valgt" width={ '95' }/>
-					
-							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
-					
 
-				
-					
-								
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+	
 									<nav className="navbar navbar-usermenu navbar-static-top">
 										<div className="navbar-header">
 
@@ -1240,45 +1107,26 @@ class ContentComponent extends React.Component{
 										</div>									
 									</div>
 							
-									<div  className="col-sm-12 col-md-12  ">								
-									<h1 className="page-header">Dit Indhold</h1>
-									
-									<div className="row placeholders">
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something</span>
-										</div>
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something </span>
-										</div>
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something test </span>
-										</div>
-									</div>
-							
+										<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
 								
 								
 
 						</div>
+						
 						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 							<div  className="col-sm-12 col-md-12  ">	
-								{pageFooter}
+								<FooterBar/>
 							</div>
 						</div>
 			
-						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-							<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
-							<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this)}>Eksporter hjemmesiden</a>
-
+						
+							
+						<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+							<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+							<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
 						</div>
-						
-						
 							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 						
 				
@@ -1289,11 +1137,9 @@ class ContentComponent extends React.Component{
 				
 				
 		
-		}else if(this.state.menuSelected == 2 && this.state.footerSelected == 2 && this.state.menuBannerSelected == null )
+		}else if(this.state.menuSelected == 2  && this.state.menuBannerSelected == null )
 		{
-			
-		
-				
+
 			contentPreview = 
 			<div>
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
@@ -1327,32 +1173,13 @@ class ContentComponent extends React.Component{
 									</div>
 							
 								
-									<div  className="col-sm-12 col-md-12  ">								
-										<h1 className="page-header">Dit Indhold</h1>
-										
-										<div className="row placeholders">
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something</span>
-											</div>
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something </span>
-											</div>
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Somethingdssdsd </span>
-											</div>
-										</div>
-							
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
 								
 								</div>
 							
-<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
 								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
 							
@@ -1389,21 +1216,19 @@ class ContentComponent extends React.Component{
 
 						
 					</div>
-					{pageFooter}
+					<FooterBar/>
 				</div>
 						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									
 												
-												
-												<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
-												<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Eksporter hjemmesiden</a>
-
+							<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+								<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+								<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+							</div>	
+										
 								
-											</div>
-											
-				
-									
-								
+						</div>	
+							
 		</div>
 		}else{
 			
@@ -1414,16 +1239,9 @@ class ContentComponent extends React.Component{
 			
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
-					
-					
-							<ProgBar progText="Fallback View" width={ '0' }/>
-					
-							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
-					
 
-				
-					
-								
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+
 									<nav className="navbar navbar-usermenu navbar-static-top">
 										<div className="navbar-header">
 
@@ -1437,7 +1255,6 @@ class ContentComponent extends React.Component{
 										
 								
 										<div className="collapse navbar-collapse" id="myNavbar">
-
 
 											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
 											<nav className="navbar navbar-default">
@@ -1459,8 +1276,6 @@ class ContentComponent extends React.Component{
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 						
-
-						
 									<div    className=" col-sm-3 col-md-3   ">
 										<div className="panel " key={"panel"}>
 											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
@@ -1478,31 +1293,9 @@ class ContentComponent extends React.Component{
 										</div>									
 									</div>
 							
-									<div  className="col-sm-12 col-md-12  ">								
-									<h1 className="page-header">Dit Indhold</h1>
-									
-									<div className="row placeholders">
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something</span>
-										</div>
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something </span>
-										</div>
-										<div className="col-xs-6 col-sm-4 placeholder">
-											<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-											<h4>Label</h4>
-											<span className="text-muted">Something test </span>
-										</div>
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
-							
-									</div>
-								
-								
-
 						</div>
 						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 							<div  className="col-sm-12 col-md-12  ">	
@@ -1510,38 +1303,12 @@ class ContentComponent extends React.Component{
 							</div>
 						</div>
 			
-						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-					
-							<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-
-							<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-
-							<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
-								
-							<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
-							
-							<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
-
-			
-					
-
-						</div>
-						
-						
-					
-						
 				
+
 				</div>
 				
 				</div>
-			
-				
-				
-		
-		
 		}
-		
-		
 		
 		return(
 		
@@ -1591,6 +1358,17 @@ class ContentComponent extends React.Component{
 		
 		var menuLinksHorizontal;
 		
+		var pageFooter = 
+	
+		<footer className="bs-docs-footer" role="contentinfo"> 
+			<div className="container"> 
+				<button className="btn btn-info" onClick={this.handleAddFooterText.bind(this)}>Indsæt Tekst Til Sidefod</button>
+				<p>
+					{this.state.footerText}
+				</p>
+			</div> 
+		</footer>
+		
 		menuLinks = this.state.menuItem.map(function(item, i) {
 			return (
 			
@@ -1620,6 +1398,8 @@ class ContentComponent extends React.Component{
 			
 		if(this.state.bannerMounted)
 		{
+			
+			console.log(this.state.menuBannerSelected);
 			
 			var divStyle = {
 			  color: 'white',
@@ -1659,47 +1439,16 @@ class ContentComponent extends React.Component{
 						<div id="rowID" className=" row" key={"rowMenuShow"} >
 						
 						<div  key={"colmdOptionsShow"}  className=" col-md-12    ">
-							<ProgBar progText="Vaelg Menu " width={ 50 }/>
+						
 								<div  key={"colmdMenuShow"}  className=" col-sm-12 col-md-12  sidebar-left  ">
 											{divImage}
 							
-											<h1 className="page-header">Dit Indhold</h1>
-											
-											<div className="row placeholders">
-												<div className="col-xs-6 col-sm-4 placeholder">
-													<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-													<h4>Label</h4>
-													<span className="text-muted">Something</span>
-												</div>
-												<div className="col-xs-6 col-sm-4 placeholder">
-													<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-													<h4>Label</h4>
-													<span className="text-muted">Something </span>
-												</div>
-												<div className="col-xs-6 col-sm-4 placeholder">
-													<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-													<h4>Label</h4>
-													<span className="text-muted">Something </span>
-												</div>
+											<div className="container">	
+												{ this.state.contentSelected  ? this.insertContentBox(): null }
 											</div>
 
 										</div>
-											<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									
-												
-												<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-										
-												<a href="#" className="btn btn-default" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
-										
-												<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
-												
-												<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
-												
-												<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-											
-
-								
-											</div>
+										{UserMenuComponent}
 								</div>
 						
 					</div>
@@ -1716,7 +1465,7 @@ class ContentComponent extends React.Component{
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 						<div className="row">
 						
-						<ProgBar progText="Menulinje Valgt" width={ 98 }/>
+						
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 
 								
@@ -1749,65 +1498,34 @@ class ContentComponent extends React.Component{
 											</nav>
 										</div>
 									</nav>
-							
-								
 							</div>
 
 							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 	
 											{divImage}
 
-									<div className="container">		
-										<div  className="col-sm-12 col-md-12  ">								
-										<h1 className="page-header">Dit Indhold</h1>
-										
-										<div className="row placeholders">
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something</span>
-											</div>
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something </span>
-											</div>
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something </span>
-											</div>
-										</div>
-								
-										</div>
-									
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
 									</div>
 							
 					
-								<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-									<div  className="col-sm-12 col-md-12  ">	
-										
-									</div>
-								</div>
+							
+										<FooterBar/>
+								
 					
-						
-						
 								<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
 									<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this, contentPreview)}>Eksporter hjemmesiden</a>
 									{ this.state.downloadLink ? this.showDownloadLink(): null }
 								</div>
-						
-						
+								
 								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 					</div>
+					
 				</div>	
 				
 			</div>
-				
-					
-					
 			}else if(this.state.menuBannerSelected == 2 ) 
 			{
 				
@@ -1815,41 +1533,13 @@ class ContentComponent extends React.Component{
 			<div>
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 					<div className="row">
-					
-							<ProgBar progText="Menulinje Valgt" width={ 98 }/>
 						
-					
 							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 						
-
 								<div  className="col-sm-9 col-md-9  ">
-									
-										
-										
 										{divImage}
-								
-									
-										<div  className="col-sm-12 col-md-12  ">								
-											<h1 className="page-header">Dit Indhold</h1>
-											
-											<div className="row placeholders">
-												<div className="col-xs-6 col-sm-4 placeholder">
-													<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-													<h4>Label</h4>
-													<span className="text-muted">Something</span>
-												</div>
-												<div className="col-xs-6 col-sm-4 placeholder">
-													<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-													<h4>Label</h4>
-													<span className="text-muted">Something </span>
-												</div>
-												<div className="col-xs-6 col-sm-4 placeholder">
-													<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-													<h4>Label</h4>
-													<span className="text-muted">Something </span>
-												</div>
-											</div>
-								
+										<div className="container">	
+											{ this.state.contentSelected  ? this.insertContentBox(): null }
 										</div>
 									
 									</div>
@@ -1858,34 +1548,18 @@ class ContentComponent extends React.Component{
 						
 										<div   className="col-sm-12 col-md-12 sidebar text-center">
 								
-												
-													
-											
-												
-
-
-						 
-														
 														<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
 															
 													
 														{menuLinksHorizontal}
-														
-													
-												
-											
+
 										</div>
-									
-								</div>
-							
-						
-							</div>
-							
-							<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-								<div  className="col-sm-12 col-md-12  ">	
-									
 								</div>
 							</div>
+							
+								
+								<FooterBar />
+								
 								
 								<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
@@ -1897,19 +1571,11 @@ class ContentComponent extends React.Component{
 								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 						
 					</div>
+					
 				</div>
 				
 			
 		</div>
-					
-					
-				
-				
-				
-				
-			
-				
-				
 				
 			}else{
 				contentPreview = <div> 
@@ -1923,50 +1589,12 @@ class ContentComponent extends React.Component{
 	
 									{divImage}
 
-									<div className="container">		
-										<div  className="col-sm-12 col-md-12  ">								
-										<h1 className="page-header">Dit Indhold</h1>
-										
-										<div className="row placeholders">
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="http://a.bimg.dk/node-images/423/6/620x/6423014-google-m-ikke-forbinde-prsidentfrue-med-prostitution.jpg" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something</span>
-											</div>
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something </span>
-											</div>
-											<div className="col-xs-6 col-sm-4 placeholder">
-												<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" className="img-responsive" alt="Generic placeholder thumbnail" height="200" width="200"/>
-												<h4>Label</h4>
-												<span className="text-muted">Something </span>
-											</div>
+									<div className="container">	
+											{ this.state.contentSelected  ? this.insertContentBox(): null }
 										</div>
-								
-										</div>
-									
-									</div>
 									</div>
 							</div>
-									<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									
-												
-												<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-										
-												<a href="#" className="btn btn-default" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
-										
-												<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
-												
-												<a href="#" className="btn btn-default disabled" disabled="disabled" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-											
-
-								
-											</div>
-				
-
-					
+									{UserMenuComponent}
 				</div>	
 				
 			</div>
@@ -2001,8 +1629,6 @@ class ContentComponent extends React.Component{
 	}
 	
 	basedOnLogo(){
-		
-	
 		return(
 			
 				<div className="">
@@ -2072,8 +1698,9 @@ class ContentComponent extends React.Component{
 						
 							
 							<div className=" jumbotron jumbotroncolors  text-center">
-							
+						
 								<h1>{this.state.jumbotronWelcomeTitle}</h1>
+								
 								<p >
 								
 									Nemhed.dk er en udstrækt hånd til dig der gerne vil skabe din helt egen, unikke hjemmeside, men ikke har nogen erfaring med html-koder. Du vil blive guidet gennem alle trin. Og skulle det ikke være nok, kan du også få hjælp fra vores hjælpevideoer.
@@ -2081,29 +1708,29 @@ class ContentComponent extends React.Component{
 								
 							
 							</div>
-							
-
-				
 				</div>
 			
 		
 				<div  key={"colmd6bob"}  className="col-md-4 ">
 				
-					<div className="panel effect2" key={"panelbob"}>
+					<div className="panel" key={"panelbob"}>
 						<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBodyBob"} >
 						
 								<a href="hvorfor.html" alt="hvorfor">
 									<h2>Hvorfor?</h2>
-									<p>
-										<img className="img img-responsive  img-circle" src="img/question-1332062.png" alt="why"/>
-									</p>	
+								
+										
+									
+									<img src="./img/logo/nyt_logo.png" className=" img img-responsive  " alt="vores logo"/>
+										
+										
 								</a>
 							
 						</div>
 					</div>
 				</div>
 				<div className="col-md-4" key={63}>
-					<div className="panel effect2 text-center" key={"videoLink"} >
+					<div className="panel text-center" key={"videoLink"} >
 							
 							
 							<a href='hvem.html' alt='hvem er vi'>
@@ -2118,7 +1745,7 @@ class ContentComponent extends React.Component{
 				
 				<div className="col-md-4" key={"Left"}>
 					
-					<div className="panel effect2 text-center " key={"videoLink"} >
+					<div className="panel  text-center " key={"videoLink"} >
 						<a href="#OpretSide" onClick={this.runSetup.bind(this)} >	
 							
 						
@@ -2137,14 +1764,10 @@ class ContentComponent extends React.Component{
 			}
 			
 		if(this.state.startSetup == true && this.state.logoBannerSelected == false){
-			
-				
 			row = 
 
 			<div id="rowID" className=" " key={"row"} >
 			
-				
-				<ProgBar progText="Trin 1 / 4 - logo eller banner" width={ 20 }/>
 				<JumbotronComponent  />
 				<div  key={"colmd6"}  className="col-md-6 ">
 				
@@ -2177,8 +1800,6 @@ class ContentComponent extends React.Component{
 									</label>
 								</p>
 							</form>
-								
-								
 								{ this.state.showNextQuestion ? this.basedOnLogo(): null }
 								
 					</div>
@@ -2197,12 +1818,8 @@ class ContentComponent extends React.Component{
 					</nav>
 				</div>
 			</div>
-		
-		
 		}}
 			
-		
-
 		return (
 	
 					<CSSTransitionGroup
@@ -2288,17 +1905,11 @@ class FooterComponent extends
 				
 			);
 		}
-
-
 		handleChange(event) {
 			this.setState({value: this.state.value = 'Easter Eeg ;) '});
 		}
 
 	}
-
-
-
-	
 
 class AnimateComponent extends React.Component{
 	constructor(props){
@@ -2324,22 +1935,8 @@ class AnimateComponent extends React.Component{
 				</nav>
 				</div>
 		return (
-					/*<div ref="myHelloWorld">
-					
- 						<nav className="blog-nav " >
-		                  
-		                    <ul className="nav nav-pills ">
-		                        <li role="presentation" className="active"><a href="#"  onClick={this.onClicked.bind(this)}  >Luk Vindue</a></li>
-		                    </ul>
-               			 </nav>
-					
-
-					</div>
-					*/
 					<div  >
 						{myDiv}
-					
-					
 						{ this.state.isShowing ? <Hello name="Peter" />: null }
 					</div>
 			);
@@ -2387,16 +1984,233 @@ class LinkList extends  React.Component{
 			)
     }
 };	
+	
+class FooterBar extends  React.Component{
+	
+	constructor (props){
+		super(props);
+		this.state = {
+			footerText : ''
+		}
+	}
+	handleAddFooterText() {
+		var newItems = this.state.footerText.concat([prompt('Enter some text')]);
+		this.setState({footerText: newItems});
+	}
+	
+	render() {
+		
+		return (
+			<footer className="bs-docs-footer" role="contentinfo"> 
+				<div className="container"> 
+					<button className="btn btn-info" onClick={this.handleAddFooterText.bind(this)}>Indsæt Tekst Til Sidefod</button>
+					<p>
+						{this.state.footerText}
+					</p>
+				</div> 
+			</footer>
+		
+		)
+    }
+};
 
 
+class ContentBar extends  React.Component{
+	
+	constructor (props){
+		super(props);
+		this.state = {
+			headlineText : '',
+			subText: '',
+			logoUrl : './img/nyt_logo.png',
+			isShowing: true
+		}
+		
+		
+	}
+	
+	handleAddHeadline() {
+		var newItems = this.state.headlineText.concat([prompt('Forfat en overskrift')]);
+		this.setState({headlineText: newItems});
+	}
+	
+	handleAddSubtext() {
+		var newItems = this.state.subText.concat([prompt('Forfat en overskrift')]);
+		this.setState({subText: newItems});
+	}
+	
+	handleSetLogo() {
+		this.setState({ logoUrl : this.props.logoUrl});
+	}
+	
+	render() {
+			
+			
+			{ this.state.isShowing ? this.handleSetLogo: null }
+			
+			if(this.props.choiceOfContent == "text")
+			{
+				if(this.props.boxes == 1){
+					return( <div  className="col-sm-12 col-md-12  ">								
+						<h1 className="page-header">Dit Indhold</h1>
+						
+						<div className="row placeholders">
+							<div className="col-xs-6 col-sm-12 col-md-12 placeholder">
+								
+								
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+								
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+						</div>		
+					</div>
+					)
+				}else if(this.props.boxes == 2){
+						return ( <div  className="col-sm-12 col-md-12  ">								
+						<h1 className="page-header">Dit Indhold</h1>
+						
+						<div className="row placeholders">
+							<div className="col-xs-6 col-sm-6 col-md-6 placeholder">
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+							<div className="col-xs-6 col-sm-6  col-md-6 placeholder">
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+						</div>
+		
+					</div>)
+				}else{
+					return( <div  className="col-sm-12 col-md-12  ">								
+						<h1 className="page-header">Dit Indhold</h1>
+						
+						<div className="row placeholders">
+							<div className="col-xs-6 col-sm-4 col-md-4 placeholder">
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+							<div className="col-xs-6 col-sm-4 col-md-4 placeholder">
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+							<div className="col-xs-6 col-sm-4 col-md-4 placeholder">
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+						</div>		
+					</div>
+					)
+				}
+			}else{
+				if(this.props.boxes == 1){
+					return( <div  className="col-sm-12 col-md-12  ">								
+						<h1 className="page-header">Dit Indhold</h1>
+						
+						<div className="row placeholders">
+							<div className="col-xs-6 col-sm-12 col-md-12 placeholder">
+								<DropzoneDemo />
+								<img className="img img-responsive" src={this.state.logoUrl} alt={this.props.logoUrl} />
+								
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+						</div>		
+					</div>
+					)
+				}else if(this.props.boxes == 2){
+						return ( <div  className="col-sm-12 col-md-12  ">								
+						<h1 className="page-header">Dit Indhold</h1>
+						
+						<div className="row placeholders">
+							<div className="col-xs-6 col-sm-6 col-md-6 placeholder">
+								<DropzoneDemo />
+								<img className="img img-responsive" src={this.props.logoUrl} alt={this.props.logoUrl} />
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+							<div className="col-xs-6 col-sm-6  col-md-6 placeholder">
+								<DropzoneDemo />
+								<img className="img img-responsive" src={this.props.logoUrl} alt={this.props.logoUrl} />
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+						</div>
+		
+					</div>)
+				}else{
+					return( <div  className="col-sm-12 col-md-12  ">								
+						<h1 className="page-header">Dit Indhold</h1>
+						
+						<div className="row placeholders">
+							<div className="col-xs-6 col-sm-4 col-md-4 placeholder">
+								<DropzoneDemo />
+								<img className="img img-responsive" src={this.props.logoUrl} alt={this.props.logoUrl} />
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+							<div className="col-xs-6 col-sm-4 col-md-4 placeholder">
+								<DropzoneDemo />
+								<img className="img img-responsive" src={this.props.logoUrl} alt={this.props.logoUrl} />
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+							<div className="col-xs-6 col-sm-4 col-md-4 placeholder">
+								<DropzoneDemo />
+								<img className="img img-responsive" src={this.props.logoUrl} alt={this.props.logoUrl} />
+								<button className="btn btn-info" onClick={this.handleAddHeadline.bind(this)}>Indsæt Tekst Til Overskrift</button>
+								<button className="btn btn-info" onClick={this.handleAddSubtext.bind(this)}>Indsæt Brødtekst</button>
+					
+								<h4 onClick={this.handleAddHeadline.bind(this)} >{this.state.headlineText}</h4>
+								<span className="text-muted">{this.state.subText}</span>
+							</div>
+						</div>		
+					</div>
+					)
+				}
+				
+			}			
+				
+			
+    }
+};
 
 
 
 class ProgBar extends  React.Component{
 	render() {
-        
-		
-			console.log(this.props.width)
 			var progressStyle = {
 				width: this.props.width +'%'
 			  
@@ -2711,17 +2525,17 @@ class Dropzone extends React.Component {
       rest
     } = this.props;*/
 	
-let accept;
-let activeClassName;
-let inputProps;
-let  multiple;
-let rejectClassName;
-let rest;
+	let accept;
+	let activeClassName;
+	let inputProps;
+	let  multiple;
+	let rejectClassName;
+	let rest;
 
-let className;
-let rejectStyle;
-let style;
-let activeStyle;
+	let className;
+	let rejectStyle;
+	let style;
+	let activeStyle;
 
 	let propAttributes = {
       accept,
@@ -2732,8 +2546,6 @@ let activeStyle;
       rejectClassName,
       rest
     } = this.props;
-
-  
 
     const { isDragActive, isDragReject } = this.state;
 
@@ -2748,16 +2560,10 @@ let activeStyle;
 
     if (!className && !style && !activeStyle && !rejectStyle) {
       style = {
-        width: 200,
-        height: 200,
-        borderWidth: 2,
-        borderColor: '#666',
-        borderStyle: 'dashed',
-        borderRadius: 5
+
       };
       activeStyle = {
-        borderStyle: 'solid',
-        backgroundColor: '#eee'
+
       };
       rejectStyle = {
         borderStyle: 'solid',
@@ -2802,34 +2608,25 @@ let activeStyle;
     }
 		
 	var inputAttr = 
-				console.log(propAttributes);
-				return(
-					<div>
-						 <input className="btn btn-info" accept='' onChange={this.onDrop.bind(this)} ref={el => this.fileInputEl = el} type='file' multiple={supportMultiple && multiple} style={myStyle} />
-					</div>
-				)
-	
-		
-	return (
+		<div className="container">
+			<form role="form" >
+				<div className="form-group">
+					
+						<input className="btn btn-default" accept='' onChange={this.onDrop.bind(this)} ref={el => this.fileInputEl = el} type='file' multiple={supportMultiple && multiple}  />
+				
+				</div>
+			</form>
+		</div>
+		return (
 
 		
-			<div className={className} style={appliedStyle}   onClick={this.onClick}  onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
-			
-				
-				
-				
+			<div onClick={this.onClick}  onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
 				{inputAttr}
-  
 				{this.props.children}
 			</div>
-		
-
-	);
+		)
   }
 }
-
-
-
 
 class DropzoneDemo extends React.Component{
 	constructor (props){
@@ -2857,7 +2654,7 @@ class DropzoneDemo extends React.Component{
 				 
             <div>
                 <Dropzone ref="dropzone" onDrop={this.onDrop.bind(this)}>
-                    <div>Try dropping some files here, or click to select files to upload.</div>
+                  
                 </Dropzone>
 
                 {this.state.files.length > 0 ? <div>
@@ -2939,12 +2736,6 @@ Dropzone.propTypes = {
 		</div>, 
 		document.getElementById('footer')
 	);
-
-
-	
-	
-	
-	
 
 // state
 // den kigger på om der sker noget med komponenten. Hvis den gør, så genindlæses det.
