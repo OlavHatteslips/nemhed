@@ -259,6 +259,16 @@ div > h2{
 	border-color: #080808;
 }
 
+.navbar-default{
+	background-color:rgba(255,255,255,1);
+	border:1px solid rgba(113,192,58, 1);
+}
+
+.breadcrumb {
+    padding: 0px 0px;
+    margin-bottom: 0px;
+}
+
 .navbar-inverse {
    background-color: rgba(113,192,58, 1);
     border:0px none #ccc;
@@ -496,19 +506,20 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 
 ol > li > a, a:focus, a:active{
 	text-decoration: none !important;
-	color: rgba(0,0,0,1);
+	color: rgba(113,192,58, 1);
 	
-	background-color: rgba(113,192,58, 1);
+	background-color: transparent;
 
 	border: 0 none #ccc;
 	box-sizing: content-box;
 	padding: 0 10px;
 	line-height: 50px;
 	display: inline-block;
-	height: 50px;
-	color: #fff;
-	margin: 0.2rem;
-	border-radius: 4px;
+	
+}
+
+.navbar {
+    border-radius: 1px;
 }
 
 .pagerLink {

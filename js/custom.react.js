@@ -152,7 +152,7 @@ class JumbotronComponent extends React.Component{
 								S&aring;dan g&oslash;r du...
 							</p>
 					</div>
-				);
+				)
 			}.bind(this));
 		}
 
@@ -173,7 +173,7 @@ class JumbotronComponent extends React.Component{
 					
 					</CSSTransitionGroup>
 				</div>
-			);
+			)
 	}
 }
 
@@ -236,20 +236,10 @@ class JumbotronMenuComponent extends React.Component{
 
 		return (
 		
-				<div>
-					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors  text-center"
-					  transitionEnterTimeout={150}
-					  transitionLeaveTimeout={150}
-					  transitionAppear={true}
-					  transitionAppearTimeout = {150}
-					  transitionName="example"
-					  component="div"
-					  >
+				<div className=" jumbotron jumbotroncolors  text-center">
 						{x}
-					</CSSTransitionGroup>
 				</div>
-			);
+			)
 	}
 }
 
@@ -299,26 +289,16 @@ class JumbotronFooterComponent extends React.Component{
 							
 				
 					</div>
-				);
+				)
 			}.bind(this));
 		}
 
 		return (
 		
-				<div>
-					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors  text-center"
-					  transitionEnterTimeout={150}
-					  transitionLeaveTimeout={150}
-					  transitionAppear={true}
-					  transitionAppearTimeout = {150}
-					  transitionName="example"
-					  component="div"
-					  >
+				<div  className=" jumbotron jumbotroncolors  text-center">
 						{x}
-					</CSSTransitionGroup>
 				</div>
-			);
+			)
 	}
 }
 
@@ -367,26 +347,16 @@ class JumbotronUserContentComponent extends React.Component{
 							
 				
 					</div>
-				);
+				)
 			}.bind(this));
 		}
 
 		return (
 		
-				<div>
-					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors  text-center"
-					  transitionEnterTimeout={150}
-					  transitionLeaveTimeout={150}
-					  transitionAppear={true}
-					  transitionAppearTimeout = {150}
-					  transitionName="example"
-					  component="div"
-					  >
+				<div className=" jumbotron jumbotroncolors  text-center">
 						{x}
-					</CSSTransitionGroup>
 				</div>
-			);
+			)
 	}
 }
 
@@ -396,9 +366,6 @@ class ContentComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			current: 0,
-			colors: "red",
-			teddybear: "testDiv",
 			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
 			mounted: false,
 			mountedInfo: false,
@@ -441,23 +408,17 @@ class ContentComponent extends React.Component{
 	handleAdd() {
 		var newItems = this.state.videoLink.concat([prompt('Enter some text')]);
 		this.setState({videoLink: newItems});
-		
 	}
 	
 	basedOnSloganNo(){
 		this.setState({ mounted: false });	
 	}
 	basedOnSloganYes(){
-	//	this.setState({ mounted: true });
-		//this.setState({ sloganQuestion: false });
 		this.setState({sloganQuestion : true});
 	}
 	
 	bindPreview(){
-	//	this.setState({ mounted: true });
-		//this.setState({ sloganQuestion: false });
 		this.setState({showPreview : true});
-		
 	}
 	
 	handleAddSloganText() {
@@ -470,12 +431,10 @@ class ContentComponent extends React.Component{
 		this.setState({footerText: newItems});
 	}
 	
-	
 	addMenuArea(){
 		
 		var menuItems = this.state.menuItem.concat([prompt('Indtast Menupunkt')]);
 		this.setState({menuItem: menuItems});
-
 	}
 	
 	removeImageWarning(){
@@ -513,7 +472,7 @@ class ContentComponent extends React.Component{
 				<p>
 					{this.state.downloadLink}
 				</p>
-		);
+		)
 	}
 	
 	AlertCopyright(){
@@ -537,7 +496,7 @@ class ContentComponent extends React.Component{
 				</p> 
 			</div>
 		</div>
-		);
+		)
 	}
 	
 	showMenu(){
@@ -546,7 +505,7 @@ class ContentComponent extends React.Component{
 			<div className="alert alert-danger alert-dismissible fade in" role="alert"> 
 				show something
 			</div>
-		);
+		)
 	}
 	
 	GoToFrontpage(){
@@ -586,7 +545,7 @@ class ContentComponent extends React.Component{
 	GoToMenuChoice(){
 		this.setState({ createMenu : false});
 		this.setState({ showPreview: true});
-		this.setState({menuSelected: 0});
+		this.setState({ menuSelected: 0});
 	}
 	
 	menuChoice(choice_param){
@@ -599,9 +558,7 @@ class ContentComponent extends React.Component{
 		this.setState({ createFooter : false});
 		this.setState({ footerSelected: choice_param});
 		this.setState({ showPreview : true});
-
 	}
-	
 	
 	contentChoice(choice_param){
 		this.setState({ 
@@ -686,7 +643,7 @@ class ContentComponent extends React.Component{
 				
 
 			</div>
-		);
+		)
 	}
 	
 	contentQuestionTwo(){
@@ -820,7 +777,7 @@ class ContentComponent extends React.Component{
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
 	
 	
@@ -866,17 +823,11 @@ class ContentComponent extends React.Component{
 									</label>
 								</p>
 								
-							</form>
-								
+							</form>	
 					</div>
-				</div>
-				
-				
+				</div>				
 			</div>
-			
-		
-			
-		);
+		)
 	}
 	
 	changeStateOfMount(){
@@ -895,28 +846,30 @@ class ContentComponent extends React.Component{
 	}
 	
 	insertUserOptionsMenu(){
-		
-			
-				
 				return(
-					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+					<div  key={"colmdOptionsShowUserOption"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 						<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
 						<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
 					</div>
-					
 				)
-				
-			
 	}
 	
 	insertUserOptionsContent(){
-			return(
-					<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-						<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-						<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
-					</div>
-				)
-		
+					if(this.state.createContent){
+						
+						return(
+						<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+							<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+							<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+						</div>
+						)
+					}else{
+						return(
+							<div  key={"colmdOptionsContentShowTest"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+								<p>Beklager - du har indsat dit indhold</p>
+							</div>
+						)
+					}
 	}
 	
 	insertUserOptionsFooter(){
@@ -926,7 +879,6 @@ class ContentComponent extends React.Component{
 						<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
 					</div>
 				)
-		
 	}
 	
 	insertUserOptionsDefault(){
@@ -941,7 +893,15 @@ class ContentComponent extends React.Component{
 		
 	}
 	
-	
+	errorCondition(){
+		return(
+			<div className="alert alert-danger" role="alert">
+			  <a href="#" className="alert-link">Der opstod en fejl</a>
+			</div>
+		)
+		
+	}
+
 	previewFix(){
 		
 		var contentPreview;
@@ -954,9 +914,9 @@ class ContentComponent extends React.Component{
 		  width: '60%'
 		};
 		
-	
-		
-		
+		console.log(this.state.contentSelected + "content selected")
+			console.log(this.state.menuSelected + "menu selected")
+
 		var pageFooter = 
 			
 				<footer className="bs-docs-footer" role="contentinfo"> 
@@ -980,7 +940,6 @@ class ContentComponent extends React.Component{
 		
 		menuLinksHorizontal = this.state.menuItem.map(function(item, i) {
 			return (
-			
 				<div>
 					<div className="col-md-3" key={item}>
 					  <ul className="nav nav-pills nav-stacked" key={item}>
@@ -988,9 +947,7 @@ class ContentComponent extends React.Component{
 					  </ul>
 					</div>
 		
-				</div>
-				
-					
+				</div>	
 			);
 		}.bind(this));
 		
@@ -1009,8 +966,8 @@ class ContentComponent extends React.Component{
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 
 									<div    className=" col-sm-3 col-md-3   ">
-										<div className="panel " key={"panel"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+										<div key={"panel"}>
+											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
 												
 												<DropzoneDemo />
 												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
@@ -1018,8 +975,8 @@ class ContentComponent extends React.Component{
 										</div>
 									</div>
 									<div    className=" col-sm-9 col-md-9   ">									
-										<div className="panel " key={"panelTwo"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+										<div key={"panelTwo"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelVideoBody"} >
 												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
 												<h1>{this.state.sloganText}</h1>
 											</div>
@@ -1028,7 +985,10 @@ class ContentComponent extends React.Component{
 									
 									
 								</div>
-								{ this.state.createMenu == false  ? this.insertUserOptionsMenu(): null }
+								<div  key={"colmdOptionsShowMenuSelectedZero"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+									<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+								</div>
 								
 						</div>
 						
@@ -1042,9 +1002,244 @@ class ContentComponent extends React.Component{
 		</div>
 		
 		}
-		else if(this.state.menuSelected == 1  && this.state.logoBannerSelected == true  )
+		else if(this.state.menuSelected == 1   )
 		{
+			alert("HEJ");
+			contentPreview = 
 		
+				
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container-fluid">
+
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+	
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										<div  className="col-sm-12 col-md-12  ">
+									
+									
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											
+												<nav className="navbar navbar-default">
+													<div className="container-fluid">
+														<div className="navbar-header">
+															<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+																<ol  className="breadcrumb">
+																	
+																	{menuLinks}
+																	
+																</ol>
+															</div>
+														</div>
+													</div>
+												</nav>
+											</div>
+										</div>
+									</nav>
+							
+								
+							</div>
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+
+						
+									<div    className=" col-sm-3 col-md-3   ">
+										
+											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+									
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div  key={"panelTwo"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+										<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+
+						</div>
+
+						<div  key={"colmdOptionsShowSelectedOne"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+
+								<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+								<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+						</div>	
+
+							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+	
+				</div>
+				
+				</div>
+
+		}else if(this.state.menuSelected == 2  )
+		{
+
+			contentPreview = 
+			<div>
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container-fluid">
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+							<div  className="col-sm-9 col-md-9  ">
+									
+								<div    className=" col-sm-3 col-md-3   ">
+										<div className="" key={"panel"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div  key={"panelTwo"}>
+											<div className="text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+								
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+									
+								</div>
+							
+							
+							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+					
+								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+							
+											<nav className="navbar navbar-default navbar-static-top">
+												<div className="navbar-header">
+
+													<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>                        
+													</button>
+													
+												</div>
+												
+										
+												<div class="collapse navbar-collapse" id="myNavbar">
+													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+													{menuLinksHorizontal}
+													
+												</div>
+											</nav>
+								</div>
+								
+							</div>
+								<div    className=" col-sm-12 col-md-12   ">
+									<FooterBar/>
+								</div>
+						</div>
+
+						
+					</div>
+					
+				</div>
+						<div  key={"colmdOptionsShowSelectedTwo"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+									
+												
+				
+								<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+								<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>											
+						</div>				
+		</div>
+		}
+		else{
+			contentPreview = 
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container-fluid">
+
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											<nav className="navbar navbar-default">
+												<div className="container-fluid">
+													<div className="navbar-header">
+														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+															<ol  className="breadcrumb">
+																{menuLinks}
+															</ol>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+									</nav>
+							
+								
+							</div>
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+									<div    className=" col-sm-3 col-md-3   ">
+										<div className="panel " key={"panel"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div className="panel " key={"panelTwo"}>
+											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+						</div>
+				</div>
+				
+				</div>
+		}
+		
+		if(this.state.menuSelected == 1 && this.state.contentSelected != 0  )
+		{
 			contentPreview = 
 		
 				
@@ -1091,16 +1286,16 @@ class ContentComponent extends React.Component{
 
 						
 									<div    className=" col-sm-3 col-md-3   ">
-										<div className="panel " key={"panel"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+										
+											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
 												<DropzoneDemo />
 												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
 											</div>
-										</div>
+									
 									</div>
 									<div    className=" col-sm-9 col-md-9   ">									
-										<div className="panel " key={"panelTwo"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+										<div  key={"panelTwo"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelVideoBody"} >
 												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
 												<h1>{this.state.sloganText}</h1>
 											</div>
@@ -1110,62 +1305,41 @@ class ContentComponent extends React.Component{
 										<div className="container">	
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
-								
-								
 
 						</div>
-						
-						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-							<div  className="col-sm-12 col-md-12  ">	
-								<FooterBar/>
-							</div>
-						</div>
-			
-						
-							
-						<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+
+						<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 							<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-							<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+							<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
 						</div>
+	
 							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-						
-				
 				</div>
 				
 				</div>
-			
-				
-				
-		
-		}else if(this.state.menuSelected == 2  && this.state.menuBannerSelected == null )
+		}else if(this.state.menuSelected == 2 && this.state.contentSelected != 0  )
 		{
-
 			contentPreview = 
+
 			<div>
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container">
 					
-					
-					
-					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 						
-
 							<div  className="col-sm-9 col-md-9  ">
-								
 									
-									
-									<div    className=" col-sm-3 col-md-3   ">
-										<div className="panel " key={"panel"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+								<div    className=" col-sm-3 col-md-3   ">
+										<div className="" key={"panel"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelMenuBody"} >
 												<DropzoneDemo />
 												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
 											</div>
 										</div>
 									</div>
 									<div    className=" col-sm-9 col-md-9   ">									
-										<div className="panel " key={"panelTwo"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+										<div  key={"panelTwo"}>
+											<div className="text-center"  id="panelVideoId" key={"panelVideoBody"} >
 												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
 												<h1>{this.state.sloganText}</h1>
 											</div>
@@ -1176,8 +1350,9 @@ class ContentComponent extends React.Component{
 									<div className="container">	
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
-								
+									
 								</div>
+							
 							
 							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
@@ -1211,37 +1386,30 @@ class ContentComponent extends React.Component{
 								</div>
 								
 							</div>
-							
+								
 						</div>
 
 						
 					</div>
-					<FooterBar/>
+					
 				</div>
-						<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									
-												
-							<div  key={"colmdOptionsContentShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-								<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-								<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
-							</div>	
-										
-								
-						</div>	
+				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+					<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+					<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+				</div>
 							
 		</div>
-		}else{
-			
-			
+		}
+
+		if(this.state.menuSelected == 1 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		{
 		
 			contentPreview = 
-		
-			
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
 
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
-
+	
 									<nav className="navbar navbar-usermenu navbar-static-top">
 										<div className="navbar-header">
 
@@ -1255,6 +1423,7 @@ class ContentComponent extends React.Component{
 										
 								
 										<div className="collapse navbar-collapse" id="myNavbar">
+
 
 											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
 											<nav className="navbar navbar-default">
@@ -1275,79 +1444,148 @@ class ContentComponent extends React.Component{
 							</div>
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-						
 									<div    className=" col-sm-3 col-md-3   ">
-										<div className="panel " key={"panel"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
+										
+											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
 												<DropzoneDemo />
 												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
 											</div>
-										</div>
+									
 									</div>
 									<div    className=" col-sm-9 col-md-9   ">									
-										<div className="panel " key={"panelTwo"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
+										<div  key={"panelTwo"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelVideoBody"} >
 												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
 												<h1>{this.state.sloganText}</h1>
 											</div>
 										</div>									
 									</div>
 							
-									<div className="container">	
+										<div className="container">	
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
 						</div>
+						
 						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 							<div  className="col-sm-12 col-md-12  ">	
-								
+								<FooterBar/>
 							</div>
 						</div>
 			
-				
+						
+						<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+							<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+							<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+						</div>
 
+							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 				</div>
 				
 				</div>
+		}else	if(this.state.menuSelected == 2 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		{
+			
+			contentPreview = 
+
+			<div>
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container">
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+							<div  className="col-sm-9 col-md-9  ">
+									
+								<div    className=" col-sm-3 col-md-3   ">
+										<div className="" key={"panel"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div  key={"panelTwo"}>
+											<div className="text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+								
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+									
+								</div>
+							
+							
+							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+					
+								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+							
+											<nav className="navbar navbar-default navbar-static-top">
+												<div className="navbar-header">
+
+													<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>                        
+													</button>
+													
+												</div>
+												
+										
+												<div class="collapse navbar-collapse" id="myNavbar">
+
+
+					 
+													
+													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+														
+												
+													{menuLinksHorizontal}
+													
+												</div>
+											</nav>
+										
+								</div>
+								
+							</div>
+								<div    className=" col-sm-12 col-md-12   ">
+									<FooterBar/>
+								</div>
+						</div>
+
+						
+					</div>
+					
+				</div>
+				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+					<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+					<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+				</div>
+							
+		</div>
 		}
-		
+
 		return(
-		
 				<div>
-		
-					<CSSTransitionGroup
-					  className=""
-					  transitionEnterTimeout={225}
-					  transitionLeaveTimeout={225}
-					  transitionName="example"
-					  transitionAppear={false}
-					  transitionAppearTimeout={200}
-					  component="div"
-					  >
 						{contentPreview}
-							{menuObject}
-					
-					</CSSTransitionGroup>
-					
+						{menuObject}
 			</div>
-		
-		
-		);
+		)
 		
 		
 	}
 	
 	answerBasedOnSlogan(){
 		return(
-				
 				<div className="">
-				
-					
 					<button className="btn btn-xs btn-info" onClick={this.changeStateOfMount.bind(this)}>Vis Resultatet</button>
-					
 				</div>
-				
-				
-			);
+
+			)
 	}
 	
 	basedOnBanner(){
@@ -1378,7 +1616,7 @@ class ContentComponent extends React.Component{
 						{item}
 					</a>
 				</li>
-			);
+			)
 		}.bind(this));
 		
 		menuLinksHorizontal = this.state.menuItem.map(function(item, i) {
@@ -1392,7 +1630,7 @@ class ContentComponent extends React.Component{
 
 						<div class="clearfix visible-lg"></div>
 					</div>
-			);
+			)
 		}.bind(this));
 		
 			
@@ -1448,15 +1686,19 @@ class ContentComponent extends React.Component{
 											</div>
 
 										</div>
-										{UserMenuComponent}
+										
 								</div>
-						
+						{ this.state.createMenu == false  ? this.insertUserOptionsMenu(): null }
 					</div>
-		
+			<div  key={"colmdOptionsShowBanner"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+									<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+								</div>
 
 				</div>	
 				
 			</div>
+			
 			}else if(this.state.menuBannerSelected == 1 ) 
 			{
 				
@@ -1514,7 +1756,7 @@ class ContentComponent extends React.Component{
 										<FooterBar/>
 								
 					
-								<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+								<div  key={"colmdOptionsShowMenuBannerSelectedOne"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
 									<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this, contentPreview)}>Eksporter hjemmesiden</a>
 									{ this.state.downloadLink ? this.showDownloadLink(): null }
@@ -1561,7 +1803,7 @@ class ContentComponent extends React.Component{
 								<FooterBar />
 								
 								
-								<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+								<div  key={"colmdOptionsShowBannerSelectedTwo"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
 									<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this)}>Eksporter hjemmesiden</a>
 
@@ -1579,12 +1821,8 @@ class ContentComponent extends React.Component{
 				
 			}else{
 				contentPreview = <div> 
-			
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 						<div className="row">
-						
-							
-
 							<div  key={"colmdMenuShow"}  className=" col-sm-12 col-md-12 sidebar-left   ">
 	
 									{divImage}
@@ -1594,37 +1832,327 @@ class ContentComponent extends React.Component{
 										</div>
 									</div>
 							</div>
-									{UserMenuComponent}
+							{ this.state.createMenu == false  ? this.insertUserOptionsMenu(): null }
+								
+				</div>	
+							{ this.state.contentSelected  ? this.insertContentBox(): null }
+				
+					{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+
+			</div>
+			}
+		}
+
+		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0  )
+		{
+				contentPreview = <div> 
+				
+				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
+						<div className="row">
+						
+						
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
+
+								
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+
+											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											<nav className="navbar navbar-default">
+												<div className="container-fluid">
+													<div className="navbar-header">
+														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+															<ol  className="breadcrumb">
+																{menuLinks}
+															</ol>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+									</nav>
+							</div>
+
+							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+	
+											{divImage}
+
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+									</div>
+
+										<FooterBar/>
+								
+								<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+									<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+										{ this.state.downloadLink ? this.showDownloadLink(): null }
+								</div>
+								
+								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+					</div>
+					
 				</div>	
 				
 			</div>
-			}
+		}else if(this.state.menuBannerSelected == 2 && this.state.contentSelected != 0  )
+		{
+			
 		
+		
+		contentPreview = 
+			<div>
+				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
+					<div className="row">
+						
+							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+								<div  className="col-sm-9 col-md-9  ">
+										{divImage}
+										<div className="container">	
+											{ this.state.contentSelected  ? this.insertContentBox(): null }
+										</div>
+									
+									</div>
+								
+									<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+						
+										<div   className="col-sm-12 col-md-12 sidebar text-center">
+								
+														<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+															
+													
+														{menuLinksHorizontal}
+
+										</div>
+								</div>
+							</div>
+							
+								
+								<FooterBar />
+								
+								
+									<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+										<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+										<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+									</div>
+						
+						
+								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+						
+					</div>
+					
+				</div>
+				
+			
+		</div>
+		
+		
+		}
+		
+		
+		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		{
+		
+			contentPreview = 
+		
+				
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container-fluid">
+
+							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 	
+									<nav className="navbar navbar-usermenu navbar-static-top">
+										<div className="navbar-header">
+
+											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>
+												<span className="icon-bar"></span>                        
+											</button>
+											
+										</div>
+										
+								
+										<div className="collapse navbar-collapse" id="myNavbar">
+
+
+											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+											<nav className="navbar navbar-default">
+												<div className="container-fluid">
+													<div className="navbar-header">
+														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+															<ol  className="breadcrumb">
+																{menuLinks}
+															</ol>
+														</div>
+													</div>
+												</div>
+											</nav>
+										</div>
+									</nav>
+							
+								
+							</div>
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+
+						
+									<div    className=" col-sm-3 col-md-3   ">
+										
+											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+									
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div  key={"panelTwo"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+										<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+								
+								
+
+						</div>
+						
+						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+							<div  className="col-sm-12 col-md-12  ">	
+								<FooterBar/>
+							</div>
+						</div>
+			
+						
+						<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+							<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+							<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+						</div>
+						
+							
+						
+							
+						
+							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+						
+				
+				</div>
+				
+				</div>
+		}else	if(this.state.menuBannerSelected == 2 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		{
+			
+			contentPreview = 
+
+			<div>
+				<div id="rowID" className=" row" key={"rowMenuShow"} >
+					<div className="container">
+					
+						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
+						
+							<div  className="col-sm-9 col-md-9  ">
+									
+								<div    className=" col-sm-3 col-md-3   ">
+										<div className="" key={"panel"}>
+											<div className=" text-center"  id="panelVideoId" key={"panelMenuBody"} >
+												<DropzoneDemo />
+												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
+											</div>
+										</div>
+									</div>
+									<div    className=" col-sm-9 col-md-9   ">									
+										<div  key={"panelTwo"}>
+											<div className="text-center"  id="panelVideoId" key={"panelVideoBody"} >
+												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
+												<h1>{this.state.sloganText}</h1>
+											</div>
+										</div>									
+									</div>
+							
+								
+									<div className="container">	
+										{ this.state.contentSelected  ? this.insertContentBox(): null }
+									</div>
+									
+								</div>
+							
+							
+							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
+					
+								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+							
+											<nav className="navbar navbar-default navbar-static-top">
+												<div className="navbar-header">
+
+													<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>
+														<span className="icon-bar"></span>                        
+													</button>
+													
+												</div>
+												
+										
+												<div class="collapse navbar-collapse" id="myNavbar">
+
+
+					 
+													
+													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
+														
+												
+													{menuLinksHorizontal}
+													
+												</div>
+											</nav>
+										
+								</div>
+								
+							</div>
+								<div    className=" col-sm-12 col-md-12   ">
+									<FooterBar/>
+								</div>
+						</div>
+
+						
+					</div>
+					
+				</div>
+				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+					<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
+					<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+				</div>
+							
+		</div>
 		}
 		
 		return(
-		
 				<div>
-		
-					<CSSTransitionGroup
-					  className=""
-					  transitionEnterTimeout={125}
-					  transitionLeaveTimeout={125}
-					  transitionName="example"
-					  transitionAppear={true}
-					  transitionAppearTimeout={100}
-					  component="div"
-					  >
-						{contentPreview}
-							{menuObject}
-					
-					</CSSTransitionGroup>
-					
+					{contentPreview}
+					{menuObject}
 			</div>
-		
-		
-		);
+
+		)
 	
 	}
 	
@@ -1652,7 +2180,7 @@ class ContentComponent extends React.Component{
 					
 					
 				</div>
-			);
+			)
 	}
 	
 	hideContentQuestionMenu(){
@@ -1673,13 +2201,9 @@ class ContentComponent extends React.Component{
 	runSetup() {
 		this.setState({ startSetup: true });
 	}
-	
-
 		
 	render(){
-		
 		var x;
-		/*<div  key={i}  onClick={this.removeThisDiv.bind(this, i, this.state) }>{item}</div>*/
 		var b;
 		
 		var row;
@@ -1705,12 +2229,9 @@ class ContentComponent extends React.Component{
 								
 									Nemhed.dk er en udstrækt hånd til dig der gerne vil skabe din helt egen, unikke hjemmeside, men ikke har nogen erfaring med html-koder. Du vil blive guidet gennem alle trin. Og skulle det ikke være nok, kan du også få hjælp fra vores hjælpevideoer.
 								</p>
-								
-							
 							</div>
 				</div>
 			
-		
 				<div  key={"colmd6bob"}  className="col-md-4 ">
 				
 					<div className="panel" key={"panelbob"}>
@@ -1718,14 +2239,8 @@ class ContentComponent extends React.Component{
 						
 								<a href="hvorfor.html" alt="hvorfor">
 									<h2>Hvorfor?</h2>
-								
-										
-									
 									<img src="./img/logo/nyt_logo.png" className=" img img-responsive  " alt="vores logo"/>
-										
-										
 								</a>
-							
 						</div>
 					</div>
 				</div>
@@ -1739,7 +2254,6 @@ class ContentComponent extends React.Component{
 									<img className="img img-responsive  img-circle" src="img/question-1332054.png" alt="why"/>
 								</p>
 							</a>
-							
 					</div>
 				</div>
 				
@@ -1747,20 +2261,15 @@ class ContentComponent extends React.Component{
 					
 					<div className="panel  text-center " key={"videoLink"} >
 						<a href="#OpretSide" onClick={this.runSetup.bind(this)} >	
-							
-						
 							<h2>Opret din side</h2>
 							<p>
-								<img className="img img-responsive   img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
+								<img className="img img-responsive img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
 							</p>
 						</a>
-					</div>
-					
+					</div>			
 				</div>
 			</div>
-				
-				
-				
+
 			}
 			
 		if(this.state.startSetup == true && this.state.logoBannerSelected == false){
@@ -1783,9 +2292,7 @@ class ContentComponent extends React.Component{
 				</div>
 				<div className="col-md-6" key={6}>
 					<div className="panel " key={"videoLink"} >
-							
-							
-						
+
 							<h2>Har du et {this.props.children}</h2>
 								<form>
 								<p className="form-group">
@@ -1801,13 +2308,10 @@ class ContentComponent extends React.Component{
 								</p>
 							</form>
 								{ this.state.showNextQuestion ? this.basedOnLogo(): null }
-								
 					</div>
 				</div>
 				
 				<div className="col-md-12" key={"backBtn"}>
-
-				
 					<nav>
 						<ul className="nav nav-pills pull-left pager">
 							<li role="presentation" className="active ">
@@ -1821,49 +2325,34 @@ class ContentComponent extends React.Component{
 		}}
 			
 		return (
-	
-					<CSSTransitionGroup
-					  className=""
-					  transitionEnterTimeout={225}
-					  transitionLeaveTimeout={225}
-					  transitionName=""
-					  transitionAppear={true}
-					  transitionAppearTimeout={200}
-					  component="div"
-					  >
-						{rowSetup}
-						{row}
-						
-						{ 
+			<div>
+					{rowSetup}
+					{row}
+					
+					{ 
 						this.state.showPreview ? this.previewFix(): null 
-						
-						}
-						{
-							this.state.createBannerMenu ? this.insertBannerMenuQuestions(): null 
-						}
-						
-						{
-							this.state.createMenu ? this.insertMenuQuestions(): null 
-						}
-						
-						{
-							this.state.createContent ? this.insertContentQuestions(): null 
-						}
-						
-						{
-							this.state.createFooter ? this.insertFooterQuestions(): null 
-						}
-						{ this.state.bannerMounted ? this.basedOnBanner(): null }
-					</CSSTransitionGroup>
+					}
+					{
+						this.state.createBannerMenu ? this.insertBannerMenuQuestions(): null 
+					}
 					
+					{
+						this.state.createMenu ? this.insertMenuQuestions(): null 
+					}
 					
-			
-			);
+					{
+						this.state.createContent ? this.insertContentQuestions(): null 
+					}
+					
+					{
+						this.state.createFooter ? this.insertFooterQuestions(): null 
+					}
+					{ this.state.bannerMounted ? this.basedOnBanner(): null }
+		
+			</div>
+		)
 	}
 }
-
-
-
 
 class FooterComponent extends
 	React.Component{
@@ -1897,13 +2386,10 @@ class FooterComponent extends
 							</nav>
 						</div>
 						<div className="col-md-3" >
-							
 						</div>
 					</div>
-				
 				</div>
-				
-			);
+			)
 		}
 		handleChange(event) {
 			this.setState({value: this.state.value = 'Easter Eeg ;) '});
@@ -1911,60 +2397,23 @@ class FooterComponent extends
 
 	}
 
-class AnimateComponent extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			isShowing : false,
-			hideMyDiv : "panelVideoId"
-		}
-	}
-	
-	onClicked() {
-		 this.setState({isShowing: !this.state.isShowing});
-    }
-
-	render(){
-	//	var helloWorld = this.state.isShowing ? <Hello name="World!"  onComplete={this.onAnimationComplete}  /> : '';
-		var myDiv = 
-				<div onClick={this.onClicked.bind(this)} >
-				<nav className="blog-nav " >
-					<ul className="nav nav-pills ">
-						<li role="presentation" className="active"><a href="#"  onClick={this.onClicked.bind(this)}  >Luk Vindue</a></li>
-					</ul>
-				</nav>
-				</div>
-		return (
-					<div  >
-						{myDiv}
-						{ this.state.isShowing ? <Hello name="Peter" />: null }
-					</div>
-			);
-	}
-}
-
 /**store - er et array o.s.v data*/
 var menuData = [
 	{title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation" },
 	{title : "Hvorfor", linkref: " hvorfor.html",  targetWindow : "_blank", selectedClass: "" , role:"presentation" },
 	{title : "Hvem er vi", linkref: " hvem.html", targetWindow : "_blank", selectedClass: "" , role:"presentation" },
 	{title : "Opret din side",onLink : "disabled"  , linkref: " #setup", targetWindow : "_self", selectedClass: "" , role:"presentation" }
-	
 ]
 
 var _emptyArr = [];
-
-
 class MyLinks extends  React.Component{
     render() {
         return (<LinkList data={ menuData }/>);
     }
 };	
 
-
 class LinkList extends  React.Component{
 	render() {
-        
 			var recipeNodes = this.props.data.map(function(links,index){
 				return (
 					<li key={index} className={links.selectedClass} role={links.role}>
@@ -1976,17 +2425,14 @@ class LinkList extends  React.Component{
 			})
 			
 			return (
-			
 				<ul className="nav navbar-nav">
 					{recipeNodes}
 				</ul>
-			
 			)
     }
 };	
 	
 class FooterBar extends  React.Component{
-	
 	constructor (props){
 		super(props);
 		this.state = {
@@ -1999,7 +2445,6 @@ class FooterBar extends  React.Component{
 	}
 	
 	render() {
-		
 		return (
 			<footer className="bs-docs-footer" role="contentinfo"> 
 				<div className="container"> 
@@ -2009,7 +2454,6 @@ class FooterBar extends  React.Component{
 					</p>
 				</div> 
 			</footer>
-		
 		)
     }
 };
@@ -2025,8 +2469,6 @@ class ContentBar extends  React.Component{
 			logoUrl : './img/nyt_logo.png',
 			isShowing: true
 		}
-		
-		
 	}
 	
 	handleAddHeadline() {
@@ -2044,10 +2486,8 @@ class ContentBar extends  React.Component{
 	}
 	
 	render() {
-			
-			
+
 			{ this.state.isShowing ? this.handleSetLogo: null }
-			
 			if(this.props.choiceOfContent == "text")
 			{
 				if(this.props.boxes == 1){
@@ -2202,12 +2642,8 @@ class ContentBar extends  React.Component{
 				}
 				
 			}			
-				
-			
     }
 };
-
-
 
 class ProgBar extends  React.Component{
 	render() {
@@ -2217,16 +2653,13 @@ class ProgBar extends  React.Component{
 			};
 			
 			return (
-					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
-
-						<div className="progress">
-							<div className="progress-bar progress-bar-info " role="progressbar" aria-valuenow={progressStyle} aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
-								{this.props.progText}
-							</div>
+				<div  key={"colmdOptionsShowProgBar"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
+					<div className="progress">
+						<div className="progress-bar progress-bar-info " role="progressbar" aria-valuenow={progressStyle} aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
+							{this.props.progText}
 						</div>
-
-
 					</div>
+				</div>
 			)
     }
 };
@@ -2247,16 +2680,14 @@ class ReactProgressBar  extends React.Component{
 			};
 			
 			return (
-					<div  key={"colmdOptionsShow"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
+				<div  key={"colmdOptionsShowBar"}  className=" col-md-12  col-sm-12   sidebar-optionpaneltop  ">
 
-						<div className="progress">
-							<div className="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
-								{this.props.progText}
-							</div>
+					<div className="progress">
+						<div className="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={progressStyle}>
+							{this.props.progText}
 						</div>
-
-
 					</div>
+				</div>
 			)
     }
 };	
@@ -2264,20 +2695,18 @@ class ReactProgressBar  extends React.Component{
 
 	class ErrorMessages  extends React.Component{
 		render() {
-				return (
-						<div class="bs-callout bs-callout-warning" id="callout-alerts-dismiss-use-button"> 
-							<h4>Whoops</h4> 
-							<p>
-								<code>
-									{ this.props.Type}
-								</code> 
-							</p> 
-						</div>
-				)
+			return (
+				<div className="bs-callout bs-callout-warning" id="callout-alerts-dismiss-use-button"> 
+					<h4>Whoops</h4> 
+					<p>
+						<code>
+							{ this.props.Type}
+						</code> 
+					</p> 
+				</div>
+			)
 		}
 	};
-	
-	
 	
 	// FLUX
         /** McFly */
@@ -2318,8 +2747,6 @@ class ReactProgressBar  extends React.Component{
         });
 
         function getRecipes(){
-           
-		 
 		   return {
 			   
                recipes: RecipeStore.getRecipes()
@@ -2361,21 +2788,13 @@ class ReactProgressBar  extends React.Component{
 				
 				var testMessage = this.props.recipes.map(function(item, i) {
 					return (
-						<div className="col-md-3 sidebar-optionpaneltop">
-						
-					
-									<div className="bs-callout bs-callout-danger" role="alert" key={i} > <h4>Fejl</h4> <p>{item._message}</p> </div>
-						
-						
-						
-							
-						</div>
+							<div className="col-md-3 sidebar-optionpaneltop">
+								<div className="bs-callout bs-callout-danger" role="alert" key={i} > <h4>Fejl</h4> <p>{item._message}</p> </div>
+							</div>
 						)
 				});
-				
-				
+
                 return (
-				
 					<div className="container-fluid">
 						<div className="row">
 						
@@ -2385,7 +2804,6 @@ class ReactProgressBar  extends React.Component{
 						<button className="btn btn-info disabled" onClick={this.addRecipe.bind(this)}>Add recipe</button>
 						</div>
 					</div>
-				
                 )
             }
         };
@@ -2618,8 +3036,6 @@ class Dropzone extends React.Component {
 			</form>
 		</div>
 		return (
-
-		
 			<div onClick={this.onClick}  onDragEnter={this.onDragEnter} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
 				{inputAttr}
 				{this.props.children}
@@ -2649,9 +3065,7 @@ class DropzoneDemo extends React.Component{
   
 	render(){
 
-		return (
-		
-				 
+		return ( 
             <div>
                 <Dropzone ref="dropzone" onDrop={this.onDrop.bind(this)}>
                   
@@ -2665,7 +3079,6 @@ class DropzoneDemo extends React.Component{
 			
 	}
 }
-
 
 Dropzone.defaultProps = {
   disablePreview: false,
@@ -2698,23 +3111,12 @@ Dropzone.propTypes = {
 };
 
 //export default Dropzone;
-
-	ReactDOM.render(
-		<div  >
-			<AnimateComponent  >
-				 
-			</AnimateComponent>
-		</div>, 
-		document.getElementById('panelVideoId')
-	);
 	
 	ReactDOM.render(
 		
 			<MenuComponent  >
 				
 			</MenuComponent>
-			
-		
 		, 
 		document.getElementById('menuId')
 	);
@@ -2736,6 +3138,3 @@ Dropzone.propTypes = {
 		</div>, 
 		document.getElementById('footer')
 	);
-
-// state
-// den kigger på om der sker noget med komponenten. Hvis den gør, så genindlæses det.
