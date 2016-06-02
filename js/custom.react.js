@@ -5,29 +5,20 @@ class MenuComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			current: 0,
 			colors: "red",
 			items:[],
 			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret din side'],
 			mounted: false
-			
 		}
 	}
 	componentDidMount() {
-	  this.state.interval = setInterval(this.state.tick, INTERVAL);
-	 
-	  this.setState({ mounted: true });
 
-	}
-	
-	tick() {
-		this.setState({current: this.state.current + 1});
+	  this.setState({ mounted: true });
 	}
 	
 	handleAdd() {
 		var newItems = this.state.items.concat([prompt('Enter some text')]);
 		this.setState({items: newItems});
-		
 	}
   
 	render(){
@@ -41,28 +32,14 @@ class MenuComponent extends React.Component{
 		  background: colors[1]
 		};
 
-		
 		var x;
-		
 		if(this.state.mounted ){	
 			x = <MyLinks  />
 		}
 	/* <button className="btn btn-info" onClick={this.handleAdd.bind(this)}>Tilføj Menu</button>*/
 		return (
 		
-				<div className="blog-masthead" >
-					
-					
-					<CSSTransitionGroup
-					  className="header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top "
-					  id="header"
-					  transitionEnterTimeout={125}
-					  transitionLeaveTimeout={125}
-					  transitionName=""
-					  transitionAppear={true}
-					  transitionAppearTimeout={125}
-					  component="nav"
-					  >
+				<div className="blog-masthead header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top" >
 						<div className="container">
 							<div className="navbar-header">
 
@@ -71,32 +48,21 @@ class MenuComponent extends React.Component{
 									<span className="icon-bar"></span>
 									<span className="icon-bar"></span>                        
 								</button>
-								
-								
-									
-											
+	
 									<a  href="index.html">
 										<img src="./img/logo/logo.png" className=" img img-responsive navbar-brand" alt="logo"/>
 									</a>
-										
-										
 							</div>
-							
-						
 							<div class="collapse navbar-collapse" id="myNavbar">
 
 								{x}
 							
 							</div>
-					</div>			
-						
-					</CSSTransitionGroup>
-					
+					</div>		
 				</div>
 			);
 	}
 }
-
 
 class JumbotronComponent extends React.Component{
 	constructor (props){
@@ -113,14 +79,10 @@ class JumbotronComponent extends React.Component{
 	componentDidMount() {
 	  this.setState({ mounted: true });
 	}
-	componentWillUnmount() {
-		
-	}
 	
 	handleAdd() {
 		var newItems = this.state.jumbotronTitle.concat([prompt('Enter some text')]);
 		this.setState({jumbotronTitle: newItems});
-		
 	}
 	
 	render(){
@@ -154,24 +116,11 @@ class JumbotronComponent extends React.Component{
 		return (
 		
 				<div>
-					<CSSTransitionGroup
-					  className=" jumbotron jumbotroncolors  text-center"
-					  transitionEnterTimeout={150}
-					  transitionLeaveTimeout={150}
-					  transitionAppear={true}
-					  transitionAppearTimeout = {150}
-					  transitionName="example"
-					  component="div"
-					  >
 						{x}
-						
-					
-					</CSSTransitionGroup>
 				</div>
 			)
 	}
 }
-
 
 class JumbotronMenuComponent extends React.Component{
 	constructor (props){
@@ -182,21 +131,15 @@ class JumbotronMenuComponent extends React.Component{
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Hvor vil du have placeret din menu?']
-			
 		}
 	}
 	componentDidMount() {
 	  this.setState({ mounted: true });
 	}
-	componentWillUnmount() {
-		
-		
-	}
 	
 	handleAdd() {
 		var newItems = this.state.jumbotronTitle.concat([prompt('Enter some text')]);
 		this.setState({jumbotronTitle: newItems});
-		
 	}
 	
 	render(){
@@ -237,7 +180,6 @@ class JumbotronMenuComponent extends React.Component{
 			)
 	}
 }
-
 
 class JumbotronFooterComponent extends React.Component{
 	constructor (props){
@@ -307,13 +249,10 @@ class JumbotronUserContentComponent extends React.Component{
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Vælg typen af indhold']
-			
 		}
 	}
 	componentDidMount() {
 	  this.setState({ mounted: true });
-	}
-	componentWillUnmount() {
 	}
 
 	render(){
@@ -354,8 +293,6 @@ class JumbotronUserContentComponent extends React.Component{
 			)
 	}
 }
-
-
 
 class ContentComponent extends React.Component{
 	constructor (props){
@@ -444,54 +381,17 @@ class ContentComponent extends React.Component{
 			 sloganQuestion : false,
 			 showNextQuestion : false
 		})
-		
 	}
 	
 	downloadHTML(htmlArgs){
-		var fileName =  'dinhjemmeside.html'; // You can use the .txt extension if you want
-		var elHtml = document.getElementById("insertContentStuff").innerHTML;
-		var link = document.createElement('a');
-		var mimeType;
-		mimeType = mimeType || 'text/html';
-
-		link.setAttribute('download', fileName);
-		link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
-		link.click(); 
-		
-		this.setState ({downloadLink: link});
-		
+		return (htmlArgs)
 	}
 	
 	showDownloadLink(){
 		return (
-				<p>
-					{this.state.downloadLink}
-				</p>
-		)
-	}
-	
-	AlertCopyright(){
-		
-		return(
-		<div  key={"colmdOptionsShowCopy"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-			<div className="alert alert-danger alert-dismissible fade in" role="alert"> 
-				<button type="button" className="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">×</span></button> 
-				<h4>Copyright</h4> 
-				<p>
-					Hej - Vi skal g&oslash;re opmærksom på, at det er strengt ulovligt, at benytte eller uploade billeder som man ikke har tilladelse til at bruge. Copyright! Denne side fraskriver sig hermed et hvert (med)ansvar for brugen af andres værker.
-				
-				</p>
-				<blockquote>
-					<a href="http://kum.dk/kulturpolitik/ophavsret/billedkunst-og-fotografier/" alt="copyright paa billeder">Link</a>
-				</blockquote>
-				<p> 
-					<button type="button" onClick={this.removeImageWarning.bind(this)} className="btn btn-danger">
-						Forstået
-					</button> 
-				</p> 
-			</div>
-		</div>
+			<p>
+				{this.state.downloadLink}
+			</p>
 		)
 	}
 	
@@ -746,9 +646,6 @@ class ContentComponent extends React.Component{
 				</div>
 				<div className="col-md-6" key={7}>
 					<div className="panel " key={"videoLinkMenu"} >
-							
-							
-						
 							<h2>Hvor vil du have i din sidefod ?</h2>
 				
 							<form>
@@ -796,9 +693,7 @@ class ContentComponent extends React.Component{
 				</div>
 				<div className="col-md-6" key={7}>
 					<div className="panel " key={"videoLinkMenu"} >
-							
-							
-						
+
 							<h2>Hvor vil du have din Menu placeret? dfdf</h2>
 				
 							<form>
@@ -831,14 +726,11 @@ class ContentComponent extends React.Component{
             mounted: false,
 			showPreview: true,
 			logoBannerSelected: true
-		
         });
 	}
 	
 	insertContentBox(){
-
 		return ( <ContentBar logoUrl={this.state.logoUrl} choiceOfContent={this.state.contentType} boxes={this.state.contentSelected} /> )
-		
 	}
 	
 	insertUserOptionsMenu(){
@@ -848,6 +740,15 @@ class ContentComponent extends React.Component{
 						<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
 					</div>
 				)
+	}
+	
+	insertUserOptionsBannerMenu(){
+		return (
+			<div  key={"colmdOptionsShowUserOption"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+				<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
+				<a href="#" className="btn btn-success" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
+			</div>
+		)
 	}
 	
 	insertUserOptionsContent(){
@@ -909,9 +810,6 @@ class ContentComponent extends React.Component{
 		var progressStyle = {
 		  width: '60%'
 		};
-		
-		console.log(this.state.contentSelected + "content selected")
-			console.log(this.state.menuSelected + "menu selected")
 
 		var pageFooter = 
 			
@@ -947,8 +845,10 @@ class ContentComponent extends React.Component{
 			);
 		}.bind(this));
 		
+		if(this.state.bannerMounted	== false){
 			
-		if(this.state.logoBannerSelected == true && this.state.menuSelected == 0)
+		
+		if(this.state.logoBannerSelected == true && this.state.menuSelected == 0 && this.state.menuBannerSelected == 0)
 		{
 			
 			contentPreview = <div> 
@@ -956,9 +856,7 @@ class ContentComponent extends React.Component{
 			<div id="rowID" className=" row" key={"rowMenuShow"} >
 
 					<div className="container-fluid">
-					
-			
-						
+
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 
 									<div    className=" col-sm-3 col-md-3   ">
@@ -978,8 +876,6 @@ class ContentComponent extends React.Component{
 											</div>
 										</div>									
 									</div>
-									
-									
 								</div>
 								<div  key={"colmdOptionsShowMenuSelectedZero"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<nav>
@@ -988,28 +884,18 @@ class ContentComponent extends React.Component{
 										<li className="next"><a href="#" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu <span aria-hidden="true">&rarr;</span></a></li>
 									  </ul>
 									</nav>
-									
-								
-									
 								</div>
 								
 						</div>
 						
 				</div>
-	
-				
-					{ this.state.contentSelected  ? this.insertContentBox(): null }
-				
-					{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-
+				{ this.state.contentSelected  ? this.insertContentBox(): null }
 		</div>
 		
 		}
-		else if(this.state.menuSelected == 1   )
+		else if(this.state.menuSelected == 1 && this.state.menuBannerSelected == 0 && this.state.logoBannerSelected == true )
 		{
-			
 			contentPreview = 
-		
 				
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
@@ -1027,10 +913,7 @@ class ContentComponent extends React.Component{
 											
 										</div>
 										<div  className="col-sm-12 col-md-12  ">
-									
-									
-										
-								
+
 										<div className="collapse navbar-collapse" id="myNavbar">
 
 											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
@@ -1051,8 +934,6 @@ class ContentComponent extends React.Component{
 											</div>
 										</div>
 									</nav>
-							
-								
 							</div>
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -1097,7 +978,7 @@ class ContentComponent extends React.Component{
 				
 				</div>
 
-		}else if(this.state.menuSelected == 2  )
+		}else if(this.state.menuSelected == 2  && this.state.menuBannerSelected == 0  && this.state.logoBannerSelected == true )
 		{
 
 			contentPreview = 
@@ -1132,11 +1013,9 @@ class ContentComponent extends React.Component{
 									</div>
 									
 								</div>
-							
-							
 							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
-								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+								<div   className="col-sm-12 col-md-12 sidebar  text-center">
 							
 											<nav className="navbar navbar-default navbar-static-top">
 												<div className="navbar-header">
@@ -1178,78 +1057,11 @@ class ContentComponent extends React.Component{
 						</div>				
 		</div>
 		}
-		else{
-			contentPreview = 
-				<div id="rowID" className=" row" key={"rowMenuShow"} >
-					<div className="container-fluid">
-
-							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
-
-									<nav className="navbar navbar-usermenu navbar-static-top">
-										<div className="navbar-header">
-
-											<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-												<span className="icon-bar"></span>
-												<span className="icon-bar"></span>
-												<span className="icon-bar"></span>                        
-											</button>
-											
-										</div>
-										
-								
-										<div className="collapse navbar-collapse" id="myNavbar">
-
-											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
-											<nav className="navbar navbar-default">
-												<div className="container-fluid">
-													<div className="navbar-header">
-														<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-															<ol  className="breadcrumb">
-																{menuLinks}
-															</ol>
-														</div>
-													</div>
-												</div>
-											</nav>
-										</div>
-									</nav>
-							
-								
-							</div>
-					
-						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-						
-									<div    className=" col-sm-3 col-md-3   ">
-										<div className="panel " key={"panel"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelMenuBody"} >
-												<DropzoneDemo />
-												<img className="img img-responsive img-thumbnail" src={this.state.logoUrl} alt={this.state.logoUrl} />
-											</div>
-										</div>
-									</div>
-									<div    className=" col-sm-9 col-md-9   ">									
-										<div className="panel " key={"panelTwo"}>
-											<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBody"} >
-												<button className="btn btn-info" onClick={this.handleAddSloganText.bind(this)}>Indsæt Slogan</button>
-												<h1>{this.state.sloganText}</h1>
-											</div>
-										</div>									
-									</div>
-							
-									<div className="container">	
-										{ this.state.contentSelected  ? this.insertContentBox(): null }
-									</div>
-						</div>
-				</div>
-				
-				</div>
-		}
 		
-		if(this.state.menuSelected == 1 && this.state.contentSelected != 0  )
+		
+		if(this.state.menuSelected == 1 && this.state.contentSelected != 0  && this.state.menuBannerSelected == 0 && this.state.logoBannerSelected == true)
 		{
 			contentPreview = 
-		
-				
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
 
@@ -1284,8 +1096,6 @@ class ContentComponent extends React.Component{
 											</nav>
 										</div>
 									</nav>
-							
-								
 							</div>
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -1330,7 +1140,7 @@ class ContentComponent extends React.Component{
 				</div>
 				
 				</div>
-		}else if(this.state.menuSelected == 2 && this.state.contentSelected != 0  )
+		}else if(this.state.menuSelected == 2 && this.state.contentSelected != 0 && this.state.menuBannerSelected == 0  && this.state.logoBannerSelected == true)
 		{
 			contentPreview = 
 
@@ -1365,11 +1175,9 @@ class ContentComponent extends React.Component{
 									</div>
 									
 								</div>
-							
-							
 							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
-								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+								<div   className="col-sm-12 col-md-12 sidebar text-center">
 							
 											<nav className="navbar navbar-default navbar-static-top">
 												<div className="navbar-header">
@@ -1381,28 +1189,14 @@ class ContentComponent extends React.Component{
 													</button>
 													
 												</div>
-												
-										
 												<div class="collapse navbar-collapse" id="myNavbar">
-
-
-					 
-													
 													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
-														
-												
 													{menuLinksHorizontal}
-													
 												</div>
 											</nav>
-										
 								</div>
-								
 							</div>
-								
-						</div>
-
-						
+						</div>		
 					</div>
 					
 				</div>
@@ -1420,13 +1214,12 @@ class ContentComponent extends React.Component{
 		</div>
 		}
 
-		if(this.state.menuSelected == 1 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		if(this.state.menuSelected == 1 && this.state.contentSelected != 0 && this.state.footerSelected != 0 && this.state.menuBannerSelected == 0 && this.state.logoBannerSelected == true)
 		{
 		
 			contentPreview = 
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
-
 							<div    className=" col-md-12  col-sm-12  sidebar-left  ">
 	
 									<nav className="navbar navbar-usermenu navbar-static-top">
@@ -1439,10 +1232,8 @@ class ContentComponent extends React.Component{
 											</button>
 											
 										</div>
-										
-								
-										<div className="collapse navbar-collapse" id="myNavbar">
 
+										<div className="collapse navbar-collapse" id="myNavbar">
 
 											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
 											<nav className="navbar navbar-default">
@@ -1458,8 +1249,6 @@ class ContentComponent extends React.Component{
 											</nav>
 										</div>
 									</nav>
-							
-								
 							</div>
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
@@ -1501,14 +1290,11 @@ class ContentComponent extends React.Component{
 								</ul>
 							</nav>
 						</div>
-
-							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 				</div>
 				
 				</div>
-		}else	if(this.state.menuSelected == 2 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		}else	if(this.state.menuSelected == 2 && this.state.contentSelected != 0 && this.state.footerSelected != 0 && this.state.menuBannerSelected == 0 && this.state.logoBannerSelected == true)
 		{
-			
 			contentPreview = 
 
 			<div>
@@ -1542,11 +1328,9 @@ class ContentComponent extends React.Component{
 									</div>
 									
 								</div>
-							
-							
 							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
-								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+								<div   className="col-sm-12 col-md-12 sidebar  text-center">
 							
 											<nav className="navbar navbar-default navbar-static-top">
 												<div className="navbar-header">
@@ -1561,13 +1345,8 @@ class ContentComponent extends React.Component{
 												
 										
 												<div class="collapse navbar-collapse" id="myNavbar">
-
-
-					 
-													
 													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
-														
-												
+
 													{menuLinksHorizontal}
 													
 												</div>
@@ -1580,8 +1359,6 @@ class ContentComponent extends React.Component{
 									<FooterBar/>
 								</div>
 						</div>
-
-						
 					</div>
 					
 				</div>
@@ -1597,7 +1374,7 @@ class ContentComponent extends React.Component{
 							
 		</div>
 		}
-
+		}
 		return(
 				<div>
 						{contentPreview}
@@ -1613,7 +1390,6 @@ class ContentComponent extends React.Component{
 				<div className="">
 					<button className="btn btn-xs btn-info" onClick={this.changeStateOfMount.bind(this)}>Vis Resultatet</button>
 				</div>
-
 			)
 	}
 	
@@ -1666,8 +1442,6 @@ class ContentComponent extends React.Component{
 		if(this.state.bannerMounted)
 		{
 			
-			console.log(this.state.menuBannerSelected);
-			
 			var divStyle = {
 			  color: 'white',
 			  backgroundSize: '100%',
@@ -1678,9 +1452,7 @@ class ContentComponent extends React.Component{
 			};
 			
 			var divImage;
-			
-	
-			
+
 			if(this.state.displayBannerImgBtn ){
 				
 							divImage = 		
@@ -1699,7 +1471,7 @@ class ContentComponent extends React.Component{
 			}
 			
 			
-			if(this.state.displayBannerImgBtn && this.state.menuBannerSelected == 0){
+			if(this.state.displayBannerImgBtn && this.state.menuBannerSelected == 0 && this.state.menuSelected == 0){
 				
 				contentPreview = <div> 
 					<div className="container-fluid">
@@ -1717,20 +1489,15 @@ class ContentComponent extends React.Component{
 										</div>
 										
 								</div>
-						{ this.state.createMenu == false  ? this.insertUserOptionsMenu(): null }
+						
 					</div>
-			<div  key={"colmdOptionsShowBanner"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-									<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
-								</div>
+					{ this.state.createMenu == false  ? this.insertUserOptionsBannerMenu(): null }
 
 				</div>	
-				
 			</div>
 			
-			}else if(this.state.menuBannerSelected == 1 ) 
+			}else if(this.state.menuBannerSelected == 1 && this.state.menuSelected == 0) 
 			{
-				
 				contentPreview = <div> 
 				
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
@@ -1778,26 +1545,24 @@ class ContentComponent extends React.Component{
 									<div className="container">	
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
+									
 									</div>
-							
-					
-							
-										<FooterBar/>
-								
-					
+
 								<div  key={"colmdOptionsShowMenuBannerSelectedOne"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
-									<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this, contentPreview)}>Eksporter hjemmesiden</a>
-									{ this.state.downloadLink ? this.showDownloadLink(): null }
-								</div>
 								
-								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
+									<nav>
+										<ul className="pager">
+											<li className="previous"><a href="#" onClick={this.GoToMenuChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af menu</a></li>
+											<li className="next"><a href="#" onClick={this.GoToCreateContent.bind(this)}>Placer indhold <span aria-hidden="true">&rarr;</span></a></li>
+										</ul>
+									</nav>
+								</div>
 					</div>
 					
 				</div>	
 				
 			</div>
-			}else if(this.state.menuBannerSelected == 2 ) 
+			}else if(this.state.menuBannerSelected == 2 && this.state.menuSelected == 0) 
 			{
 				
 				contentPreview = 
@@ -1827,28 +1592,24 @@ class ContentComponent extends React.Component{
 										</div>
 								</div>
 							</div>
-							
-								
-								<FooterBar />
-								
 								
 								<div  key={"colmdOptionsShowBannerSelectedTwo"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									<a href="#" className="btn btn-danger" onClick={this.GoToMenuChoice.bind(this)}>Tilbage til valg af menu</a>
-									<a href="#" className="btn btn-success" onClick={this.downloadHTML.bind(this)}>Eksporter hjemmesiden</a>
+								
+									<nav>
+										<ul className="pager">
+											<li className="previous"><a href="#" onClick={this.GoToMenuChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af menu</a></li>
+											<li className="next"><a href="#" onClick={this.GoToCreateContent.bind(this)}>Placer indhold <span aria-hidden="true">&rarr;</span></a></li>
+										</ul>
+									</nav>
 
 								</div>
-						
-						
-								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-						
 					</div>
 					
 				</div>
-				
-			
 		</div>
 				
 			}else{
+				
 				contentPreview = <div> 
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
 						<div className="row">
@@ -1864,16 +1625,16 @@ class ContentComponent extends React.Component{
 							{ this.state.createMenu == false  ? this.insertUserOptionsMenu(): null }
 								
 				</div>	
-							{ this.state.contentSelected  ? this.insertContentBox(): null }
 				
-					{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-
+							{ this.state.contentSelected  ? this.insertContentBox(): null }
+		
 			</div>
 			}
 		}
 
-		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0  )
+		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0  && this.state.menuSelected == 0 )
 		{
+		
 				contentPreview = <div> 
 				
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
@@ -1894,7 +1655,6 @@ class ContentComponent extends React.Component{
 											
 										</div>
 										
-								
 										<div className="collapse navbar-collapse" id="myNavbar">
 
 
@@ -1916,32 +1676,31 @@ class ContentComponent extends React.Component{
 
 							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 	
-											{divImage}
+									{divImage}
 
 									<div className="container">	
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
-									</div>
-
-										<FooterBar/>
-								
+							</div>
+							<div    className=" col-sm-12 col-md-12   ">
+								<FooterBar/>
+							</div>
 								<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-									<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
-										{ this.state.downloadLink ? this.showDownloadLink(): null }
+									<nav>
+										<ul className="pager">
+											<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til valg af logo eller banner</a></li>
+											<li className="next"><a href="#" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod <span aria-hidden="true">&rarr;</span></a></li>
+										</ul>
+									</nav>
 								</div>
-								
-								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 					</div>
 					
 				</div>	
 				
 			</div>
-		}else if(this.state.menuBannerSelected == 2 && this.state.contentSelected != 0  )
+		}else if(this.state.menuBannerSelected == 2 && this.state.contentSelected != 0 && this.state.menuSelected == 0  )
 		{
-			
-		
-		
+
 		contentPreview = 
 			<div>
 				<div id="rowID" className=" container-fluid" key={"rowMenuShow"} >
@@ -1969,36 +1728,24 @@ class ContentComponent extends React.Component{
 										</div>
 								</div>
 							</div>
-							
-								
-								<FooterBar />
-								
-								
-									<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-										<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-										<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
-									</div>
-						
-						
-								{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-						
+							<div    className=" col-sm-12 col-md-12   ">
+								<FooterBar/>
+							</div>
+							<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+								<nav>
+									<ul className="pager">
+										<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til valg af logo eller banner</a></li>
+										<li className="next"><a href="#" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod <span aria-hidden="true">&rarr;</span></a></li>
+									</ul>
+								</nav>
+							</div>
 					</div>
-					
 				</div>
-				
-			
 		</div>
-		
-		
 		}
-		
-		
-		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0 && this.state.footerSelected != 0 && this.state.menuSelected == 0 )
 		{
-		
 			contentPreview = 
-		
-				
 				<div id="rowID" className=" row" key={"rowMenuShow"} >
 					<div className="container-fluid">
 
@@ -2014,11 +1761,8 @@ class ContentComponent extends React.Component{
 											</button>
 											
 										</div>
-										
-								
+
 										<div className="collapse navbar-collapse" id="myNavbar">
-
-
 											<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
 											<nav className="navbar navbar-default">
 												<div className="container-fluid">
@@ -2033,14 +1777,9 @@ class ContentComponent extends React.Component{
 											</nav>
 										</div>
 									</nav>
-							
-								
 							</div>
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-						
-
-						
 									<div    className=" col-sm-3 col-md-3   ">
 										
 											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
@@ -2062,33 +1801,24 @@ class ContentComponent extends React.Component{
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
 								
-								
+								<div    className=" col-sm-12 col-md-12   ">
+									<FooterBar/>
+								</div>
 
 						</div>
-						
-						<div  key={"colmdFooterShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-							<div  className="col-sm-12 col-md-12  ">	
-								<FooterBar/>
-							</div>
-						</div>
-			
-						
+
 						<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-							<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-							<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+							<nav>
+								<ul className="pager">
+									<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til forsiden</a></li>
+									<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+								</ul>
+							</nav>
 						</div>
-						
-							
-						
-							
-						
-							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
-						
-				
 				</div>
 				
 				</div>
-		}else	if(this.state.menuBannerSelected == 2 && this.state.contentSelected != 0 && this.state.footerSelected != 0 )
+		}else	if(this.state.menuBannerSelected == 2 && this.state.contentSelected != 0 && this.state.footerSelected != 0 && this.state.menuSelected == 0 )
 		{
 			
 			contentPreview = 
@@ -2128,7 +1858,7 @@ class ContentComponent extends React.Component{
 							
 							<div    className=" col-md-3  col-sm-3  sidebar-right   ">
 					
-								<div   className="col-sm-12 col-md-12 sidebar panel panel-body text-center">
+								<div   className="col-sm-12 col-md-12 sidebar  text-center">
 							
 											<nav className="navbar navbar-default navbar-static-top">
 												<div className="navbar-header">
@@ -2140,16 +1870,10 @@ class ContentComponent extends React.Component{
 													</button>
 													
 												</div>
-												
-										
+
 												<div class="collapse navbar-collapse" id="myNavbar">
-
-
-					 
-													
 													<a href="#" className="btn btn-info" onClick={this.addMenuArea.bind(this)} >Indsæt Menupunkt</a>
-														
-												
+
 													{menuLinksHorizontal}
 													
 												</div>
@@ -2162,16 +1886,17 @@ class ContentComponent extends React.Component{
 									<FooterBar/>
 								</div>
 						</div>
-
-						
 					</div>
 					
 				</div>
 				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-					<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-					<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
-				</div>
-							
+					<nav>
+						<ul className="pager">
+						<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til forsiden</a></li>
+						<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+						</ul>
+					</nav>
+				</div>			
 		</div>
 		}
 		
@@ -2206,7 +1931,6 @@ class ContentComponent extends React.Component{
 						</p>
 					</form>
 					{ this.state.sloganQuestion ? this.answerBasedOnSlogan(): <ErrorMessages Type="hvis du vælger nej til slogan, så vil der opstå en fejl"/>}
-					
 					
 				</div>
 			)
@@ -3368,4 +3092,5 @@ Dropzone.propTypes = {
 			</FooterComponent>
 		</div>, 
 		document.getElementById('footer')
-	);
+		);
+	
