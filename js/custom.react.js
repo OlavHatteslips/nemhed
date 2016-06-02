@@ -20,11 +20,6 @@ class MenuComponent extends React.Component{
 
 	}
 	
-	componentWillUnmount() {
-		
-	
-	}
-	
 	tick() {
 		this.setState({current: this.state.current + 1});
 	}
@@ -485,6 +480,7 @@ class ContentComponent extends React.Component{
 				<h4>Copyright</h4> 
 				<p>
 					Hej - Vi skal g&oslash;re opmærksom på, at det er strengt ulovligt, at benytte eller uploade billeder som man ikke har tilladelse til at bruge. Copyright! Denne side fraskriver sig hermed et hvert (med)ansvar for brugen af andres værker.
+				
 				</p>
 				<blockquote>
 					<a href="http://kum.dk/kulturpolitik/ophavsret/billedkunst-og-fotografier/" alt="copyright paa billeder">Link</a>
@@ -986,8 +982,15 @@ class ContentComponent extends React.Component{
 									
 								</div>
 								<div  key={"colmdOptionsShowMenuSelectedZero"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-									<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+									<nav>
+									  <ul className="pager">
+										<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
+										<li className="next"><a href="#" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu <span aria-hidden="true">&rarr;</span></a></li>
+									  </ul>
+									</nav>
+									
+								
+									
 								</div>
 								
 						</div>
@@ -1004,7 +1007,7 @@ class ContentComponent extends React.Component{
 		}
 		else if(this.state.menuSelected == 1   )
 		{
-			alert("HEJ");
+			
 			contentPreview = 
 		
 				
@@ -1080,9 +1083,12 @@ class ContentComponent extends React.Component{
 						</div>
 
 						<div  key={"colmdOptionsShowSelectedOne"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-
-								<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-								<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
+							<nav>
+							  <ul className="pager">
+								<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
+								<li className="next"><a href="#" onClick={this.GoToCreateContent.bind(this)}>Placer  indhold <span aria-hidden="true">&rarr;</span></a></li>
+							  </ul>
+							</nav>
 						</div>	
 
 							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
@@ -1163,11 +1169,12 @@ class ContentComponent extends React.Component{
 					
 				</div>
 						<div  key={"colmdOptionsShowSelectedTwo"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-									
-												
-				
-								<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-								<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>											
+							<nav>
+							  <ul className="pager">
+								<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
+								<li className="next"><a href="#" onClick={this.GoToCreateContent.bind(this)}>Placer indhold <span aria-hidden="true">&rarr;</span></a></li>
+							  </ul>
+							</nav>
 						</div>				
 		</div>
 		}
@@ -1309,8 +1316,14 @@ class ContentComponent extends React.Component{
 						</div>
 
 						<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-							<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-							<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+						
+							<nav>
+							  <ul className="pager">
+								<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
+								<li className="next"><a href="#" onClick={this.GoToCreateFooter.bind(this)}>Placer Sidefod <span aria-hidden="true">&rarr;</span></a></li>
+							  </ul>
+							</nav>
+						
 						</div>
 	
 							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
@@ -1394,8 +1407,14 @@ class ContentComponent extends React.Component{
 					
 				</div>
 				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-					<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-					<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
+
+					<nav>
+					  <ul className="pager">
+						<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
+						<li className="next"><a href="#" onClick={this.GoToCreateFooter.bind(this)}>Placer Sidefod <span aria-hidden="true">&rarr;</span></a></li>
+					  </ul>
+					</nav>
+				
 				</div>
 							
 		</div>
@@ -1474,8 +1493,13 @@ class ContentComponent extends React.Component{
 			
 						
 						<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-							<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-							<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+
+							<nav>
+								<ul className="pager">
+									<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til forsiden</a></li>
+									<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+								</ul>
+							</nav>
 						</div>
 
 							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
@@ -1562,8 +1586,13 @@ class ContentComponent extends React.Component{
 					
 				</div>
 				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-					<a href="#" className="btn btn-default" onClick={this.GoToFrontpage.bind(this)}>Tilbage til forsiden</a>
-					<a href="#" className="btn btn-default" onClick={this.downloadHTML.bind(this)}>Download HTML</a>
+
+					<nav>
+						<ul className="pager">
+							<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til forsiden</a></li>
+							<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+						</ul>
+					</nav>
 				</div>
 							
 		</div>
@@ -3044,6 +3073,202 @@ class Dropzone extends React.Component {
   }
 }
 
+
+
+// FLUX
+        /** McFly */
+
+        var Flux = new McFly();
+
+        /** Store */
+		var shModal = false;
+		
+		function setModalState(text){
+           shModal = text
+        }
+
+        var RecipeStore = Flux.createStore({
+			getModal : function(){
+				return shModal;
+			}
+        }, function(payload){
+			if(payload.actionType === "SHOW_MODAL") {
+				setModalState(payload.text);
+                RecipeStore.emitChange();
+            }
+        });
+
+        /** Actions */
+
+        var RecipeActions = Flux.createActions({
+			showModal: function(text){
+				
+               return {
+                  actionType: "SHOW_MODAL",
+                  text: text
+               }
+            }
+        });
+
+        function getRecipes(){
+		   return {
+			   modal : RecipeStore.getModal()
+           }
+        }
+
+        /** Controller View */
+		
+		var ModalController = React.createClass({
+            mixins: [RecipeStore.mixin],
+            getInitialState: function(){
+                return getRecipes();
+            },
+            storeDidChange: function() {
+                this.setState(getRecipes());
+            },
+            render: function() {
+                return <ModalComponent modal={this.state.modal} />;
+            }
+        });
+
+        /** Component */
+
+       class ModalComponent extends React.Component{
+		   
+		    constructor(props) {
+				super(props);
+				this.state = {
+					mounted: true
+				}
+			}
+			
+			componentDidMount() {
+				this.setState({ mounted: true});
+			}
+				
+			disableWarning(){
+				this.setState({ mounted: false});
+			}
+			
+			showMyPopup(){
+				
+				var divStyle = {
+					display: 'block'
+				}
+				var fade = {
+					display: 'block'
+				}
+				
+				var popoverStyle = {
+					display: 'block',
+					top: '26px',
+					left: '232.167px'
+				}
+				var topStyle = {
+					top: "50%"
+				}
+				return(
+					<div style={popoverStyle}  id="popover423043" className="popover fade right in" role="tooltip">
+						
+						<div style={topStyle} className="arrow">
+						
+						
+						</div>
+					
+						<h3 className="popover-title">
+							Rettigheder
+							<button aria-label="Close" data-dismiss="modal" onClick={	this.disableWarning.bind(this)} class="close" type="button"><span aria-hidden="true">×</span></button>
+							
+							</h3>
+						<div className="popover-content">
+							<button className="btn btn-info" onClick={	this.showModal.bind(this, true)} >
+								Hvad betyder Rettigheder?
+							</button>
+						</div>
+					</div>
+				)
+			}
+			
+			
+			showModal(visibleModal){
+				
+				RecipeActions.showModal(visibleModal);
+			}
+
+            render() {
+				var divStyle = {
+					display: 'block'
+				}
+				var fade = {
+					display: 'block'
+				}
+				
+			
+				var modalMessage;
+				
+		
+				if(this.props.modal == true){
+					
+					return(
+					
+					modalMessage = 
+						<div id="light" className='black_overlay' onClick={this.showModal.bind(this, false)} style={divStyle} ClassName='white_content'>
+							<div id="fade"  style={fade}>
+								<div className="col-md-3 sidebar-optionpaneltop ">
+									<div className="modal modal_example" style={fade} onClick={this.showModal.bind(this, false)} tabindex="-1" role="dialog">
+										<div className="modal-dialog">
+											<div className="modal-content">
+												<div className="modal-header">
+													<button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<h4 className="modal-title">
+														Advarsel - Copyright / Rettigheder
+													</h4>
+												</div>
+												<div className="modal-body">
+													<p>
+														Hej - Vi skal g&oslash;re opmærksom på, at det er strengt ulovligt, at benytte eller uploade billeder som man ikke har tilladelse til at bruge. Copyright! Denne side fraskriver sig hermed et hvert (med)ansvar for brugen af andres værker.	
+													</p>
+												</div>
+												<div className="modal-footer">
+													<a type="button" className="btn btn-info" href="http://kum.dk/kulturpolitik/ophavsret/billedkunst-og-fotografier/" target="_blank" data-dismiss="modal">Læs mere</a>
+													<button type="button" className="btn btn-default" data-dismiss="modal">Luk Boksen</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					)
+					
+				}else{
+					return( 
+						<div>
+						
+						
+							{ this.state.mounted  ? this.showMyPopup(): null }
+						</div>
+					)
+				}
+				
+
+                return (
+					<div className="container-fluid">
+						<div className="row">
+							
+							{modalMessage}
+							
+								
+							
+							
+						</div>
+					</div>
+                )
+            }
+        };
+
+
+
 class DropzoneDemo extends React.Component{
 	constructor (props){
 		super(props);
@@ -3054,6 +3279,7 @@ class DropzoneDemo extends React.Component{
 		}
 	}
 	onDrop(files) {
+		
       this.setState({
         files: files
       });
@@ -3070,10 +3296,15 @@ class DropzoneDemo extends React.Component{
                 <Dropzone ref="dropzone" onDrop={this.onDrop.bind(this)}>
                   
                 </Dropzone>
-
+				
                 {this.state.files.length > 0 ? <div>
-                <div>{this.state.files.map((file) => <img className='img img-responsive' src={file.preview} /> )}</div>
-                </div> : null}
+					<div>
+						{this.state.files.map((file) => <img className='img img-responsive' src={file.preview} /> )}
+						
+						<ModalController />
+					</div>
+                </div> 
+				: null}
             </div>
         )
 			

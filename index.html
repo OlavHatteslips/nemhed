@@ -21,7 +21,7 @@
 
 	</head>
 
-	<body>
+	<body ref='r_body'>
 		<!-- JSXTransformer er en speciel form for syntax man kan bruge i stedet for javascript -->
 		<!-- den oversætter noget der minder om HTML til Javascript-->
 		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>-->
@@ -29,10 +29,10 @@
 	<div class="container" id="menuId">
 		
 	</div>
+	<div id="modalTest"></div>
 	 <div id="pageMenuLayout "  class="pagebodylayout">
 		<div class="container">
 
-        <!-- Example row of columns -->
         <div id="pagebodylayout" class=" row pagebodylayout" >
 		
 			<div id="jumbotronId">
@@ -80,8 +80,10 @@
 		<script src="js/react-with-addons.js"></script>
 		<script src="js/react-dom.js"></script>
 		
+		
 		<!-- det er vores custom react kode -->	
-		<script type="text/babel" src="js/custom.react.js" crossorigin="anonymous"></script>
+		<script type="text/babel" src="js/custom.react.js" ></script>
+	
 		<script src="js/browser.min.js"></script>
 		
 		<!-- det er bare jquery -->

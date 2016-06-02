@@ -189,12 +189,16 @@ li.a{
 
 .pager li > a:focus, .pager li > a:hover {
     text-decoration: none;
-    color:rgba(0,0,0,1);
+    color: #fff;
+	background-color: #449d44;
+	border-color: rgba(255,255,255,1);
 }
 
 .pager li > a {
     text-decoration: none;
-    color:rgba(0,0,0,1);
+    color: #fff;
+	background-color: #449d44;
+	border-color: rgba(255,255,255,1);
 }
 
 
@@ -645,4 +649,45 @@ div > nav{
 
 .navbar-nav .li.a{
 	color:rgba(255,255,255,1);
+}
+
+/**Modal Box **/
+.black_overlay{
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color:  rgba(243,207,135,1);
+	z-index:1001;
+	-moz-opacity: 0.9;
+	opacity:.95;
+	filter: alpha(opacity=95);
+}
+
+.modal_example{
+	padding: 45px 15px 15px;
+	margin: 0 -15px 15px;
+	border-color: #e5e5e5 #eee #eee;
+	border-style: solid;
+	border-width: 1px 0;
+	
+	-webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+	box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+}
+
+
+.white_content {
+	display: none;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	padding: 16px;
+	border: 16px solid  rgba(243,207,135,1);
+	background-color: white;
+	z-index:1002;
+	overflow: auto;
 }
