@@ -264,6 +264,7 @@ class ContentComponent extends React.Component{
 			footerSelected : 0,
 			contentSelected : 0,
 			createFooter : false,
+			createFooterOrdinary : false,
 			downloadLink: '',
 			NextContentQuestion: false,
 			menuItem: [],
@@ -357,6 +358,13 @@ class ContentComponent extends React.Component{
 	GoToCreateFooter(){
 		this.setState({ createFooter : true});
 		this.setState({ showPreview: false});
+		this.setState({ bannerMounted : true});
+		this.setState({ createBannerMenu : false});
+	}
+	
+	GoToCreateFooterOrdinary(){
+		this.setState({ createFooterOrdinary : true});
+		this.setState({ showPreview: false});
 		this.setState({ bannerMounted : false});
 		this.setState({ createBannerMenu : false});
 	}
@@ -364,9 +372,11 @@ class ContentComponent extends React.Component{
 	GoToCreateContent(){
 		this.setState({ createContent : true});
 		this.setState({ showPreview: false});
-		this.setState({ bannerMounted : false});
+	
 		this.setState({ createBannerMenu : false});
 		this.setState({ createFooter : false});
+		this.setState({ createMenu : false});
+		
 	}
 	
 	GoToCreateBannerMenu(){
@@ -390,19 +400,27 @@ class ContentComponent extends React.Component{
 	footerChoice(choice_param){
 		this.setState({ createFooter : false});
 		this.setState({ footerSelected: choice_param});
+		this.setState({ showPreview : false});
+		this.setState({ bannerMounted : true});
+	}
+	
+	footerChoiceOrdinary(choice_param){
+		this.setState({ createFooter : false});
+		this.setState({ footerSelected: choice_param});
 		this.setState({ showPreview : true});
+		this.setState({ bannerMounted : false});
+		this.setState({ createFooterOrdinary : false});
 	}
 	
 	contentChoice(choice_param){
 		this.setState({ 
 			NextContentQuestion : true,
-			contentType: choice_param
+			contentType: choice_param,
+			showPreview: false
 		});
 	}
 	
 	contentChoiceTwo(choice_param_s){
-		
-		
 		this.setState({	createContent: false});
 		this.setState({	showPreview: true});
 		this.setState({	contentSelected: choice_param_s});
@@ -410,8 +428,9 @@ class ContentComponent extends React.Component{
 
 	GoToMenuBannerChoice(){
 		this.setState({ createBannerMenu : false});
-		this.setState({ showPreview: true});
+		this.setState({ showPreview: false});
 		this.setState({menuBannerSelected: 0});
+		
 		
 	}
 	
@@ -602,6 +621,61 @@ class ContentComponent extends React.Component{
 	}
 	
 	
+	insertFooterQuestionsOrdinary(){
+		
+		var progressStyle = {
+		  width: '60%'
+		};
+		
+		return(
+			<div id="rowID" className=" " key={"rowMenu"} >
+
+				<ProgBar progText="Trin 4 / 4 - Placering af sidefod" width={ 80 }/>
+				
+				<JumbotronFooterComponent  />
+				<div  key={"colmdMenu6"}  className="col-md-6 ">
+				
+					<div className="panel " key={"panel"}>
+						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
+							<p className="text-center" key={"textCenterMenu"}>
+								
+								<iframe src={this.state.videoLink}></iframe>
+									
+							</p>
+						</div>
+					</div>
+				</div>
+				<div className="col-md-6" key={7}>
+					<div className="panel " key={"videoLinkMenu"} >
+							<h2>Hvor vil du have i din sidefod ?</h2>
+				
+							<form>
+								<p className="form-group">
+
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.footerChoiceOrdinary.bind(this, 1)}  /> En copyright tekst
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.footerChoiceOrdinary.bind(this, 2)} /> Tilmelding til nyhedsbrev
+									</label>
+								</p>
+								<p className="form-group">
+									<label className="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.footerChoiceOrdinary.bind(this, 3)} /> En knap til feedback
+									</label>
+								</p>
+							</form>	
+					</div>
+				</div>
+			</div>
+		)
+	}
+	
+	
+	
+	
 	insertBannerMenuQuestions(){
 		return(
 				<div id="rowID" className=" " key={"rowMenu"} >
@@ -738,7 +812,6 @@ class ContentComponent extends React.Component{
 		  width: '60%'
 		};
 
-		console.log(this.state.contentSelected);
 		var pageFooter = 
 			
 				<footer className="bs-docs-footer" role="contentinfo"> 
@@ -772,10 +845,10 @@ class ContentComponent extends React.Component{
 				</div>	
 			);
 		}.bind(this));
-		
+
 		if(this.state.bannerMounted	== false){
 			
-		
+			
 		if(this.state.logoBannerSelected == true && this.state.menuSelected == 0 && this.state.menuBannerSelected == 0)
 		{
 			contentPreview = <div> 
@@ -895,8 +968,6 @@ class ContentComponent extends React.Component{
 							  </ul>
 							</nav>
 						</div>	
-
-							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 	
 				</div>
 				
@@ -1054,13 +1125,11 @@ class ContentComponent extends React.Component{
 							<nav>
 							  <ul className="pager">
 								<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
-								<li className="next"><a href="#" onClick={this.GoToCreateFooter.bind(this)}>Placer Sidefod <span aria-hidden="true">&rarr;</span></a></li>
+								<li className="next"><a href="#" onClick={this.GoToCreateFooterOrdinary.bind(this)}>Placer Sidefod <span aria-hidden="true">&rarr;</span></a></li>
 							  </ul>
 							</nav>
 						
 						</div>
-	
-							{ this.state.alertLogoImageCopyright ? this.AlertCopyright(): null }
 				</div>
 				
 				</div>
@@ -1129,7 +1198,7 @@ class ContentComponent extends React.Component{
 					<nav>
 					  <ul className="pager">
 						<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
-						<li className="next"><a href="#" onClick={this.GoToCreateFooter.bind(this)}>Placer Sidefod <span aria-hidden="true">&rarr;</span></a></li>
+						<li className="next"><a href="#" onClick={this.GoToCreateFooterOrdinary.bind(this)}>Placer Sidefod <span aria-hidden="true">&rarr;</span></a></li>
 					  </ul>
 					</nav>
 				
@@ -1325,7 +1394,7 @@ class ContentComponent extends React.Component{
 		
 		var menuLinksHorizontal;
 		
-		console.log("CONTENT: " + this.state.contentSelected )
+		
 		
 		var pageFooter = 
 	
@@ -1556,7 +1625,7 @@ class ContentComponent extends React.Component{
 		
 			</div>
 			}
-		}
+		
 
 		if(this.state.menuBannerSelected == 1 && this.state.contentSelected != 0  && this.state.menuSelected == 0 )
 		{
@@ -1602,15 +1671,17 @@ class ContentComponent extends React.Component{
 
 							<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
 	
-									{divImage}
+								{divImage}
 
-									<div className="container">	
-										{ this.state.contentSelected  ? this.insertContentBox(): null }
-									</div>
+								<div className="container">	
+									{ this.state.contentSelected  ? this.insertContentBox(): null }
+								</div>
+									
+							
+								
+							
 							</div>
-							<div    className=" col-sm-12 col-md-12   ">
-								<FooterBar/>
-							</div>
+							
 								<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 									<nav>
 										<ul className="pager">
@@ -1655,7 +1726,7 @@ class ContentComponent extends React.Component{
 								</div>
 							</div>
 							<div    className=" col-sm-12 col-md-12   ">
-								<FooterBar/>
+							
 							</div>
 							<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 								<nav>
@@ -1727,9 +1798,9 @@ class ContentComponent extends React.Component{
 										{ this.state.contentSelected  ? this.insertContentBox(): null }
 									</div>
 								
-								<div    className=" col-sm-12 col-md-12   ">
+								
 									<FooterBar/>
-								</div>
+								
 
 						</div>
 
@@ -1808,9 +1879,9 @@ class ContentComponent extends React.Component{
 								</div>
 								
 							</div>
-								<div    className=" col-sm-12 col-md-12   ">
+						
 									<FooterBar/>
-								</div>
+								
 						</div>
 					</div>
 					
@@ -1825,7 +1896,7 @@ class ContentComponent extends React.Component{
 				</div>			
 		</div>
 		}
-		
+		}
 		return(
 				<div>
 					{contentPreview}
@@ -2022,8 +2093,10 @@ class ContentComponent extends React.Component{
 					
 					{
 						this.state.createFooter ? this.insertFooterQuestions(): null 
+						
 					}
-					{ this.state.bannerMounted ? this.basedOnBanner(): null }
+					{	this.state.createFooterOrdinary ? this.insertFooterQuestionsOrdinary(): null }
+					{ 	this.state.bannerMounted ? this.basedOnBanner(): null }
 		
 			</div>
 		)
