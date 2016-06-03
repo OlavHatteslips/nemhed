@@ -5,7 +5,6 @@ class MenuComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			colors: "red",
 			items:[],
 			children: ['Forside','Hvorfor?','Hvem er vi?', 'Opret din side'],
 			mounted: false
@@ -22,21 +21,11 @@ class MenuComponent extends React.Component{
 	}
   
 	render(){
-		var children = [];
-		var pos = 0;
-		var colors = ['red', 'gray', 'blue'];
-		var style = {
-		  left: pos * 128,
-		  padding:"0.5rem",
-		  margin: "5px",
-		  background: colors[1]
-		};
-
-		var x;
+		var menuLinks;
 		if(this.state.mounted ){	
-			x = <MyLinks  />
+			menuLinks = <MyLinks  />
 		}
-	/* <button className="btn btn-info" onClick={this.handleAdd.bind(this)}>Tilføj Menu</button>*/
+		
 		return (
 		
 				<div className="blog-masthead header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top" >
@@ -55,7 +44,7 @@ class MenuComponent extends React.Component{
 							</div>
 							<div class="collapse navbar-collapse" id="myNavbar">
 
-								{x}
+								{menuLinks}
 							
 							</div>
 					</div>		
@@ -86,22 +75,13 @@ class JumbotronComponent extends React.Component{
 	}
 	
 	render(){
-	
-		var pos = 0;
-		var colors = ['red', 'gray', 'blue'];
-		var style = {
-		  left: pos * 128,
-		  padding:"0.5rem",
-		  margin: "5px",
-		  background: colors[1]
-		};
 
-		var x;
+		var jumbotronTitle;
 		
 		if(this.state.mounted ){	
-			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+			jumbotronTitle = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
-					<div className="container "    href="#" key={jumbotronTitle} >
+					<div className="container "  href="#" key={jumbotronTitle} >
 							<h1>
 								{jumbotronTitle}
 							</h1>
@@ -116,7 +96,7 @@ class JumbotronComponent extends React.Component{
 		return (
 		
 				<div>
-						{x}
+						{jumbotronTitle}
 				</div>
 			)
 	}
@@ -126,8 +106,6 @@ class JumbotronMenuComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			current: 0,
-			colors: "red",
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Hvor vil du have placeret din menu?']
@@ -143,20 +121,11 @@ class JumbotronMenuComponent extends React.Component{
 	}
 	
 	render(){
-	
-		var pos = 0;
-		var colors = ['red', 'gray', 'blue'];
-		var style = {
-		  left: pos * 128,
-		  padding:"0.5rem",
-		  margin: "5px",
-		  background: colors[1]
-		};
 
-		var x;
+		var jumbotronTitle;
 		
 		if(this.state.mounted ){	
-			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+			jumbotronTitle = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				
 					<div className="container-fluid "    href="#" key={jumbotronTitle} >
 							<h1>
@@ -175,7 +144,7 @@ class JumbotronMenuComponent extends React.Component{
 		return (
 		
 				<div className=" jumbotron jumbotroncolors  text-center">
-						{x}
+						{jumbotronTitle}
 				</div>
 			)
 	}
@@ -185,9 +154,6 @@ class JumbotronFooterComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			current: 0,
-			colors: "red",
-			items:[],
 			mounted: false,
 			jumbotronTitle: ['Hvad vil du have placeret i din sidefod?']
 			
@@ -201,20 +167,10 @@ class JumbotronFooterComponent extends React.Component{
 	}
 
 	render(){
-	
-		var pos = 0;
-		var colors = ['red', 'gray', 'blue'];
-		var style = {
-		  left: pos * 128,
-		  padding:"0.5rem",
-		  margin: "5px",
-		  background: colors[1]
-		};
 
-		var x;
-		
+		var jumbotronTitle;
 		if(this.state.mounted ){	
-			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+			jumbotronTitle = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
 					<div className="container-fluid "    href="#" key={jumbotronTitle} >
 							<h1>
@@ -223,8 +179,6 @@ class JumbotronFooterComponent extends React.Component{
 							<p>
 								S&aring;dan g&oslash;r du...
 							</p>
-							
-				
 					</div>
 				)
 			}.bind(this));
@@ -233,7 +187,7 @@ class JumbotronFooterComponent extends React.Component{
 		return (
 		
 				<div  className=" jumbotron jumbotroncolors  text-center">
-						{x}
+						{jumbotronTitle}
 				</div>
 			)
 	}
@@ -244,9 +198,6 @@ class JumbotronUserContentComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			current: 0,
-			colors: "red",
-			items:[],
 			mounted: false,
 			jumbotronTitle: ['Vælg typen af indhold']
 		}
@@ -256,20 +207,10 @@ class JumbotronUserContentComponent extends React.Component{
 	}
 
 	render(){
-	
-		var pos = 0;
-		var colors = ['red', 'gray', 'blue'];
-		var style = {
-		  left: pos * 128,
-		  padding:"0.5rem",
-		  margin: "5px",
-		  background: colors[1]
-		};
-
-		var x;
+		var jumbotronTitle;
 		
 		if(this.state.mounted ){	
-			x = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
+			jumbotronTitle = this.state.jumbotronTitle.map(function(jumbotronTitle, i) {
 				return (
 					<div className="container-fluid "    href="#" key={jumbotronTitle} >
 							<h1>
@@ -288,9 +229,9 @@ class JumbotronUserContentComponent extends React.Component{
 		return (
 		
 				<div className=" jumbotron jumbotroncolors  text-center">
-						{x}
+					{jumbotronTitle}
 				</div>
-			)
+		)
 	}
 }
 
@@ -301,7 +242,8 @@ class ContentComponent extends React.Component{
 			items:["row","col-md-6","panel", "panel-body", "text-center", "iframe"],
 			mounted: false,
 			mountedInfo: false,
-			videoLink: ['https://www.youtube.com/embed/9gTw2EDkaDQ?html5=1'],
+			videoLink: ['https://www.youtube.com/embed/p-xGhskA2F0?html5=1'],
+			videoMenuLink: ['https://www.youtube.com/embed/ngqakAN1KGI?html5=1'],
 			value: "banner",
 			bval : "logo",
 			showNextQuestion : false,
@@ -505,7 +447,7 @@ class ContentComponent extends React.Component{
 					<div className="panel " key={"panel"}>
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
 							<p className="text-center" key={"textCenterMenu"}>
-								<iframe src={this.state.videoLink}></iframe>
+								<iframe src={this.state.videoMenuLink}></iframe>
 							</p>
 						</div>
 					</div>
@@ -532,12 +474,9 @@ class ContentComponent extends React.Component{
 										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.menuChoice.bind(this, 3)} /> Under logo'et
 									</label>
 								</p>
-							</form>
-								
+							</form>	
 					</div>
 				</div>
-				
-
 			</div>
 		)
 	}
@@ -549,27 +488,26 @@ class ContentComponent extends React.Component{
 		
 		return(
 				<div>
-							<h2>Hvor mange kolonner ønsker du?</h2>
-				
-							<form>
-								<p className="form-group">
+					<h2>Hvor mange kolonner ønsker du?</h2>
+		
+					<form>
+						<p className="form-group">
 
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.contentChoiceTwo.bind(this, 1)}  /> 1
-									</label>
-								</p>
-								<p className="form-group">
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.contentChoiceTwo.bind(this, 2)} /> 2
-									</label>
-								</p>
-								<p className="form-group">
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionThreeMenuRight"  value="3" onClick={this.contentChoiceTwo.bind(this, 3)} /> 3
-									</label>
-								</p>
-							</form>
-						
+							<label className="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuOverHeader"  value="1" onClick={this.contentChoiceTwo.bind(this, 1)}  /> 1
+							</label>
+						</p>
+						<p className="form-group">
+							<label className="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuRight"  value="2" onClick={this.contentChoiceTwo.bind(this, 2)} /> 2
+							</label>
+						</p>
+						<p className="form-group">
+							<label className="radio-inline">
+								<input type="radio" name="inlineRadioOptions" id="QuestionThreeMenuRight"  value="3" onClick={this.contentChoiceTwo.bind(this, 3)} /> 3
+							</label>
+						</p>
+					</form>
 			</div>)
 	}
 	
@@ -627,10 +565,10 @@ class ContentComponent extends React.Component{
 		};
 		
 		return(
-				<div id="rowID" className=" " key={"rowMenu"} >
+			<div id="rowID" className=" " key={"rowMenu"} >
 
-					<ProgBar progText="Trin 4 / 4 - Placering af sidefod" width={ 80 }/>
-					
+				<ProgBar progText="Trin 4 / 4 - Placering af sidefod" width={ 80 }/>
+				
 				<JumbotronFooterComponent  />
 				<div  key={"colmdMenu6"}  className="col-md-6 ">
 				
@@ -665,8 +603,7 @@ class ContentComponent extends React.Component{
 										<input type="radio" name="inlineRadioOptions" id="QuestionTwoMenuUnderHeader"  value="3" onClick={this.footerChoice.bind(this, 3)} /> En knap til feedback
 									</label>
 								</p>
-							</form>
-								
+							</form>	
 					</div>
 				</div>
 			</div>
@@ -685,7 +622,7 @@ class ContentComponent extends React.Component{
 						<div className="panel-body"  id="panelVideoId" key={"panelVideoBodyMenu"} >
 							<p className="text-center" key={"textCenterMenu"}>
 								
-								<iframe src={this.state.videoLink}></iframe>
+								<iframe src={this.state.videoMenuLink}></iframe>
 									
 							</p>
 						</div>
@@ -795,8 +732,7 @@ class ContentComponent extends React.Component{
 			<div className="alert alert-danger" role="alert">
 			  <a href="#" className="alert-link">Der opstod en fejl</a>
 			</div>
-		)
-		
+		)	
 	}
 
 	previewFix(){
@@ -850,7 +786,6 @@ class ContentComponent extends React.Component{
 		
 		if(this.state.logoBannerSelected == true && this.state.menuSelected == 0 && this.state.menuBannerSelected == 0)
 		{
-			
 			contentPreview = <div> 
 	
 			<div id="rowID" className=" row" key={"rowMenuShow"} >
@@ -937,9 +872,6 @@ class ContentComponent extends React.Component{
 							</div>
 					
 						<div  key={"colmdMenuShow"}  className=" col-md-12  col-sm-12   sidebar-left  ">
-						
-
-						
 									<div    className=" col-sm-3 col-md-3   ">
 										
 											<div className="text-center"  id="panelVideoId" key={"panelMenuBody"} >
@@ -1956,9 +1888,6 @@ class ContentComponent extends React.Component{
 	}
 		
 	render(){
-		var x;
-		var b;
-		
 		var row;
 		var infoRow;
 		var {value} = this.state;
@@ -2150,7 +2079,7 @@ class FooterComponent extends
 
 	}
 
-/**store - er et array o.s.v data*/
+/**"store" - er et array o.s.v data*/
 var menuData = [
 	{title : "Forside", linkref: "#forside", targetWindow : "_self", selectedClass: "active" , role:"presentation" },
 	{title : "Hvorfor", linkref: " hvorfor.html",  targetWindow : "_blank", selectedClass: "" , role:"presentation" },
@@ -2161,7 +2090,7 @@ var menuData = [
 var _emptyArr = [];
 class MyLinks extends  React.Component{
     render() {
-        return (<LinkList data={ menuData }/>);
+        return (<LinkList data={ menuData }/>)
     }
 };	
 
@@ -2802,8 +2731,6 @@ class Dropzone extends React.Component {
 // FLUX
         /** McFly */
 
-        var Flux = new McFly();
-
         /** Store */
 		var shModal = false;
 		
@@ -2826,7 +2753,6 @@ class Dropzone extends React.Component {
 
         var RecipeActions = Flux.createActions({
 			showModal: function(text){
-				
                return {
                   actionType: "SHOW_MODAL",
                   text: text
