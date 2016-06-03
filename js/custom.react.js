@@ -57,8 +57,6 @@ class JumbotronComponent extends React.Component{
 	constructor (props){
 		super(props);
 		this.state = {
-			current: 0,
-			colors: "red",
 			items:[],
 			mounted: false,
 			jumbotronTitle: ['Vælg et logo eller banner?']
@@ -257,7 +255,6 @@ class ContentComponent extends React.Component{
 			startSetup: false,
 			logoBannerSelected : false,
 			bannerMounted: false,
-			alertLogoImageCopyright : false,
 			createMenu : false,
 			createBannerMenu : false,
 			createContent : false,
@@ -373,8 +370,6 @@ class ContentComponent extends React.Component{
 	}
 	
 	GoToCreateBannerMenu(){
-		
-		
 		this.setState({ createBannerMenu : true});
 		this.setState({ showPreview: false});
 		this.setState({ bannerMounted : false});
@@ -405,15 +400,12 @@ class ContentComponent extends React.Component{
 		});
 	}
 	
-	contentChoiceTwo(choice_param){
+	contentChoiceTwo(choice_param_s){
 		
-		this.setState({ 
-			createContent : false,
-			contentSelected: choice_param,
-			showPreview : true
-		});
 		
-		//this.setState({ NextContentQuestion : true});
+		this.setState({	createContent: false});
+		this.setState({	showPreview: true});
+		this.setState({	contentSelected: choice_param_s});
 	}
 
 	GoToMenuBannerChoice(){
@@ -485,7 +477,6 @@ class ContentComponent extends React.Component{
 		var progressStyle = {
 		  width: '60%'
 		};
-		
 		return(
 				<div>
 					<h2>Hvor mange kolonner ønsker du?</h2>
@@ -747,6 +738,7 @@ class ContentComponent extends React.Component{
 		  width: '60%'
 		};
 
+		console.log(this.state.contentSelected);
 		var pageFooter = 
 			
 				<footer className="bs-docs-footer" role="contentinfo"> 
@@ -979,14 +971,14 @@ class ContentComponent extends React.Component{
 					</div>
 					
 				</div>
-						<div  key={"colmdOptionsShowSelectedTwo"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-							<nav>
-							  <ul className="pager">
-								<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
-								<li className="next"><a href="#" onClick={this.GoToCreateContent.bind(this)}>Placer indhold <span aria-hidden="true">&rarr;</span></a></li>
-							  </ul>
-							</nav>
-						</div>				
+				<div  key={"colmdOptionsShowSelectedTwo"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+					<nav>
+					  <ul className="pager">
+						<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
+						<li className="next"><a href="#" onClick={this.GoToCreateContent.bind(this)}>Placer indhold <span aria-hidden="true">&rarr;</span></a></li>
+					  </ul>
+					</nav>
+				</div>				
 		</div>
 		}
 		
@@ -1332,6 +1324,8 @@ class ContentComponent extends React.Component{
 		var menuLinks;
 		
 		var menuLinksHorizontal;
+		
+		console.log("CONTENT: " + this.state.contentSelected )
 		
 		var pageFooter = 
 	
@@ -2390,105 +2384,9 @@ class ReactProgressBar  extends React.Component{
 		}
 	};
 	
-	// FLUX
-        /** McFly */
+/** McFly */
 
-        var Flux = new McFly();
-
-        /** Store */
-
-        var _recipes = [];
-
-        function addRecipe(text){
-		
-            _recipes.push(text);
-			
-        }
-
-        var RecipeStore = Flux.createStore({
-            getRecipes: function(){
-               return _recipes;
-            }
-        }, function(payload){
-            if(payload.actionType === "ADD_RECIPE") {
-				
-                addRecipe(payload.text);
-                RecipeStore.emitChange();
-            }
-        });
-
-        /** Actions */
-
-        var RecipeActions = Flux.createActions({
-            addRecipe: function(text){
-               return {
-                  actionType: "ADD_RECIPE",
-                  text: text
-               }
-            }
-        });
-
-        function getRecipes(){
-		   return {
-			   
-               recipes: RecipeStore.getRecipes()
-			   
-           }
-        }
-
-        /** Controller View */
-		
-		var RecipesController = React.createClass({
-            mixins: [RecipeStore.mixin],
-            getInitialState: function(){
-                return getRecipes();
-            },
-            storeDidChange: function() {
-                this.setState(getRecipes());
-            },
-            render: function() {
-                return <FluxTest recipes={this.state.recipes} />;
-            }
-        });
-
-        /** Component */
-
-       class FluxTest extends React.Component{
-		   
-		    constructor(props) {
-				super(props);
-			}
-            addRecipe(){
-				
-                RecipeActions.addRecipe({_message:'Der opstod en fejl'});
-            }
-			removeRecipe(message){
-				
-                RecipeActions.removeRecipe({_message:message});
-            }
-            render() {
-				
-				var testMessage = this.props.recipes.map(function(item, i) {
-					return (
-							<div className="col-md-3 sidebar-optionpaneltop">
-								<div className="bs-callout bs-callout-danger" role="alert" key={i} > <h4>Fejl</h4> <p>{item._message}</p> </div>
-							</div>
-						)
-				});
-
-                return (
-					<div className="container-fluid">
-						<div className="row">
-						
-						
-						{testMessage}
-					
-						<button className="btn btn-info disabled" onClick={this.addRecipe.bind(this)}>Add recipe</button>
-						</div>
-					</div>
-                )
-            }
-        };
+var Flux = new McFly();
 	
 const supportMultiple = (typeof document !== 'undefined' && document && document.createElement) ?
   'multiple' in document.createElement('input') :
@@ -2614,16 +2512,6 @@ class Dropzone extends React.Component {
   }
 
   render() {
-	  /**
-    const  {
-      accept,
-      activeClassName,
-      inputProps,
-      multiple,
-      name,
-      rejectClassName,
-      rest
-    } = this.props;*/
 	
 	let accept;
 	let activeClassName;
@@ -2700,7 +2588,6 @@ class Dropzone extends React.Component {
 	
 	var myStyle = {
 		display: 'block'
-
 	};
 
     if (name && name.length) {
@@ -2725,8 +2612,6 @@ class Dropzone extends React.Component {
 		)
   }
 }
-
-
 
 // FLUX
         /** McFly */
@@ -2853,7 +2738,6 @@ class Dropzone extends React.Component {
 					display: 'block'
 				}
 				
-			
 				var modalMessage;
 				
 		
@@ -2901,7 +2785,6 @@ class Dropzone extends React.Component {
 					)
 				}
 				
-
                 return (
 					<div className="container-fluid">
 						<div className="row">
@@ -2916,8 +2799,6 @@ class Dropzone extends React.Component {
                 )
             }
         };
-
-
 
 class DropzoneDemo extends React.Component{
 	constructor (props){
@@ -3019,4 +2900,3 @@ Dropzone.propTypes = {
 		</div>, 
 		document.getElementById('footer')
 		);
-	
