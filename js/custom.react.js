@@ -1912,23 +1912,41 @@ class ContentComponent extends React.Component{
 			
 				<div className="">
 				
-					<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
-					
-					<form>
-						<p className="form-group">
+			
+								<div className="col-md-4" >
+								
+									<img src="img/user_help_slogan.png" className="img img-responsive img-thumbnail" alt="vores logo" />
+								</div>
+								<div className="col-md-8" >
+									<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
+								</div>
+						
+							
+							<div className="col-md-12" >
+							</div>
+							
+							
+								<div className="col-md-2" >
+								
+									<img src="img/pencil_2_icon.png" className="img img-responsive " alt="vores logo" />
+								</div>
+								<div className="col-md-10" >
+								<form>
+									<p className="form-group">
 
-							<label className="radio-inline">
-								<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganYesId"  value="yes" onClick={this.basedOnSloganYes.bind(this)} /> Ja
-							</label>
-						</p>
-						<p className="form-group">
-							<label className="radio-inline">
-								<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganNoId"  value="no" onClick={this.basedOnSloganNo.bind(this)} /> Nej
-							</label>
-						</p>
-					</form>
-					{ this.state.sloganQuestion ? this.answerBasedOnSlogan(): <ErrorMessages Type="hvis du vælger nej til slogan, så vil der opstå en fejl"/>}
-					
+										<label className="radio-inline">
+											<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganYesId"  value="yes" onClick={this.basedOnSloganYes.bind(this)} /> Ja
+										</label>
+									</p>
+									<p className="form-group">
+										<label className="radio-inline">
+											<input type="radio" name="inlineRadioOptions" id="QuestionOneSloganNoId"  value="no" onClick={this.basedOnSloganNo.bind(this)} /> Nej
+										</label>
+									</p>
+								</form>
+								{ this.state.sloganQuestion ? this.answerBasedOnSlogan(): <ErrorMessages Type="hvis du vælger nej til slogan, så vil der opstå en fejl"/>}
+								</div>
+							
 				</div>
 			)
 	}
@@ -2038,23 +2056,46 @@ class ContentComponent extends React.Component{
 					</div>
 				</div>
 				<div className="col-md-6" key={6}>
+					
 					<div className="panel " key={"videoLink"} >
-
-							<h2>Har du et {this.props.children}</h2>
+						<div className="panel-body"  id="panelVideoId" >
+							<div className="col-md-12" >
+								<div className="col-md-4" >
+									<ModalHelpController />
+								</div>
+								<div className="col-md-8" >
+									<h2>Har du et {this.props.children}</h2>
+								</div>
+							</div>
+							
+							<div className="col-md-12" >
+							</div>
+							
+							<div className="col-md-12" >
+								<div className="col-md-2" >
+								
+									<img src="img/pencil_icon.png"  className="img img-responsive " alt="vores logo" />
+								
+								</div>
+								<div className="col-md-10" >
 								<form>
-								<p className="form-group">
+									<p className="form-group">
 
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionOneLogo"  value={this.state.bval} onClick={this.checkSetLogo.bind(this)} /> Logo
-									</label>
-								</p>
-								<p className="form-group">
-									<label className="radio-inline">
-										<input type="radio" name="inlineRadioOptions" id="QuestionOneBanner"   value={this.state.value}  onClick={this.checkSetBanner.bind(this)} /> Banner
-									</label>
-								</p>
-							</form>
-								{ this.state.showNextQuestion ? this.basedOnLogo(): null }
+										<label className="radio-inline">
+											<input type="radio" name="inlineRadioOptions" id="QuestionOneLogo"  value={this.state.bval} onClick={this.checkSetLogo.bind(this)} /> Logo
+										</label>
+									</p>
+									<p className="form-group">
+										<label className="radio-inline">
+											<input type="radio" name="inlineRadioOptions" id="QuestionOneBanner"   value={this.state.value}  onClick={this.checkSetBanner.bind(this)} /> Banner
+										</label>
+									</p>
+								</form>
+							
+								</div>
+									{ this.state.showNextQuestion ? this.basedOnLogo(): null }
+							</div>
+						</div>
 					</div>
 				</div>
 				
@@ -2693,54 +2734,187 @@ class Dropzone extends React.Component {
 		var shModal = false;
 		
 		function setModalState(text){
-           shModal = text
+			
+           shModal = text;
+		   
         }
 
-        var RecipeStore = Flux.createStore({
+        var ModalStore = Flux.createStore({
 			getModal : function(){
 				return shModal;
 			}
         }, function(payload){
 			if(payload.actionType === "SHOW_MODAL") {
 				setModalState(payload.text);
-                RecipeStore.emitChange();
+                ModalStore.emitChange();
+            }
+			if(payload.actionType === "SHOW_HELP_MODAL") {
+				
+				setModalState(payload.text);
+                ModalStore.emitChange();
             }
         });
 
         /** Actions */
 
-        var RecipeActions = Flux.createActions({
+        var ModalActions = Flux.createActions({
 			showModal: function(text){
                return {
                   actionType: "SHOW_MODAL",
                   text: text
                }
+            },
+			showHelpModal: function(text){
+               return {
+                  actionType: "SHOW_HELP_MODAL",
+                  text: text
+               }
             }
         });
 
-        function getRecipes(){
+        function getModal(){
 		   return {
-			   modal : RecipeStore.getModal()
+			   modal : ModalStore.getModal()
            }
         }
 
         /** Controller View */
 		
 		var ModalController = React.createClass({
-            mixins: [RecipeStore.mixin],
+            mixins: [ModalStore.mixin],
             getInitialState: function(){
-                return getRecipes();
+                return getModal();
             },
             storeDidChange: function() {
-                this.setState(getRecipes());
+                this.setState(getModal());
             },
             render: function() {
-                return <ModalComponent modal={this.state.modal} />;
+                return <ModalComponent  modal={this.state.modal} />;
+            }
+        });
+		
+		var ModalHelpController = React.createClass({
+            mixins: [ModalStore.mixin],
+            getInitialState: function(){
+                return getModal();
+            },
+            storeDidChange: function() {
+                this.setState(getModal());
+            },
+            render: function() {
+                return <ModalHelpComponent modal={this.state.modal} />;
             }
         });
 
-        /** Component */
+		
+		
+		        /** Component */
+       class ModalHelpComponent extends React.Component{
+		   
+		    constructor(props) {
+				super(props);
+				this.state = {
+					mountedUserHelp: true
+				}
+			}
+			
+			componentDidMount() {
+				this.setState({ mountedUserHelp: true});
+			}
+				
+			disableWarning(){
+				this.setState({ mountedUserHelp: false});
+			}
+			
+			showMyPopup(){
+				
+				var divStyle = {
+					display: 'block'
+				}
+				var fade = {
+					display: 'block'
+				}
+				
+				var popoverStyle = {
+				}
+				var topStyle = {
+				}
+			
+				return(
+					<div  role="tooltip">
+						<img src="img/user_help_logo_or_banner.png" onClick={	this.showHelpUserModal.bind(this, true)} className="img img-responsive img-thumbnail" alt="vores logo" />
+					</div>
+				)
+			}
+			
+			
+			showHelpUserModal(visibleModal){
+				
+				ModalActions.showHelpModal(visibleModal);
+			}
 
+            render() {
+				var divStyle = {
+					display: 'block'
+				}
+				var fade = {
+					display: 'block'
+				}
+				
+				var modalHelpMessage;
+
+				if(this.props.modal == true){
+					return(
+					modalHelpMessage = 
+						<div id="light" className='black_overlay' onClick={this.showHelpUserModal.bind(this, false)} style={divStyle} ClassName='white_content'>
+							<div id="fade"  style={fade}>
+								<div className="col-md-12  ">
+									<div className="modal modal_example" style={fade} onClick={this.showHelpUserModal.bind(this, false)} tabindex="-1" role="dialog">
+										<div className="modal-dialog">
+											<div className="modal-content">
+												<div className="modal-header">
+											
+													<h4 className="modal-title">
+														Billede Eksempel
+													</h4>
+												</div>
+												<div className="modal-body">
+													<p>
+														<img src="img/user_help_logo_or_banner.png" className="img img-responsive " alt="Hjælp til brugeren omkring valg af banner og slogan"/>
+													</p>
+												</div>
+												<div className="modal-footer">
+													<button type="button" className="btn btn-default" data-dismiss="modal">Luk Boksen</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					)
+					
+				}else{
+					return( 
+						<div>
+							{ this.state.mountedUserHelp  ? this.showMyPopup(): null }
+						</div>
+					)
+				}
+				
+                return (
+					<div className="container-fluid">
+						<div className="row">		
+							{modalHelpMessage}	
+						</div>
+					</div>
+                )
+            }
+        };
+		
+		
+		
+        /** Component */
        class ModalComponent extends React.Component{
 		   
 		    constructor(props) {
