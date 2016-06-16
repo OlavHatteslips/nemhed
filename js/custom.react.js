@@ -1988,10 +1988,9 @@ class ContentComponent extends React.Component{
 							
 							<div className=" jumbotron jumbotroncolors  text-center">
 						
-								<h1>{this.state.jumbotronWelcomeTitle}</h1>
+								<h1 className='pFrontpage'>{this.state.jumbotronWelcomeTitle}</h1>
 								
-								<p >
-								
+								<p className='pFrontpage'>
 									Nemhed.dk er en udstrækt hånd til dig der gerne vil skabe din helt egen, unikke hjemmeside, men ikke har nogen erfaring med html-koder. Du vil blive guidet gennem alle trin. Og skulle det ikke være nok, kan du også få hjælp fra vores hjælpevideoer.
 								</p>
 							</div>
@@ -2004,7 +2003,7 @@ class ContentComponent extends React.Component{
 						
 								<a href="hvorfor.html" alt="hvorfor">
 									<h2>Hvorfor?</h2>
-									<img src="./img/logo/nyt_logo.png" className=" img img-responsive  " alt="vores logo"/>
+									<img src="img/old/question-1332062.png" className=" img img-responsive  " alt="vores logo"/>
 								</a>
 						</div>
 					</div>
@@ -2016,7 +2015,7 @@ class ContentComponent extends React.Component{
 							<a href='hvem.html' alt='hvem er vi'>
 								<h2>Hvem er vi?</h2>
 								<p>
-									<img className="img img-responsive  img-circle" src="img/question-1332054.png" alt="why"/>
+									<img className="img img-responsive  img-circle" src="img/old/question-1332054.png" alt="why"/>
 								</p>
 							</a>
 					</div>
@@ -2028,7 +2027,7 @@ class ContentComponent extends React.Component{
 						<a href="#OpretSide" onClick={this.runSetup.bind(this)} >	
 							<h2>Opret din side</h2>
 							<p>
-								<img className="img img-responsive img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
+								<img className="img img-responsive img-circle" src="img/old/blank-1217348_1920.jpg" alt="why"/>
 							</p>
 						</a>
 					</div>			
