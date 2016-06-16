@@ -1915,7 +1915,8 @@ class ContentComponent extends React.Component{
 			
 								<div className="col-md-4" >
 								
-									<img src="img/user_help_slogan.png" className="img img-responsive img-thumbnail" alt="vores logo" />
+									
+									<ModalHelpController imgUrl="img/user_help_slogan.png" />
 								</div>
 								<div className="col-md-8" >
 									<h2>Har du et slogan <p className="small-caps small">{this.props.option} </p></h2>
@@ -1927,7 +1928,7 @@ class ContentComponent extends React.Component{
 							
 							
 								<div className="col-md-2" >
-								
+									
 									<img src="img/pencil_2_icon.png" className="img img-responsive " alt="vores logo" />
 								</div>
 								<div className="col-md-10" >
@@ -1998,37 +1999,37 @@ class ContentComponent extends React.Component{
 			
 				<div  key={"colmd6bob"}  className="col-md-4 ">
 				
-					<div className="panel" key={"panelbob"}>
-						<div className="panel-body text-center"  id="panelVideoId" key={"panelVideoBodyBob"} >
+					<div className="panel  " key={"panelbob"}>
+				
 						
-								<a href="hvorfor.html" alt="hvorfor">
-									<h2>Hvorfor?</h2>
-									<img src="img/question-1332062.png" className=" img img-responsive  " alt="vores logo"/>
+								<a className="thumbnail" href="hvorfor.html" alt="hvorfor">
+									<h2 className="text-center">Hvorfor?</h2>
+									<img src="img/new/hvorfor.png" className=" img img-responsive  " alt="Hvorfor nemhed.dk"/>
 								</a>
-						</div>
+						
 					</div>
 				</div>
 				<div className="col-md-4" key={63}>
-					<div className="panel text-center" key={"videoLink"} >
+					<div className="panel" key={"videoLink"} >
 							
 							
-							<a href='hvem.html' alt='hvem er vi'>
-								<h2>Hvem er vi?</h2>
-								<p>
-									<img className="img img-responsive  img-circle" src="img/question-1332054.png" alt="why"/>
-								</p>
+							<a className="thumbnail" href='hvem.html' alt='hvem er vi'>
+								<h2 className="text-center">Hvem er vi?</h2>
+								
+									<img className="img img-responsive  " src="img/new/hvem-er-vi.png" alt="Hvem står bag nemhed.dk"/>
+								
 							</a>
 					</div>
 				</div>
 				
 				<div className="col-md-4" key={"Left"}>
 					
-					<div className="panel  text-center " key={"videoLink"} >
-						<a href="#OpretSide" onClick={this.runSetup.bind(this)} >	
-							<h2>Opret din side</h2>
-							<p>
-								<img className="img img-responsive img-circle" src="img/blank-1217348_1920.jpg" alt="why"/>
-							</p>
+					<div className="panel  " key={"videoLink"} >
+						<a className="thumbnail" href="#OpretSide" onClick={this.runSetup.bind(this)} >	
+							<h2 className="text-center">Opret din side</h2>
+							
+								<img className="img img-responsive" src="img/new/opret-din-side.png" alt="Hvad gør jeg?"/>
+							
 						</a>
 					</div>			
 				</div>
@@ -2060,7 +2061,7 @@ class ContentComponent extends React.Component{
 						<div className="panel-body"  id="panelVideoId" >
 							<div className="col-md-12" >
 								<div className="col-md-4" >
-									<ModalHelpController />
+									<ModalHelpController imgUrl="img/user_help_logo_or_banner.png" />
 								</div>
 								<div className="col-md-8" >
 									<h2>Har du et {this.props.children}</h2>
@@ -2733,9 +2734,7 @@ class Dropzone extends React.Component {
 		var shModal = false;
 		
 		function setModalState(text){
-			
            shModal = text;
-		   
         }
 
         var ModalStore = Flux.createStore({
@@ -2778,7 +2777,6 @@ class Dropzone extends React.Component {
         }
 
         /** Controller View */
-		
 		var ModalController = React.createClass({
             mixins: [ModalStore.mixin],
             getInitialState: function(){
@@ -2801,13 +2799,11 @@ class Dropzone extends React.Component {
                 this.setState(getModal());
             },
             render: function() {
-                return <ModalHelpComponent modal={this.state.modal} />;
+                return <ModalHelpComponent imgUrl={this.props.imgUrl} modal={this.state.modal} />;
             }
         });
 
-		
-		
-		        /** Component */
+		/** Component */
        class ModalHelpComponent extends React.Component{
 		   
 		    constructor(props) {
@@ -2841,7 +2837,7 @@ class Dropzone extends React.Component {
 			
 				return(
 					<div  role="tooltip">
-						<img src="img/user_help_logo_or_banner.png" onClick={	this.showHelpUserModal.bind(this, true)} className="img img-responsive img-thumbnail" alt="vores logo" />
+						<img src={this.props.imgUrl} onClick={	this.showHelpUserModal.bind(this, true)} className="img img-responsive img-thumbnail" alt="vores logo" />
 					</div>
 				)
 			}
@@ -2879,7 +2875,7 @@ class Dropzone extends React.Component {
 												</div>
 												<div className="modal-body">
 													<p>
-														<img src="img/user_help_logo_or_banner.png" className="img img-responsive " alt="Hjælp til brugeren omkring valg af banner og slogan"/>
+														<img src={this.props.imgUrl} className="img img-responsive " alt="Hjælp til brugeren omkring valg af banner og slogan"/>
 													</p>
 												</div>
 												<div className="modal-footer">
