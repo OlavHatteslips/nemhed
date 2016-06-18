@@ -2966,10 +2966,8 @@ class Dropzone extends React.Component {
 				)
 			}
 			
-			
 			showModal(visibleModal){
-				
-				RecipeActions.showModal(visibleModal);
+				ModalActions.showModal(visibleModal);
 			}
 
             render() {
