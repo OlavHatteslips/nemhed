@@ -24,6 +24,20 @@
 		<meta http-equiv="cache-control" content="no-cache" />
 		<meta http-equiv="expires" content="0" />
 		<meta http-equiv="pragma" content="no-cache" />
+		
+		<!-- det er bare jquery -->
+		<script src="js/jquery.js" crossorigin="anonymous"></script>
+		
+		<!--
+		depreached brug babel-core / browser.min.js i stedet
+		<script src="js/JSXTransformer.js"></script>
+		-->
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="js/bootstrap.min.js"  crossorigin="anonymous"></script>
+		<!-- react library-->
+		<script src="js/react.min.js"></script>
+		<script src="js/react-with-addons.min.js"></script>
+		<script src="js/react-dom.min.js"></script>
 	</head>
 
 	<body >
@@ -75,18 +89,10 @@
 	   
 	   </div>
 	</div>
-	
-		<!-- det er bare jquery -->
-		<script src="js/jquery.js" crossorigin="anonymous"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="js/bootstrap.min.js"  crossorigin="anonymous"></script>
-		<!-- react library-->
-		<script src="js/JSXTransformer.js"></script>
-		<script src="js/react.min.js"></script>
-		<script src="js/react-with-addons.min.js"></script>
-		<script src="js/react-dom.min.js"></script>
+
+		<script  src="js/browser.min.js"> </script>
 		
 		<!-- det er vores custom react kode -->	
-		<script type="text/jsx" src="js/custom.react.js" ></script>
+		<script type="text/babel" src="js/custom.react.babel.js" ></script>
 	</body>
 </html>
