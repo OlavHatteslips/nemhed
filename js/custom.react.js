@@ -251,7 +251,7 @@ class ContentComponent extends React.Component{
 			showPreview: false,
 			logoUrl : '',
 			mountedFrontpage : false,
-			jumbotronWelcomeTitle : 'Velkommen til Nemhed.dk',
+			jumbotronWelcomeTitle : 'Velkommen til Nemhed',
 			startSetup: false,
 			logoBannerSelected : false,
 			bannerMounted: false,
