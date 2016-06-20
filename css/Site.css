@@ -19,6 +19,14 @@ body{
 	padding-bottom: 30px;
 }
 
+.modal-title{
+	color:#000;
+}
+
+.modal-body > p{
+	color:#000;
+}
+
 .bs-callout-warning {
     border-left-color: #aa6708;
 }

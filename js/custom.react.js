@@ -1,5 +1,7 @@
 var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 var INTERVAL = 2000;
+var textFile = null;
+
 
 class MenuComponent extends React.Component{
 	constructor (props){
@@ -265,10 +267,13 @@ class ContentComponent extends React.Component{
 			contentSelected : 0,
 			createFooter : false,
 			createFooterOrdinary : false,
-			downloadLink: '',
+			downloadLink: false,
+			downloadLinkHref: '',
 			NextContentQuestion: false,
 			menuItem: [],
-			contentType : ''
+			contentType : '',
+			
+			savedData :  new Blob()
 			
 		}
 		//var results = this.props.results;
@@ -323,15 +328,71 @@ class ContentComponent extends React.Component{
 		})
 	}
 	
+	
+	makeTextFile(text) {
+		var xml_serializer = new XMLSerializer();
+		var doc = this.createHtmlDoc(text);
+		
+		var file = new File([xml_serializer.serializeToString(doc)], "dinhjemmeside.xhtml", {type: "text/plain;charset=utf-8"});
+		saveAs(file);	
+	};
+	
+	createHtmlDoc(html){
+			var doc_impl = document.implementation;
+			var
+			dt = doc_impl.createDocumentType('html', null, null)
+			, doc = doc_impl.createDocument("http://www.w3.org/1999/xhtml", "html", dt)
+			, doc_el = doc.documentElement
+			, head = doc_el.appendChild(doc.createElement("head"))
+			, charset_meta = head.appendChild(doc.createElement("meta"))
+			, title = head.appendChild(doc.createElement("title"))
+			, body = doc_el.appendChild(doc.createElement("body"))
+			, i = 0
+			, len = html.childNodes.length
+			
+			charset_meta.setAttribute("charset", html.ownerDocument.characterSet);
+			for (; i < len; i++) {
+				body.appendChild(doc.importNode(html.childNodes.item(i), true));
+			}
+			
+			var title_text = this.guess_title(doc);
+			if (title_text) {
+				title.appendChild(doc.createTextNode(title_text));
+			}
+			
+			return doc;
+		
+	}
+	
+	guess_title(doc) {
+		var
+			  h = "h6 h5 h4 h3 h2 h1".split(" ")
+			, i = h.length
+			, headers
+			, header_text
+		;
+		while (i--) {
+			headers = doc.getElementsByTagName(h[i]);
+			for (var j = 0, len = headers.length; j < len; j++) {
+				header_text = headers[j].textContent.trim();
+				if (header_text) {
+					return header_text;
+				}
+			}
+		}
+	}
+	
+	
 	downloadHTML(htmlArgs){
-		return (htmlArgs)
+		var myElement =  document.getElementById('insertContentStuff');
+		this.makeTextFile(myElement);
 	}
 	
 	showDownloadLink(){
 		return (
-			<p>
-				{this.state.downloadLink}
-			</p>
+			<li className="next">
+				<a href={this.state.downloadLinkHref } download="dinhjemmeside.xhtml" id="downloadlink">Download</a>
+			</li>
 		)
 	}
 	
@@ -562,6 +623,7 @@ class ContentComponent extends React.Component{
 								</p>
 							</form>
 							{ this.state.NextContentQuestion ? this.contentQuestionTwo(): null }	
+							
 					</div>
 				</div>
 			</div>
@@ -746,10 +808,15 @@ class ContentComponent extends React.Component{
 	
 	insertUserOptionsBannerMenu(){
 		return (
-			<div  key={"colmdOptionsShowUserOption"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
-				<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-				<a href="#" className="btn btn-success" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer En Menu</a>
+			<div  key={"colmdOptionsShowMenu"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
+				<nav>
+					<ul className="pager">
+						<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til valg af logo eller banner</a></li>
+						<li className="next"><a href="#" onClick={this.GoToCreateBannerMenu.bind(this)}>Placer menu <span aria-hidden="true">&rarr;</span></a></li>
+					</ul>
+				</nav>
 			</div>
+			
 		)
 	}
 	
@@ -784,7 +851,7 @@ class ContentComponent extends React.Component{
 		return(
 			<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 				<a href="#" className="btn btn-default" onClick={this.GoToLogoBannerChoice.bind(this)}>Tilbage til valg af logo eller banner</a>
-				<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu</a>
+				<a href="#" className="btn btn-success" onClick={this.GoToCreateMenu.bind(this)}>Placer menu</a>
 				<a href="#" className="btn btn-success" onClick={this.GoToCreateContent.bind(this)}>Placer dit indhold</a>
 				<a href="#" className="btn btn-success" onClick={this.GoToCreateFooter.bind(this)}>Placer En Sidefod</a>
 			</div>
@@ -881,9 +948,11 @@ class ContentComponent extends React.Component{
 									<nav>
 									  <ul className="pager">
 										<li className="previous"><a href="#" onClick={this.GoToLogoBannerChoice.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til valg af logo eller banner</a></li>
-										<li className="next"><a href="#" onClick={this.GoToCreateMenu.bind(this)}>Placer En Menu <span aria-hidden="true">&rarr;</span></a></li>
+										<li className="next"><a href="#" onClick={this.GoToCreateMenu.bind(this)}>Placer menu <span aria-hidden="true">&rarr;</span></a></li>
 									  </ul>
 									</nav>
+									
+									
 								</div>
 								
 						</div>
@@ -1279,7 +1348,8 @@ class ContentComponent extends React.Component{
 							<nav>
 								<ul className="pager">
 									<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til forsiden</a></li>
-									<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+									<li className="next"><a href="#" onClick={this.downloadHTML.bind(this, "<div>hej</div>")}>Download din hjemmeside <span aria-hidden="true">&rarr;</span></a></li>
+									{ this.state.downloadLink ? this.showDownloadLink(): null }	
 								</ul>
 							</nav>
 						</div>
@@ -1360,7 +1430,8 @@ class ContentComponent extends React.Component{
 					<nav>
 						<ul className="pager">
 							<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span> Tilbage til forsiden</a></li>
-							<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+							<li className="next"><a href="#" onClick={this.downloadHTML.bind(this, "<div>hej</div>")}>Download din hjemmeside <span aria-hidden="true">&rarr;</span></a></li>
+							{ this.state.downloadLink ? this.showDownloadLink(): null }	
 						</ul>
 					</nav>
 				</div>
@@ -1808,7 +1879,8 @@ class ContentComponent extends React.Component{
 							<nav>
 								<ul className="pager">
 									<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til forsiden</a></li>
-									<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+									<li className="next"><a href="#" onClick={this.downloadHTML.bind(this, "<div>hej</div>")}>Download din hjemmeside <span aria-hidden="true">&rarr;</span></a></li>
+									{ this.state.downloadLink ? this.showDownloadLink(): null }	
 								</ul>
 							</nav>
 						</div>
@@ -1889,8 +1961,9 @@ class ContentComponent extends React.Component{
 				<div  key={"colmdOptionsFooterShow"}  className=" col-md-12  col-sm-12   sidebar-optionpanel  ">
 					<nav>
 						<ul className="pager">
-						<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til forsiden</a></li>
-						<li className="next"><a href="#" onClick={this.downloadHTML.bind(this)}>Download HTML <span aria-hidden="true">&rarr;</span></a></li>
+							<li className="previous"><a href="#" onClick={this.GoToFrontpage.bind(this)}><span aria-hidden="true">&larr;</span>Tilbage til forsiden</a></li>
+							<li className="next"><a href="#" download="dinhjemmeside.xhtml" onClick={this.downloadHTML.bind(this, "<div>hej</div>")}>Download din hjemmeside <span aria-hidden="true">&rarr;</span></a></li>
+							{ this.state.downloadLink ? this.showDownloadLink(): null }	
 						</ul>
 					</nav>
 				</div>			
