@@ -28,10 +28,21 @@ class MenuComponent extends React.Component{
 			menuLinks = <MyLinks  />
 		}
 		
+		var forkStyle = {
+		  position: 'absolute',
+		  top:0,
+			right: 0,
+			border:0
+		};
+		
 		return (
 		
 				<div className="blog-masthead header  headercolor blog-nav   navbar-inverse  navbar  navbar-fixed-top" >
 						<div className="container">
+						<a href="https://github.com/kaptajnguldkorn/nemhed">
+							<img style={forkStyle}
+							src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" />
+						</a>
 							<div className="navbar-header">
 
 								<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -49,8 +60,10 @@ class MenuComponent extends React.Component{
 								{menuLinks}
 							
 							</div>
+							
 					</div>		
 				</div>
+				
 			);
 	}
 }
@@ -340,20 +353,36 @@ class ContentComponent extends React.Component{
 	createHtmlDoc(html){
 			var doc_impl = document.implementation;
 			var
-			dt = doc_impl.createDocumentType('html', null, null)
+			dt = doc_impl.createDocumentType('html', "//W3C//DTD XHTML 1.0 Strict//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd")
 			, doc = doc_impl.createDocument("http://www.w3.org/1999/xhtml", "html", dt)
 			, doc_el = doc.documentElement
 			, head = doc_el.appendChild(doc.createElement("head"))
 			, charset_meta = head.appendChild(doc.createElement("meta"))
+			, content_meta = head.appendChild(doc.createElement("meta"))
+			, css_bootstrap_stylesheet = head.appendChild(doc.createElement("link"))
+			, css_stylesheet = head.appendChild(doc.createElement("link"))
 			, title = head.appendChild(doc.createElement("title"))
 			, body = doc_el.appendChild(doc.createElement("body"))
 			, i = 0
 			, len = html.childNodes.length
-			
+	
 			charset_meta.setAttribute("charset", html.ownerDocument.characterSet);
+			content_meta.setAttribute("http-equiv", "Content-Type");
+			content_meta.setAttribute("content", "text/html");
+			
+			css_bootstrap_stylesheet.setAttribute("rel","stylesheet");
+			css_bootstrap_stylesheet.setAttribute("href", "http://kaptajnguldkorn.github.io/nemhed/css/bootstrap.min.css");
+
+			
+			css_stylesheet.setAttribute("href", "http://kaptajnguldkorn.github.io/nemhed/css/Site.min.css");
+			css_stylesheet.setAttribute("rel", "stylesheet");
+			
 			for (; i < len; i++) {
 				body.appendChild(doc.importNode(html.childNodes.item(i), true));
 			}
+			
+			var objChildGit = "<a href='https://github.com/kaptajnguldkorn/nemhed'><img style='position: absolute; top: 0; right: 0; border: 0;' src='https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67' alt='Fork me on GitHub' data-canonical-src='https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png'/></a>";
+			body.appendChild(objChildGit);
 			
 			var title_text = this.guess_title(doc);
 			if (title_text) {
@@ -2284,6 +2313,7 @@ class LinkList extends  React.Component{
 							{links.title}
 						</a>
 					</li>
+					
 				)
 			})
 			
